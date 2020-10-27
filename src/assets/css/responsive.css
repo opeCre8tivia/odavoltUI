@@ -1,0 +1,44 @@
+@media (min-width: 1920px) {
+    
+  }
+  
+  /* Normal desktop :992px. */
+  
+  @media (min-width: 992px) and (max-width: 1169px) {
+    
+  }
+  
+  /* Tablet desktop :768px. */
+  
+  @media (min-width: 768px) and (max-width: 991px) {
+    
+  }
+  
+  /* small mobile :320px. */
+  
+  @media (max-width: 767px) {
+    .auth-component{
+      min-height: 100vh;
+      box-shadow:none;
+    }
+    
+  }
+  
+  /* Large Mobile :480px. */
+  
+  @media only screen and (min-width: 480px) and (max-width: 767px) {
+    
+  }
+
+    /* x small Mobile :480px. */
+  
+    @media only screen and (max-width: 480px) {
+        .ov-auth-form{
+            width:95%;
+        }
+        .logo-container{
+          width: 100px;
+        }
+   
+         
+    }

@@ -1,0 +1,247 @@
+.home-main-cont{
+    width:100vw;
+    height:100%;
+    background-color:#fff;
+    margin: auto;
+    overflow-x: hidden;
+}
+
+.ov-slider-container{
+    width:99vw;
+    margin: auto;
+    height:auto;
+    max-height:350px;
+}
+
+
+.ov-slider{
+    position: relative;
+    height:auto;
+    max-height:350px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color:var(--ov-gray-light);
+    margin-right:2% ;
+}
+
+.slick-slider{
+    padding:0;
+    
+}
+
+.slick-initialized{
+    width:100%;
+    margin: 0;
+    background-color: chartreuse;
+    
+}
+
+.slider-image-cont{
+    width:100%;
+    height:auto;
+    max-height:350px;
+}
+.slider-image{
+    width:100%;
+    height:100%;
+    display:block;
+}
+
+.ov-top-ad-cont{
+    min-height:350px;
+    max-height: 350px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: space-between;
+    margin-right: 30px;
+}
+
+.ov-top-ad-one{
+    flex:2;
+    background:aliceblue;
+    width:100%;
+    margin-bottom: 10px;
+    position: relative;
+
+
+}
+
+.ov-top-ad-two{
+    flex:2;
+    background:aliceblue;
+    width:100%;
+}
+.ad-image{
+    width: 100%;
+    height: 100%;
+}
+.playstore-link{
+    width: 40%;
+    height: 50px;
+    z-index: 1;
+    margin: auto;
+    position: absolute;
+    bottom: 3px;
+    left:50%;
+    transform: translateX(-50%);
+
+}
+.playstore-image{
+    width: 100%;
+    height: 100%;
+}
+
+.supermarketlist-cont{
+    width:100%;
+    height:150px;
+    padding:5px;
+    display:inline-block;
+    position:relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.supermarket{
+    width:150px;
+    height:150px;
+    background-color:var(--ov-primary);
+    color:#fff;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 15px;
+    position: relative;
+}
+
+.name{
+    position: absolute;
+    top:30%;
+    left:50%;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+}
+.supermarket p{
+    font-size: 80%;
+    font-weight:300 ;
+    text-align: center;
+    position: absolute;
+    top:45%;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+.btn-supermarket{
+    position: absolute;
+    bottom:5%;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+.item-slide-cont{
+    width: 100%;
+    height: 300px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 50px;
+    display: inline-block;
+   
+}
+.section-title{
+    height: 40px;
+    width:100%;
+    position: relative;
+    top:0;
+    left:1px;
+    color:#000000;
+    font-size: 90%;
+    font-weight: bolder;
+    padding:5px;
+    background: var(--ov-gray-light);
+    border-top-right-radius:10px;
+    border-top-left-radius:10px;
+    margin: auto;
+}
+
+.section-title p{
+    position: absolute;
+    left:20px;
+    top:50%;
+    transform: translateY(-50%);
+}
+
+.section-title button{
+    position: absolute;
+    right: 20px;
+    top:50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border:1px solid var(--ov-secondary)
+}
+
+.section-title button:hover{
+    color:var(--ov-primary);
+    border:1px solid var(--ov-primary)
+}
+/* cart floatin action button */
+.ov-cart-button{
+	width:100px;
+	height:100px;
+	border:1px solid #fff;
+	border-radius: 50px;
+	background:var(--ov-primary);
+	position: fixed;
+	bottom:20px;
+    right:10px;
+    z-index: 1002;
+	
+}
+
+.ov-cart-img-cont{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	width:80%;
+	height:80%;
+}
+
+.ov-cart-img{
+	position:absolute;
+	top:50%;
+	left:35%;
+	transform:translate(-35%,-50%);
+
+	color:#ffffff;
+	font-size: 40px;
+	text-align: center;
+	
+
+}
+
+.ov-cartitems-number{
+	width:20px;
+	height:20px;
+	border-radius: 10px;
+	background:#000;
+	color:#fff;
+	position: absolute;
+	top:10px;
+	right:15px;
+
+}
+
+.ov-cartitems-number p{
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+}
+
+
+@media only screen and (max-width:768px){
+    .ov-top-ad-cont{
+        display:none;
+    }
+}

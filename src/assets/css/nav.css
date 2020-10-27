@@ -1,0 +1,116 @@
+.nav-container{
+    width:100%;
+    height:80px;
+    background-color:#fff;
+    position: relative;
+    display:flex;
+    justify-content: space-between;
+}
+
+.logo-container{
+    width: 150px;
+    height:40px;
+    position:relative;
+    top:50%;
+    left:20px;
+    transform: translateY(-50%);
+}
+.logo-container img{
+    width:100%;
+    height:40px;
+}
+.userprofile-icon-container{
+    width:40px;
+    height:40px;
+    background:gray;
+    border-radius:20px;
+    position:relative;
+    top:50%;
+    right:30px;
+    transform: translateY(-50%);
+}
+
+.userprofile-icon-container img{
+    width:40px;
+    height:40px;
+    border-radius: 20px;
+}
+.ov-auth-btn-cont{
+	max-width: 50%;
+	position: absolute;
+	right:40px;
+	top:50%;
+	transform:translateY(-50%);
+	display:flex,
+	
+	
+}
+
+.ov-signup-btn{
+	background:var(--ov-primary);
+	color:#fff;
+	font-family: Arial, Helvetica, sans-serif;
+	border:1px solid var(--ov-primary);
+	margin-right: 8px;
+	
+}
+
+.ov-signup-btn:hover{
+	background: transparent;
+	color:var(--ov-primary);
+}
+
+.ov-login-btn{
+	background: transparent;
+	border:1px solid var(--ov-primary);
+	color:var(--ov-primary);
+	font-family: Arial, Helvetica, sans-serif;
+	
+}
+
+.ov-login-btn:hover{
+	background: var(--ov-primary);
+	color:#fff;
+	
+
+	
+}
+
+.ov-banner{
+	width: 100%;
+	height:30px;
+	background-image: url("/ov-animation-lg.gif");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+		
+}
+
+.ov-banner img{
+	width: 100%;
+	height:100%;
+	max-height: 100%;
+	min-width: 100%;
+}
+
+
+@media only screen and (max-width:600px){
+	.ov-banner{
+		width: 100%;
+		height:30px;
+		background-image: url("/ov-animation-md.gif");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 100%;
+			
+	}
+}
+
+@media only screen and (max-width:350px){
+	.ov-auth-btn-cont{
+		display: none;
+	}
+
+}
+
+

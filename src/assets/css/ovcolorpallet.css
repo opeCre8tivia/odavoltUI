@@ -1,0 +1,9 @@
+/* ======= odavolt official color pallet */
+
+:root{
+    --ov-primary:#F06723;
+    --ov-secondary:#29CC17;
+    --ov-gray-dark:#535353;
+    --ov-gray-medium:#717171;
+    --ov-gray-light:#efefef;
+}
