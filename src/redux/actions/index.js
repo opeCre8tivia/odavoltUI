@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {productList} from '../../productList'
+import {rootapi} from '../../rootapi'
 
 import getProductsByCategory from './productsActions'
 import {RegisterUserAction,LoadUser,LoginUserAction} from './userActions'
@@ -23,8 +24,8 @@ export const fetchStores =()=>{
     return async function(dispatch){
 
         try {
-
-           const res = await axios.get('http://localhost:5000/api/store-crud')
+            console.log('fetc...called')
+           const res = await axios.get(`${rootapi}/api/store-crud`)
            console.log(res.data)
             if(res.data.payload){
                 dispatch({
