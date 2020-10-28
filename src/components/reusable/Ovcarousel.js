@@ -1,6 +1,5 @@
 //this is implemented using react-multi-carousel
 import React  from 'react';
-import {useSelector} from 'react-redux'
 
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
@@ -9,11 +8,8 @@ import '../../assets/css/aliceCarouselCustom.css';
 import Product from '../home/Product';
 
 
-const Ovcarousel =({deviceType})=>{
+const Ovcarousel =({productList,lsItems})=>{
 
-    //redux state
-    const productList = useSelector(state => state.ProductReducer.productList)
-    let lsItems = JSON.parse(localStorage.getItem("ov-client-orders"))
 
  
     const responsive = {

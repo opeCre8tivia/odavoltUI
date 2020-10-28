@@ -1,4 +1,21 @@
- const getProductsByCategory = (category)=>{
+import {productList} from '../../productList'
+
+ //product actions
+ export const fetchProducts =()=>{
+     return function(dispatch){
+         //fetch items
+         // const products = 
+         console.log("products fetched")
+         dispatch({
+             type:'FETCH_PRODUCTS',
+             payload:productList
+         })
+     }
+ }
+ 
+ 
+ export const getProductsByCategory = (category)=>{
+
     return function(dispatch){
         //fetch products by category
         console.log('category')
@@ -76,4 +93,3 @@
     }
 }
 
-export default getProductsByCategory

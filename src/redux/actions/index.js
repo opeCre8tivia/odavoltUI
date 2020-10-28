@@ -1,22 +1,9 @@
 import axios from 'axios';
-import {productList} from '../../productList'
 import {rootapi} from '../../rootapi'
 
-import getProductsByCategory from './productsActions'
+import {getProductsByCategory, fetchProducts} from './productsActions'
 import {RegisterUserAction,LoadUser,LoginUserAction} from './userActions'
 
-//product actions
-export const fetchProducts =()=>{
-    return function(dispatch){
-        //fetch items
-        // const products = 
-        console.log("products fetched")
-        dispatch({
-            type:'FETCH_PRODUCTS',
-            payload:productList
-        })
-    }
-}
 
 
 //store actions
@@ -25,7 +12,8 @@ export const fetchStores =()=>{
 
         try {
             console.log('fetc...called')
-           const res = await axios.get(`${rootapi}/api/store-crud`)
+        //    const res = await axios.get(`${rootapi}/api/store-crud`)
+           const res = await axios.get(`http://localhost:5000/api/store-crud`)
            console.log(res.data)
             if(res.data.payload){
                 dispatch({
@@ -41,6 +29,57 @@ export const fetchStores =()=>{
        
     }
 }
+
+
+export const loadAstore =(id)=>{
+    return async function(dispatch){
+
+        try {
+            console.log('load...called')
+        //    const res = await axios.get(`${rootapi}/api/store-crud`)
+           const res = await axios.get(`http://localhost:5000/api/store-crud/${id} `)
+           console.log(res.data)
+            if(res.data.payload){
+                dispatch({
+                    type:'LOAD_ASTORE',
+                    payload:res.data.payload
+                })
+            }   
+            
+        } catch (error) {
+            console.log(error)
+        }
+        
+       
+    }
+}
+
+
+
+export const fetchCategories =()=>{
+    return async function(dispatch){
+
+        try {
+        
+        //    const res = await axios.get(`${rootapi}/api/categories-crud`)
+           const res = await axios.get(`http://localhost:5000/api/categories-crud`)
+            if(res.data.payload){
+                dispatch({
+                    type:'FETCH_CATEGORIES',
+                    payload:res.data.payload
+                })
+            }   
+            
+        } catch (error) {
+            console.log(error)
+        }
+        
+       
+    }
+}
+
+
+
 
 // cart actions
 export const ShowCart= () =>{
@@ -88,6 +127,10 @@ export {LoadUser}
 //login user
 export {LoginUserAction}
 
+export {fetchProducts}
+
+export {getProductsByCategory}
+
 
 
 export const setAlert = (msg, type) =>{
@@ -114,11 +157,4 @@ export const loginButtonClicked =()=>{
     }
 }
 
-
-
-
-
-//product actions
-
-export {getProductsByCategory}
 

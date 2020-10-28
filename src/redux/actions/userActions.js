@@ -71,7 +71,8 @@ export  const LoadUser = (token) =>{
 
             axios.defaults.headers.common['x-auth-token'] = token; //set headers
 
-            axios.get(`${rootapi}/api/auth`)
+            // axios.get(`${rootapi}/api/auth`)
+            axios.get(`http://localhost:5000/api/auth`)
             .then(res => {
                 dispatch({
                             type:'USER_LOADED',
@@ -103,7 +104,8 @@ export const LoginUserAction = (formData) =>{
     return async function (dispatch){
       try {
 
-        let res = await axios.post(`${rootapi}/api/login-user`, formData); //res contains user data
+        // let res = await axios.post(`${rootapi}/api/login-user`, formData); //res contains user data
+        let res = await axios.post(`http://localhost:5000/api/login-user`, formData); //res contains user data
       
         if(res.data.error === true){
             dispatch({

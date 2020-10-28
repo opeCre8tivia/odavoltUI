@@ -1,20 +1,36 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import {Redirect} from 'react-router-dom'
-import {useDispatch,useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {getProductsByCategory} from '../../redux/actions'
-import Ovcarousel from '../reusable/Ovcarousel'
+import Ovcarousel from './Ovcarousel'
 
-const ItemSlide=({category})=> {
+const SubCategoryItemSlide=({subCategory , storeProducts})=> {
     //global
     let lsItems = JSON.parse(localStorage.getItem("ov-client-orders"))
     //redux state
     const dispatch = useDispatch()
-    const productList = useSelector(state => state.ProductReducer.productList)
+    const [productList, setProductList] = useState([])
    
 
 
     //component state
     const [redirect, setRedirect] = useState(false);
+
+    useEffect(() => {
+        sortStoreProducts()
+    }, [])
+
+    //fuction to sort storeProducts
+    const sortStoreProducts =()=>{
+        let sorted = []
+        storeProducts.forEach(product => { 
+            if(product.subCategory === subCategory){
+                sorted.push(product)
+            }
+        });
+
+        setProductList(sorted)
+    }
 
     //function to dispatch action
     const handleDispatch =(category)=>{
@@ -22,13 +38,14 @@ const ItemSlide=({category})=> {
             setRedirect(true)
         }
 
+
     return (
         <>
         {redirect===true ? <Redirect to="/view/category"> </Redirect> : null}
         <div className="container-fluid item-slide-cont" >
             <div className="section-title">
-                <p> {`Buy ${category}`}  </p>
-                <button className="btn btn-sm view-more" onClick={()=> handleDispatch(category)}>View More</button>
+                <p> {`Buy ${subCategory}`}  </p>
+                <button className="btn btn-sm view-more" onClick={()=> handleDispatch(subCategory)}>View More</button>
             </div>
             <Ovcarousel productList={productList} lsItems={lsItems} />
 
@@ -38,4 +55,4 @@ const ItemSlide=({category})=> {
     )
 }
 
-export default ItemSlide
+export default SubCategoryItemSlide

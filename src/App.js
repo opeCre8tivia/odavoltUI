@@ -15,6 +15,7 @@ import UserDash from "./components/auth/UserDash"
 import Home from './components/home/Home';
 import DashBoard from './components/auth/dash/DashBoard';
 import ViewMore from './components/reusable/ViewMore';
+import SupermarketHomePage from './components/reusable/SupermarketHomePage';
 
 //redux store
 
@@ -43,6 +44,7 @@ const App =(props)=> {
                     <Route path="/user-dash" exact component={UserDash} />
                     <Route path="/admin-dash" exact component={DashBoard} />
                     <Route path="/view/category" exact component={ViewMore} />
+                    <Route path="/view/supermarket" exact component={SupermarketHomePage} />
                 </Switch>
             </Router>
            
