@@ -9,7 +9,7 @@ import CartMethods from '../classes/cartMethods'
 
 
 const AddToCartComponent =({item})=> {
-
+    
     //redux state
     const productList = useSelector((state)=>state.ProductReducer.productList)
    

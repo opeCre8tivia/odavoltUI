@@ -12,8 +12,8 @@ export const fetchStores =()=>{
 
         try {
             console.log('fetc...called')
-        //    const res = await axios.get(`${rootapi}/api/store-crud`)
-           const res = await axios.get(`http://localhost:5000/api/store-crud`)
+           const res = await axios.get(`${rootapi}/api/store-crud`)
+        //    const res = await axios.get(`http://localhost:5000/api/store-crud`)
            console.log(res.data)
             if(res.data.payload){
                 dispatch({
@@ -36,8 +36,8 @@ export const loadAstore =(id)=>{
 
         try {
             console.log('load...called')
-        //    const res = await axios.get(`${rootapi}/api/store-crud`)
-           const res = await axios.get(`http://localhost:5000/api/store-crud/${id} `)
+           const res = await axios.get(`${rootapi}/api/store-crud`)
+        //    const res = await axios.get(`http://localhost:5000/api/store-crud/${id} `)
            console.log(res.data)
             if(res.data.payload){
                 dispatch({
@@ -54,6 +54,29 @@ export const loadAstore =(id)=>{
     }
 }
 
+export const loadParticularStoreProducts =(id)=>{
+    return async function(dispatch){
+        try {
+          
+           const res = await axios.get(`${rootapi}/api/store-crud`)
+        //    const res = await axios.get(`http://localhost:5000/api/storeitem-crud/all/${id} `)
+    
+            if(res.data.payload){
+                dispatch({
+                    type:'LOAD_PARTICULAR_STORE_PRODUCTS',
+                    payload:res.data.payload
+                })
+            }   
+            
+        } catch (error) {
+            console.log(error)
+        }
+        
+       
+    }
+    }
+
+
 
 
 export const fetchCategories =()=>{
@@ -61,8 +84,8 @@ export const fetchCategories =()=>{
 
         try {
         
-        //    const res = await axios.get(`${rootapi}/api/categories-crud`)
-           const res = await axios.get(`http://localhost:5000/api/categories-crud`)
+           const res = await axios.get(`${rootapi}/api/categories-crud`)
+        //    const res = await axios.get(`http://localhost:5000/api/categories-crud`)
             if(res.data.payload){
                 dispatch({
                     type:'FETCH_CATEGORIES',

@@ -3,7 +3,7 @@ import Nav from '../home/Nav'
 
 import {useSelector,useDispatch} from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import {loadAstore,fetchCategories} from '../../redux/actions'
+import {loadAstore,fetchCategories,loadParticularStoreProducts} from '../../redux/actions'
 
 import SubCategoryItemSlide from '../reusable/SubCategoryItemSlide'
 
@@ -13,19 +13,20 @@ const SupermarketHomePage =()=>{
     const _str_id = JSON.parse(localStorage.getItem("_str"))
     //redux state
     const dispatch = useDispatch()
-    const {store,categories} = useSelector(state => state.StoreReducer)
+    const {store,categories,particularStoreProducts} = useSelector(state => state.StoreReducer)
 
     //component state
     const [redirect,setRedirect] = useState(false)
     const [loading,setLoading] = useState(true)
     const [subCategories,setSubCategories] = useState([])
 
-    //temp
-    let storeP = []
+   
+    
     useEffect(() => {
       
         dispatch(loadAstore(_str_id))
         dispatch(fetchCategories())
+        dispatch(loadParticularStoreProducts(_str_id))
 
     }, [])
 
@@ -50,8 +51,6 @@ const SupermarketHomePage =()=>{
             }
         })
     }
-
-    console.log(subCategories)
    
     return (
         <div >
@@ -72,7 +71,7 @@ const SupermarketHomePage =()=>{
             {/* products by sub category */}
 
             {
-              subCategories.map((subCategory)=> <SubCategoryItemSlide subCategory={subCategory} storeProducts={storeP} /> )
+              subCategories.map((subCategory)=> <SubCategoryItemSlide subCategory={subCategory} storeProducts={particularStoreProducts} /> )
             }   
 
             </> }

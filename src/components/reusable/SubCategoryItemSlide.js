@@ -22,10 +22,11 @@ const SubCategoryItemSlide=({subCategory , storeProducts})=> {
 
     //fuction to sort storeProducts
     const sortStoreProducts =()=>{
+        console.log('sort called...')
         let sorted = []
-        storeProducts.forEach(product => { 
-            if(product.subCategory === subCategory){
-                sorted.push(product)
+        storeProducts.forEach(storeProduct => { 
+            if(storeProduct.product.subCategory === subCategory){
+                sorted.push(storeProduct)
             }
         });
 
@@ -38,7 +39,8 @@ const SubCategoryItemSlide=({subCategory , storeProducts})=> {
             setRedirect(true)
         }
 
-
+        console.log(productList)
+        console.log(storeProducts)
     return (
         <>
         {redirect===true ? <Redirect to="/view/category"> </Redirect> : null}

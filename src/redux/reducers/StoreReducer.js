@@ -1,7 +1,8 @@
 const initialState = {
     storeList:[],
     store:null,
-    categories:[]
+    categories:[],
+    particularStoreProducts:[]
 }
 
 const StoreReducer = (state=initialState, action)=>{
@@ -15,6 +16,11 @@ const StoreReducer = (state=initialState, action)=>{
             return {
                 ...state,
                 store:action.payload
+            }
+        case 'LOAD_PARTICULAR_STORE_PRODUCTS':
+            return {
+                ...state,
+                particularStoreProducts:action.payload
             }
         case 'FETCH_CATEGORIES':
             return{

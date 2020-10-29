@@ -1,15 +1,23 @@
+import axios from 'axios'
 import {productList} from '../../productList'
 
  //product actions
  export const fetchProducts =()=>{
-     return function(dispatch){
-         //fetch items
-         // const products = 
-         console.log("products fetched")
-         dispatch({
-             type:'FETCH_PRODUCTS',
-             payload:productList
-         })
+     return async function(dispatch){
+            try {
+                const res = await axios.get(`http://localhost:5000/api/storeitem-crud`)
+                if(res.data.payload){
+                    console.log("products fetched")
+                    dispatch({
+                        type:'FETCH_PRODUCTS',
+                        payload:res.data.payload
+                    })
+                }
+                
+            } catch (error) {
+                console.log(error)
+            }
+         
      }
  }
  

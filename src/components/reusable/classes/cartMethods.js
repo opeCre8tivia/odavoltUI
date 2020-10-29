@@ -51,8 +51,9 @@ class CartMethods{
                     *  newprice = currentprice + original price
                     */
 
-                    let {count,unitPrice,name} = item;
-
+                    let {unitPrice,count} = item;
+                    let {name}=item.product
+                   
                     count += 1;
 
                     //finding original price from redux product state
@@ -76,7 +77,7 @@ class CartMethods{
                 })
 
                 //find item in the array
-                let found = localArray.find(element=> element.name === item.name);
+                let found = localArray.find(element=> element.name === name);
                 
                 //update its units
                 found.count= count;
@@ -102,7 +103,8 @@ class CartMethods{
        
        decreament =  (item) =>{
 
-        let {count,unitPrice} = item;
+        let {unitPrice,count} = item;
+        let {name}= item.product
 
         count -= 1;
 
@@ -114,7 +116,7 @@ class CartMethods{
 
         //finding original price
         let origList = this.productList
-        let copy = origList.find(i => i.name === item.name);
+        let copy = origList.find(i => i.name === name);
          
         let originalPrice = copy.unitPrice; 
 
@@ -129,7 +131,7 @@ class CartMethods{
        })
 
        //find item in the array
-       let found = localArray.find(element=> element.name === item.name);
+       let found = localArray.find(element=> element.name === name);
    
        //update its units
        found.count= count;

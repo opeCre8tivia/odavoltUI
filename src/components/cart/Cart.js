@@ -117,10 +117,10 @@ const Cart = (props) =>{
              {
              productList.length !== 0 ?   productList.map(item =><div key={item._id} className="mb-2 cart-item-cont" >
              <div className="ov-cart-cont-inner" >
-                 <div style={{width:'40%'}}> {item.name}</div> <div style={{width:'25%'}} > {item.unitPrice} </div> 
-             <button className="btn btn-sm ov-cal-btn"  value={item.name} onClick={()=>{ increament(item)}} >  {itemLoading === true ? <img style={{height:'20px',width:'20px'}} src="/ov-btn-spinner.svg" alt="ov-spinner" /> : '+'} </button> 
+                 <div style={{width:'40%'}}> {item.product.name}</div> <div style={{width:'25%'}} > {item.unitPrice} </div> 
+             <button className="btn btn-sm ov-cal-btn"  value={item.product.name} onClick={()=>{ increament(item)}} >  {itemLoading === true ? <img style={{height:'20px',width:'20px'}} src="/ov-btn-spinner.svg" alt="ov-spinner" /> : '+'} </button> 
              <div className="ov-counter"><p>{item.count} </p></div>
-               <button className="btn btn-sm ov-cal-btn" value={item.name} onClick={()=>decreament(item)} >{itemLoading === true ? <img style={{height:'20px',width:'20px'}} src="/ov-btn-spinner.svg" alt="ov-spinner" /> : '-'} </button> </div>
+               <button className="btn btn-sm ov-cal-btn" value={item.product.name} onClick={()=>decreament(item)} >{itemLoading === true ? <img style={{height:'20px',width:'20px'}} src="/ov-btn-spinner.svg" alt="ov-spinner" /> : '-'} </button> </div>
              <div className="removeItem" onClick={()=>{
                  removeItem(item._id);
              }} ><span>x</span>remove</div>

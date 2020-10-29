@@ -40,20 +40,20 @@ const Product=({item})=> {
      <div className="ov-product-cont" key={item._id}>
                 {/* product image section */}
             <div className="ov-product-image-cont">
-                {item.imageUrl ? <img src={item.imageUrl} alt="ov-product" className=" ov-product-image img-fluid"/> :
+                {item.product.imageUrls ? <img src={item.product.imageUrls[0]} alt="ov-product" className=" ov-product-image img-fluid"/> :
                     <img src={require("../../assets/img/ov-pix-placeholder.png")} alt="ov-product" className=" ov-product-image img-fluid"/>
                 }
             </div>
 
                 {/* product descriptions and prising */}
             <div className="ov-product-name-cont">
-                {item.name}
+                {item.product.name}
             </div>
 
             <div className="ov-product-description-cont-main">
-                <h6>{item.description} </h6>
+                <h6>{item.product.shortDescription} </h6>
 
-                <p>1{item.units} @{item.unitPrice} Ugx</p>
+                <p>1{item.product.units} @{item.unitPrice} Ugx</p>
             </div>
 
              {/* add to cart section */}
