@@ -41,32 +41,34 @@ const Cartfab= (props) =>{
 
 
     const showCartAction = ()=>{
-        const cartObject = new CartMethods(productList,dispatch)
+        const cartObject = new CartMethods(dispatch)
         cartObject.showCart()
     }
 
     /*--------- useEffect to show and hide the fab depending on redux state ------*/
-    useEffect(() => {
-       if(cartStatus === "visible"){
-        let cartIcon = document.querySelector('.ov-cart-button');
-        cartIcon.style.display = 'none';
-        console.log('hide fab');
-       }
+    // useEffect(() => {
+    //    if(cartStatus === "visible"){
+    //     let cartIcon = document.querySelector('.ov-cart-button');
+    //     cartIcon.style.display = 'none';
+    //     console.log('hide fab');
+    //    }
 
-       if(cartStatus ==="hidden"){
-        let cartIcon = document.querySelector('.ov-cart-button');
-        cartIcon.style.display = 'block';
-        console.log('show fab');
-       }
+    //    if(cartStatus ==="hidden"){
+    //     let cartIcon = document.querySelector('.ov-cart-button');
+    //     cartIcon.style.display = 'block';
+    //     console.log('show fab');
+    //    }
 
-    },[cartStatus])
+    
+
+    // },[cartStatus])
 
     return(
               
      <div className="ov-cart-button" onClick={showCartAction} >
          <div className="ov-cartitems-number"><p>{cartLength} </p></div>
          <div className="ov-cart-img-cont">
-           <span style={{background:'red'}}> <i className="fas fa-cart-arrow-down ov-cart-img"></i></span>
+           <span style={{background:'black'}}> <i className="fas fa-cart-arrow-down ov-cart-img"></i></span>
          </div>
      </div>
     )

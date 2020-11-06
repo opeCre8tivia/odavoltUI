@@ -1,102 +1,39 @@
 /*this component is responsible for all the functionality related to
 * adding an item to the cart
 */
-import React  from 'react'
+import React,{useEffect,useState}  from 'react'
 import {useDispatch,useSelector} from "react-redux";
 
 import RoundBtn from "./RoundBtn"
 import CartMethods from '../classes/cartMethods'
 
 
+
 const AddToCartComponent =({item})=> {
     
+    //component state
+    const [isinLocalStorage,setIsinLocalStorage] = useState(false)
     //redux state
-    const productList = useSelector((state)=>state.ProductReducer.productList)
-   
-
     const dispatch = useDispatch()
-
 
   
 
         /*------------ Add to cart function ----------*/
-  const   addToCart =  (item) =>{
-             //add isinLocalStorage prop to the item
-             item.isinLocalStorage = true;
-
-            const orderz = JSON.parse(localStorage.getItem('ov-client-orders')); //all orders in LS
-
-            /*
-            * check if there are orders in local storage with keyword ("ov-client-orders")
-            */
-            if(orderz===null){
-                localStorage.setItem("ov-client-orders", JSON.stringify([item]))
-                dispatch({type:"CART_CHANGE"})
-                return null
-            }
-
-           
-
-            //destructure item object
-            const {name} = item;
-            // array to copy all the changes to
-            let cartItemsArray = []
-
-            // check whether item with the same name already exists in the order  table
-                if(orderz !== null){
-                const found = orderz.find(order => order.name === name);
-                /* if not found
-                *   get all the items in Local storage
-                *   copy them to cartItemsArray
-                *   push the new item
-                *   update ov-cart-orders in LS with cartItemsArray
-                */ 
-                        if(found === undefined){     
-                                orderz.forEach(element => {
-                                    cartItemsArray.push(element);
-                                });
-                                
-                                cartItemsArray.push(item);
-
-                                localStorage.setItem('ov-client-orders',JSON.stringify(cartItemsArray));
-                                dispatch({type:"CART_CHANGE"})
-
-                                    return null;
-                        }
-
-                }
-              
-                      /*  if the item is found  
-                      *   call the increament function from the cartObject class
-                      *  
-                      *
-                      */ 
-                     console.log(productList)
-                const cartObject = new CartMethods(productList,dispatch)
-                cartObject.increament(item)
-                    
-            } 
+        const  addToCart =  (item) =>{
+            const cartObject = new CartMethods(dispatch)
+            cartObject.addToCart(item)
+        }
+        
 
            function decreament(item){
-                const cartObject = new CartMethods(productList,dispatch)
+                const cartObject = new CartMethods(dispatch)
                 cartObject.decreament(item)
                 
             }
 
-
-
-    
-    // const showMinusBtn = ()=>{
-    //     let minusbtn = document.querySelector('.minus-btn-cont')
-    //     let numberbtn = document.querySelector('.number-btn-cont')
-    //     let addbtn = document.querySelector('.add-btn-cont')
-        
-    // }
-
-   
     return (
       <div style={styles.mainContainer}>
-            {item.isinLocalStorage === undefined ?  <div style={styles.addTextContainer}>ADD</div> :
+            { item.isinLocalStorage === undefined ?  <div style={styles.addTextContainer}>ADD</div> :
                 <>
                 <div className="minus-btn-cont"><RoundBtn  item={item}  value="-" decreament={decreament} /></div>
             

@@ -2,6 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 
+import CartButton from '../reusable/CartButton'
+
 import {loginButtonClicked} from '../../redux/actions'
 
 
@@ -33,9 +35,9 @@ let pathVisited = window.location.pathname;
                    <Link to="/">  <img src={require("../../assets/img/ov-letter-logo.svg")} alt="odavolt logo" />  </Link>
                 </div>
 
-                {isAuthenticated === true ?
+                {/* {isAuthenticated === true ?
                   <div className="userprofile-icon-container">
-                        <img src={require("../../assets/img/user-icon.png")} alt="user icon" />
+                       <Link to="/user-dash" > <img src={require("../../assets/img/user-icon.png")} alt="user icon" /> </Link> 
                   </div>
 
                 :  <div className="ov-auth-btn-cont">
@@ -47,7 +49,9 @@ let pathVisited = window.location.pathname;
                         </div>
                    }
                
-                 </div>}
+                 </div>} */}
+
+                 <div className="nav-cart-icon-cont"> <CartButton/> </div>
                 
             </div>
         )

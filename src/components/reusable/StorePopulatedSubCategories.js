@@ -1,5 +1,4 @@
-import React, { useState,useEffect } from 'react'
-import Nav from '../home/Nav'
+import React,{useState,useEffect} from 'react'
 
 import {useSelector,useDispatch} from 'react-redux'
 import { Redirect } from 'react-router-dom'
@@ -7,10 +6,9 @@ import {loadAstore,fetchCategories,loadParticularStoreProducts} from '../../redu
 
 import SubCategoryItemSlide from '../reusable/SubCategoryItemSlide'
 
+const  StorePopulatedSubCategories =() =>{
 
-const SupermarketHomePage =()=>{
-  
-    
+         
     //redux state
     const dispatch = useDispatch()
     const {store,categories,particularStoreProducts} = useSelector(state => state.StoreReducer)
@@ -26,7 +24,7 @@ const SupermarketHomePage =()=>{
     //get the store id from local storage an set it  to state
     //action done only when user reloads
     useEffect(()=>{
-        const str_id = JSON.parse(localStorage.getItem("_str"))
+        const str_id = JSON.parse(localStorage.getItem("_main"))
         set_str_id(str_id)
     },[])
     
@@ -81,7 +79,7 @@ const SupermarketHomePage =()=>{
     // enables theshowing of only those sub categories that have items to be shown
     function filterPopulatedSubCategories(){
         //generate all the subcategories the store products belong to
-            console.log('caled........x')
+           
         let storeProductSubCat = []
         let populatedSubCats = []
         particularStoreProducts.forEach((e)=>{
@@ -98,33 +96,17 @@ const SupermarketHomePage =()=>{
         setPopulatedSubCategoryList(populatedSubCats)
     } 
 
+
     return (
-        <div >
-            {loading === true ? <div> Loading.... </div> : 
-            
-            <>
-            <Nav/>
-            {/* slider area */}
-            <div className="supermarket-slider-cont">  
-                <div className="supermarket-translucent-cover" > 
-                   <div className="supermarket-name" >
-                        {loadedStore !== null ? loadedStore.name : 'SUPERMARKET'}
-                    </div>
-                </div>       
-
-            </div>
-
+        <div>
             {/* products by sub category */}
             {/* display only populated sub categories */}
-
             {
              populatedSubCategoryList.map((subCategory)=> <SubCategoryItemSlide subCategory={subCategory} storeProducts={particularStoreProducts} key={subCategory} /> )
-            }   
-
-            </> }
-        
+            } 
+            
         </div>
     )
 }
 
-export default SupermarketHomePage
+export default StorePopulatedSubCategories

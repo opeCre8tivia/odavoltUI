@@ -1,7 +1,7 @@
 const initialState ={
     cartStatus:'hidden',
-    itemAdded:0,
-    cartChange:false,
+    // itemAdded:0,
+    cartChange:0,
     loading:false
 }
 
@@ -33,14 +33,14 @@ const cartReducer = (state=initialState,action)=>{
         case 'CART_CHANGE':
                     return {
                         ...state,
-                        cartChange:true,
+                        cartChange:Math.random(),
                         
                     }
-        case 'CART_NORMALISE':
-                    return{
-                        ...state,
-                        cartChange:false
-                    }
+        // case 'CART_NORMALISE':
+        //             return{
+        //                 ...state,
+        //                 cartChange:false
+        //             }
                    
         default:
             return state

@@ -4,7 +4,9 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 
 import {useDispatch,useSelector} from 'react-redux'
-import {LoadUser} from './redux/actions'
+import {LoadUser,ShowCart} from './redux/actions'
+
+
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./assets/fa/css/all.css"
@@ -16,21 +18,16 @@ import Home from './components/home/Home';
 import DashBoard from './components/auth/dash/DashBoard';
 import ViewMore from './components/reusable/ViewMore';
 import SupermarketHomePage from './components/reusable/SupermarketHomePage';
+import AuthComponent from "./components/auth/AuthComponent"
+import Cart from "./components/cart/Cart"
+import BottomTabNavigator from './components/home/BottomTabNavigator';
 
 //redux store
 
 const App =(props)=> {
 
   //redux state
-  // const dispatch = useDispatch()
-  // const {isAuthenticated} = useSelector((state)=>state.AuthReducer)
-
-  // useEffect(()=>{
-  //   let  _token = JSON.parse(localStorage.getItem('ov_TKN_aUTh'))
-  //   if(_token !== null){
-  //     dispatch(LoadUser(_token))
-  //   }
-  // },[])
+  const dispatch = useDispatch()
 
   return (
     
@@ -46,8 +43,18 @@ const App =(props)=> {
                     <Route path="/view/category" exact component={ViewMore} />
                     <Route path="/view/supermarket" exact component={SupermarketHomePage} />
                 </Switch>
-            </Router>
+          
+            <Cart/>
+            <AuthComponent/>
+            {/* separator */}
+            <div style={{width:"100%",height:"60px"}} ></div>  
+            
+            {/* bottom tab nav container */}
+            <div style={{display:"block",position:"fixed",bottom:0}} >
+            <BottomTabNavigator/>
+            </div>
            
+          </Router>
         </div>
 
   );

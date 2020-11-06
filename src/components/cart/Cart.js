@@ -11,7 +11,7 @@ const Cart = (props) =>{
     // let authToken = localStorage.getItem('ov_TKN_1aUTh');
     //redux state
     const {cartChange,cartStatus} = useSelector(state=>state.cartReducer);
-    const originalProductList = useSelector(state=>state.ProductReducer.productList);
+    const originalProductList = useSelector(state=>state.StoreReducer.particularStoreProducts); //d cart is diffrent 
     const {isAuthenticated} = useSelector(state=>state.AuthReducer);
     const dispatch = useDispatch();
 
@@ -25,7 +25,7 @@ const Cart = (props) =>{
     const [itemLoading ,setItemLoading] = useState(false);
 
     //instatiating the cart object
-    const cartObject = new CartMethods(originalProductList,dispatch);
+    const cartObject = new CartMethods(dispatch);
    
 
     //get all cart items from order tables accordingly
@@ -35,11 +35,8 @@ const Cart = (props) =>{
         },[])
 
      useEffect(()=>{
-        if(cartChange=== true){
             getCartItems();
-            dispatch({type:"CART_NORMALISE"})
-        }
-    //eslint-disable-next-line
+           //eslint-disable-next-line
    },[cartChange]);
 
 
@@ -60,7 +57,8 @@ const Cart = (props) =>{
         }
 
     /*-------------- crud operations ---------------- */
-    
+
+
     //FUNCTION THAT INCREAMENTS CART ITEM PRICE
     const increament=(item)=>{
         cartObject.increament(item)
@@ -117,7 +115,7 @@ const Cart = (props) =>{
              {
              productList.length !== 0 ?   productList.map(item =><div key={item._id} className="mb-2 cart-item-cont" >
              <div className="ov-cart-cont-inner" >
-                 <div style={{width:'40%'}}> {item.product.name}</div> <div style={{width:'25%'}} > {item.unitPrice} </div> 
+             <div style={{width:'40%'}}> {item.product.name}</div> <div style={{width:'25%'}} > {item.unitPrice} </div> 
              <button className="btn btn-sm ov-cal-btn"  value={item.product.name} onClick={()=>{ increament(item)}} >  {itemLoading === true ? <img style={{height:'20px',width:'20px'}} src="/ov-btn-spinner.svg" alt="ov-spinner" /> : '+'} </button> 
              <div className="ov-counter"><p>{item.count} </p></div>
                <button className="btn btn-sm ov-cal-btn" value={item.product.name} onClick={()=>decreament(item)} >{itemLoading === true ? <img style={{height:'20px',width:'20px'}} src="/ov-btn-spinner.svg" alt="ov-spinner" /> : '-'} </button> </div>
@@ -141,8 +139,8 @@ const Cart = (props) =>{
                             <li><div className="ov-cart-span">Delivery Fee:</div> {deliveryFee} </li>
                             <li><div className="ov-cart-span">TOTAL: </div> {total + deliveryFee} </li>
                         </ul>
-                         {isAuthenticated === true ?<Link to="/user-dash"  > <button type="button"  className="ov-cart-checkout-btn"  >PROCEED TO CHECK OUT</button></Link> :
-                          <Link to="/login"  ><button type="button"  className="ov-cart-checkout-btn" >PROCEED TO CHECK OUT</button></Link>
+                         {isAuthenticated === true ?<Link to="/user-dash"  > <button type="button"  className="ov-cart-checkout-btn" onClick={hideCartAction}  >PROCEED TO CHECK OUT</button></Link> :
+                          <Link to="/login"  ><button type="button"  className="ov-cart-checkout-btn" onClick={hideCartAction} >PROCEED TO CHECK OUT</button></Link>
                            } </Fragment> :""
                 }
              </div>

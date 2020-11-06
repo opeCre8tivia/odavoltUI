@@ -1,5 +1,5 @@
 //this is implemented using react-multi-carousel
-import React  from 'react';
+import React, { useState }  from 'react';
 
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
@@ -8,22 +8,27 @@ import '../../assets/css/aliceCarouselCustom.css';
 import Product from '../home/Product';
 
 
-const Ovcarousel =({productList,lsItems})=>{
-
-
+const Ovcarousel =({productList})=>{
+  
+    const [autoplay,setAutoPlay] = useState(true)
  
     const responsive = {
       0: { items: 2 },
       350:{items:2},
-      568:{ items: 4 },
-      1024:{ items: 5 },
+      568:{ items: 4},
+      1024:{ items: 5},
   };
+ //function to manage autoplay prop
+ function manageAutoPlay(e){
+    setAutoPlay(false)
+}
 
-
-   //elements to be passed as items in d item prop 
+ //elements to be passed as items in d item prop 
    const items = productList.map((item)=>(
-    <Product item={item} localStorageItems={lsItems} key={item._id} />
+    <Product item={item}  key={item._id} manageAutoPlay ={manageAutoPlay} />
 ))
+
+
 
 let bool;
 let boolArrow
@@ -46,7 +51,7 @@ else{
       mouseTracking
       items={items}
       responsive={responsive}
-      autoPlay={true}
+      autoPlay={autoplay}
       paddingLeft={0}
       autoHeight={true}
       autoWidth={true}
@@ -55,8 +60,9 @@ else{
       autoPlayStrategy="action"
       autoPlayInterval={3000}
       animationDuration={4000}
-      infinite={true}
-
+      infinite={false}
+      
+      
   />
 
     )

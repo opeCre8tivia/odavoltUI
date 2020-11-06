@@ -1,10 +1,13 @@
 //This is a reusable custom component... its styled using js
 
 import React from 'react';
-//import {useDispatch} from 'react-redux';
+// import {useDispatch} from 'react-redux';
+
+
 
 const RoundBtn = ({item,value,showMinusBtn,addToCart,decreament}) =>{
        
+    // const dispatch = useDispatch()
 
     return(
         <>
@@ -14,12 +17,14 @@ const RoundBtn = ({item,value,showMinusBtn,addToCart,decreament}) =>{
                 
                 if(e.target.innerText ==="+"){
                     addToCart(item)
+                    // dispatch({type:'CART_CHANGE'})
                 }
                 //for the btn with minus sign
                
                 if(e.target.innerText === "-"){
                    
                     decreament(item)
+                    // dispatch({type:'CART_CHANGE'})
                 }  
             }}>
                 <p id="child" style={styles.text} >{value} </p>

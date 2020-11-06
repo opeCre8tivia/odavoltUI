@@ -3,13 +3,14 @@ import {useSelector} from "react-redux"
 
 import AddToCartComponent from '../reusable/addtocart/AddToCartComponent'
 
-const Product=({item})=> {
+const Product=({item,manageAutoPlay})=> {
 
     //redux
     const {cartChange} = useSelector((state)=>state.cartReducer)
    
 
     const [itemInLocalStorage,SetItemInLocalStorage]= useState(null)
+    const [itemNotInLocalStorage,setItemNotInLocalStorage] = useState(item)
     
 
  
@@ -21,8 +22,20 @@ const Product=({item})=> {
     function IsinLocalStorage(item){
         //find items from  local storage and set to currnet item
         let lsItems = JSON.parse(localStorage.getItem("ov-client-orders"))
-       
         if(lsItems === null){
+            //remove the isinLocalStorage prop or set to undefined
+            let i = item
+           i.isinLocalStorage = undefined
+            setItemNotInLocalStorage(i)
+            SetItemInLocalStorage(null)
+            return null
+        }
+        else if ( lsItems.length === 0){
+            //remove the isinLocalStorage prop or set to undefined
+            let i = item
+            i.isinLocalStorage = undefined
+            setItemNotInLocalStorage(i)
+            SetItemInLocalStorage(null)
             return null
         }
 
@@ -36,8 +49,8 @@ const Product=({item})=> {
         
       }
 
-    return (
-     <div className="ov-product-cont" key={item._id}>
+     return (
+     <div className="ov-product-cont" key={item._id} onClick={manageAutoPlay} onMouseOver={manageAutoPlay} onDrag={manageAutoPlay} >
                 {/* product image section */}
             <div className="ov-product-image-cont">
                 {item.product.imageUrls ? <img src={item.product.imageUrls[0]} alt="ov-product" className=" ov-product-image img-fluid"/> :
@@ -59,7 +72,7 @@ const Product=({item})=> {
              {/* add to cart section */}
              <div className="ov-product-addtocart-cont">
                    {
-                       itemInLocalStorage === null ? <AddToCartComponent item={item} /> :
+                       itemInLocalStorage === null ? <AddToCartComponent item={itemNotInLocalStorage} /> :
                        <AddToCartComponent item={itemInLocalStorage} />
                    }
              </div>

@@ -5,8 +5,7 @@ import {getProductsByCategory} from '../../redux/actions'
 import Ovcarousel from './Ovcarousel'
 
 const SubCategoryItemSlide=({subCategory , storeProducts})=> {
-    //global
-    let lsItems = JSON.parse(localStorage.getItem("ov-client-orders"))
+   
     //redux state
     const dispatch = useDispatch()
     const [productList, setProductList] = useState([])
@@ -18,13 +17,12 @@ const SubCategoryItemSlide=({subCategory , storeProducts})=> {
 
     useEffect(() => {
         sortStoreProducts()
-    }, [])
+    }, [storeProducts])
 
     //fuction to sort storeProducts
     const sortStoreProducts =()=>{
-        console.log('sort called...')
         let sorted = []
-        storeProducts.forEach(storeProduct => { 
+        storeProducts.forEach(storeProduct => {
             if(storeProduct.product.subCategory === subCategory){
                 sorted.push(storeProduct)
             }
@@ -39,8 +37,7 @@ const SubCategoryItemSlide=({subCategory , storeProducts})=> {
             setRedirect(true)
         }
 
-        console.log(productList)
-        console.log(storeProducts)
+        
     return (
         <>
         {redirect===true ? <Redirect to="/view/category"> </Redirect> : null}
@@ -49,7 +46,7 @@ const SubCategoryItemSlide=({subCategory , storeProducts})=> {
                 <p> {`Buy ${subCategory}`}  </p>
                 <button className="btn btn-sm view-more" onClick={()=> handleDispatch(subCategory)}>View More</button>
             </div>
-            <Ovcarousel productList={productList} lsItems={lsItems} />
+            <Ovcarousel productList={productList} />
 
             
         </div>

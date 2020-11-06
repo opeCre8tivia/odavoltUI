@@ -18,7 +18,7 @@ const SupermarketPreview =({item})=> {
         }} >
                 <div className="name" >{item.name}</div>
             <p>SUPERMARKET</p>
-            <img src={item.logoUrl} />
+            {/* <img src={item.logoUrl} /> */}
             <button className="btn btn-sm btn-outline btn-warning btn-supermarket " > SHOP NOW </button>
         </div>
         </>

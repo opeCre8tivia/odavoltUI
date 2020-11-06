@@ -15,8 +15,7 @@ const SupermarketDisplayCarousel =({deviceType})=>{
 
  const dispatch = useDispatch()
  const {storeList} = useSelector(state => state.StoreReducer)
-    //isolate only of type "supermarket"
-// const [supermarkets, setSuperMarkets] = useState([])
+
 
 
 
@@ -36,9 +35,9 @@ const SupermarketDisplayCarousel =({deviceType})=>{
 
        
     //elements to be passed as items in d item prop 
-    const items = storeList.map((item)=>(
+    const items = storeList.map((item)=> item.type.toLowerCase() === "supermarket" ?(
         <SupermarketPreview item={item} />
-    ))
+    ): null)
 
     let bool;
     let boolArrow
@@ -56,6 +55,11 @@ const SupermarketDisplayCarousel =({deviceType})=>{
 
 
     return(
+        <div style={{marginTop:"20px"}} >
+         <div className="section-title">
+             <p> Shop From Supermarkets in your area  </p>       
+         </div>
+       
          <AliceCarousel
             mouseTracking
             items={items}
@@ -71,6 +75,8 @@ const SupermarketDisplayCarousel =({deviceType})=>{
             infinite={false}
 
         />
+
+        </div>
 
     )
 }

@@ -204,7 +204,7 @@ const nameSplitter =(noun)=>{
                        
 
                       <Link to="/">  <div  className="ov-checkout-logo-cont">
-                             <img src="/ov-logo-intext.svg" alt="logo" /> 
+                             <img src={require("../../assets/img/ov-letter-logo.svg")} alt="logo" /> 
                              <div className="ov-checkout-logo-text">SHOP NOW</div>
                             
                         
@@ -212,11 +212,9 @@ const nameSplitter =(noun)=>{
                         
                          <div className="ov-profile-section-wrapper">  
                             <div  className="ov-checkout-profile-image-cont"> 
-                                    <img src={user !==null ? user.profilePix : ""} alt="profilepix" className="ov-checkout-profile-image"  /> 
+                                    <img src={user !==null ? require('../../assets/img/user-icon.png') : require('../../assets/img/user-icon.png')} alt="profilepix" className="ov-checkout-profile-image"  /> 
                             </div> 
-                            <div  className="ov-checkout-welcome-text"> Hi  {user !==null ? <span> {()=>{
-                                nameSplitter(user.name)
-                            }}  </span>: ""} </div>
+                            <div  className="ov-checkout-welcome-text"> Hi  {user !==null ? <span> {user.name} </span>: ""} </div>
                         </div>
                     </div>
 
@@ -234,8 +232,8 @@ const nameSplitter =(noun)=>{
                                         productList.map(item => 
                                             
                                         <div className="checkout-cart-item-cont" key={item._id}>
-                                        <div className="cart-img-cont"><img src={item.imageUrl} className="img-fluid img-round"   alt="cart-pix"/></div>
-                                        <div className="item-details-cont"><p> {item.name}  </p> <p style={{textAlign:"center"}}> {item.unitPrice} </p></div>
+                                        <div className="cart-img-cont"><img src={item.product.imageUrls[0]} className="img-fluid img-round"   alt="cart-pix"/></div>
+                                        <div className="item-details-cont"><p> {item.product.name}  </p> <p style={{textAlign:"center"}}> {item.unitPrice} </p></div>
                                     
                                         </div> ) 
                                          :

@@ -11,10 +11,7 @@ export const fetchStores =()=>{
     return async function(dispatch){
 
         try {
-            console.log('fetc...called')
            const res = await axios.get(`${rootapi}/api/store-crud`)
-        //    const res = await axios.get(`http://localhost:5000/api/store-crud`)
-           console.log(res.data)
             if(res.data.payload){
                 dispatch({
                     type:'FETCH_STORES',
@@ -35,10 +32,8 @@ export const loadAstore =(id)=>{
     return async function(dispatch){
 
         try {
-            console.log('load...called')
-           const res = await axios.get(`${rootapi}/api/store-crud`)
-        //    const res = await axios.get(`http://localhost:5000/api/store-crud/${id} `)
-           console.log(res.data)
+           
+           const res = await axios.get(`${rootapi}/api/store-crud/${id}`)
             if(res.data.payload){
                 dispatch({
                     type:'LOAD_ASTORE',
@@ -57,10 +52,9 @@ export const loadAstore =(id)=>{
 export const loadParticularStoreProducts =(id)=>{
     return async function(dispatch){
         try {
-          
-           const res = await axios.get(`${rootapi}/api/store-crud`)
-        //    const res = await axios.get(`http://localhost:5000/api/storeitem-crud/all/${id} `)
-    
+            console.log(id)
+           const res = await axios.get(`${rootapi}/api/storeitem-crud/all/${id} `)
+        
             if(res.data.payload){
                 dispatch({
                     type:'LOAD_PARTICULAR_STORE_PRODUCTS',
@@ -85,7 +79,7 @@ export const fetchCategories =()=>{
         try {
         
            const res = await axios.get(`${rootapi}/api/categories-crud`)
-        //    const res = await axios.get(`http://localhost:5000/api/categories-crud`)
+        
             if(res.data.payload){
                 dispatch({
                     type:'FETCH_CATEGORIES',
