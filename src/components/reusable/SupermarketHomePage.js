@@ -26,6 +26,7 @@ const SupermarketHomePage =()=>{
     //get the store id from local storage an set it  to state
     //action done only when user reloads
     useEffect(()=>{
+        console.log('id identified...')
         const str_id = JSON.parse(localStorage.getItem("_str"))
         set_str_id(str_id)
     },[])
@@ -39,6 +40,8 @@ const SupermarketHomePage =()=>{
 
     //load products that are specific to respective store
     useEffect(()=>{
+        console.log('load particular products called...')
+        console.log(_str_id)
         dispatch(loadParticularStoreProducts(_str_id))
     },[_str_id,loadedStore])
 
@@ -81,7 +84,6 @@ const SupermarketHomePage =()=>{
     // enables theshowing of only those sub categories that have items to be shown
     function filterPopulatedSubCategories(){
         //generate all the subcategories the store products belong to
-            console.log('caled........x')
         let storeProductSubCat = []
         let populatedSubCats = []
         particularStoreProducts.forEach((e)=>{

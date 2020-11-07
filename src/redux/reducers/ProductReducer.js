@@ -1,6 +1,6 @@
 const initialstate = {
     productList:[],
-    productsByCategory:[]
+    productsBySubCategory:[]
 }
 
 const ProductReducer =(state=initialstate, action)=>{
@@ -13,7 +13,7 @@ const ProductReducer =(state=initialstate, action)=>{
             case 'PRODUCTS_BY_CATEGORY':
                 return{
                     ...state,
-                    productsByCategory:action.payload
+                    productsBySubCategory:action.payload
                 }
 
             default:

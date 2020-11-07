@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react'
 import {Redirect} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
-import {getProductsByCategory} from '../../redux/actions'
+import {getProductsBySubCategory} from '../../redux/actions'
 import Ovcarousel from './Ovcarousel'
 
 const SubCategoryItemSlide=({subCategory , storeProducts})=> {
@@ -32,19 +32,19 @@ const SubCategoryItemSlide=({subCategory , storeProducts})=> {
     }
 
     //function to dispatch action
-    const handleDispatch =(category)=>{
-        dispatch(getProductsByCategory(category))
+    const handleDispatch =(subCategory,storeId)=>{
+        dispatch(getProductsBySubCategory(subCategory,storeId))
             setRedirect(true)
         }
 
-        
+      console.log(storeProducts[0].storeId)  
     return (
         <>
         {redirect===true ? <Redirect to="/view/category"> </Redirect> : null}
         <div className="container-fluid item-slide-cont" >
             <div className="section-title">
                 <p> {`Buy ${subCategory}`}  </p>
-                <button className="btn btn-sm view-more" onClick={()=> handleDispatch(subCategory)}>View More</button>
+                <button className="btn btn-sm view-more" onClick={()=> handleDispatch(subCategory,storeProducts[0].storeId)}>View More</button>
             </div>
             <Ovcarousel productList={productList} />
 

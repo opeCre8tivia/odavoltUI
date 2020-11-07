@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {rootapi} from '../../rootapi'
 
-import {getProductsByCategory, fetchProducts} from './productsActions'
+import {getProductsBySubCategory, fetchProducts} from './productsActions'
 import {RegisterUserAction,LoadUser,LoginUserAction} from './userActions'
 
 
@@ -9,7 +9,6 @@ import {RegisterUserAction,LoadUser,LoginUserAction} from './userActions'
 //store actions
 export const fetchStores =()=>{
     return async function(dispatch){
-
         try {
            const res = await axios.get(`${rootapi}/api/store-crud`)
             if(res.data.payload){
@@ -52,9 +51,11 @@ export const loadAstore =(id)=>{
 export const loadParticularStoreProducts =(id)=>{
     return async function(dispatch){
         try {
-            console.log(id)
-           const res = await axios.get(`${rootapi}/api/storeitem-crud/all/${id} `)
-        
+            let idlen = id.length
+            if(idlen < 23){
+                return null
+            }
+           const res = await axios.get(`${rootapi}/api/storeitem-crud/particular/${id}`)
             if(res.data.payload){
                 dispatch({
                     type:'LOAD_PARTICULAR_STORE_PRODUCTS',
@@ -62,11 +63,9 @@ export const loadParticularStoreProducts =(id)=>{
                 })
             }   
             
-        } catch (error) {
-            console.log(error)
-        }
-        
-       
+        } catch (err) {
+            console.log(err.message)
+        }  
     }
     }
 
@@ -146,7 +145,7 @@ export {LoginUserAction}
 
 export {fetchProducts}
 
-export {getProductsByCategory}
+export {getProductsBySubCategory}
 
 
 
@@ -167,7 +166,6 @@ export const setAlert = (msg, type) =>{
 
 export const loginButtonClicked =()=>{
     return  function(dispatch){
-        console.log("login.....")
         dispatch({
             type:"LOGIN_BTN"
         })

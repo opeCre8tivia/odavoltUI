@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 
 import {useSelector,useDispatch} from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import {loadAstore,fetchCategories,loadParticularStoreProducts} from '../../redux/actions'
+import {loadAstore,fetchCategories,loadParticularStoreProducts,fetchStores} from '../../redux/actions'
 
 import SubCategoryItemSlide from '../reusable/SubCategoryItemSlide'
 
@@ -11,7 +11,7 @@ const  StorePopulatedSubCategories =() =>{
          
     //redux state
     const dispatch = useDispatch()
-    const {store,categories,particularStoreProducts} = useSelector(state => state.StoreReducer)
+    const {store,categories,particularStoreProducts,storeList} = useSelector(state => state.StoreReducer)
 
     //component state
     const [_str_id, set_str_id] = useState("")
@@ -19,51 +19,50 @@ const  StorePopulatedSubCategories =() =>{
     const [loading,setLoading] = useState(true)
     const [subCategories,setSubCategories] = useState([])
     const [populatedSubCategoryList,setPopulatedSubCategoryList] = useState([])
-    const [loadedStore, setLoadedStore] = useState({})
 
-    //get the store id from local storage an set it  to state
-    //action done only when user reloads
+
     useEffect(()=>{
-        const str_id = JSON.parse(localStorage.getItem("_main"))
-        set_str_id(str_id)
+        dispatch(fetchStores()) //this is a redux action
     },[])
+
+    //etract main store's id
+    useEffect(()=>{
+        extractMainStore()
+    },[storeList])
     
-    //load the appropriate store
+    //dispatch actions to fetch arespective store and caegories
     useEffect(() => {
-        dispatch(loadAstore(_str_id))
+        // dispatch(loadAstore(_str_id))
         dispatch(fetchCategories())
     }, [_str_id])
     
 
-    //load products that are specific to respective store
+    //action that loads products that are specific to respective store
     useEffect(()=>{
         dispatch(loadParticularStoreProducts(_str_id))
-    },[_str_id,loadedStore])
+    },[_str_id])
 
-
-    //watches store and sets it to component store
-    useEffect(() => {
-        if(store !== null){
-            setLoading(false)
-            setLoadedStore(store)    
-        }
-        else{
-            setLoading(true)  
-        }
-       
-    }, [store])
 
 
     useEffect(() => {
         filterPopulatedSubCategories() 
-    }, [particularStoreProducts,loadedStore,loading])
+    }, [particularStoreProducts])
 
 
 
     useEffect(() => {
         sortSubCategories()
+    }, [categories])
 
-    }, [categories,loadedStore])
+    //function to extract main function from all the stores
+    function extractMainStore(){
+        storeList.forEach(store => {
+            if(store.name.toLowerCase() === 'odavolt'){
+                set_str_id(store._id)
+            }
+        });
+    }
+
 
     //creates an array of subCategories from a category
     const sortSubCategories =()=>{
@@ -95,7 +94,7 @@ const  StorePopulatedSubCategories =() =>{
 
         setPopulatedSubCategoryList(populatedSubCats)
     } 
-
+    
 
     return (
         <div>
