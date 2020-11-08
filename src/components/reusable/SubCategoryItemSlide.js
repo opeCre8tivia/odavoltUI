@@ -17,7 +17,7 @@ const SubCategoryItemSlide=({subCategory , storeProducts})=> {
 
     useEffect(() => {
         sortStoreProducts()
-    }, [storeProducts])
+    }, [])
 
     //fuction to sort storeProducts
     const sortStoreProducts =()=>{
@@ -37,7 +37,7 @@ const SubCategoryItemSlide=({subCategory , storeProducts})=> {
             setRedirect(true)
         }
 
-      console.log(storeProducts[0].storeId)  
+     
     return (
         <>
         {redirect===true ? <Redirect to="/view/category"> </Redirect> : null}
@@ -46,7 +46,9 @@ const SubCategoryItemSlide=({subCategory , storeProducts})=> {
                 <p> {`Buy ${subCategory}`}  </p>
                 <button className="btn btn-sm view-more" onClick={()=> handleDispatch(subCategory,storeProducts[0].storeId)}>View More</button>
             </div>
-            <Ovcarousel productList={productList} />
+            {
+            productList.length > 0 ? <Ovcarousel productList={productList} /> : null
+            }
 
             
         </div>
