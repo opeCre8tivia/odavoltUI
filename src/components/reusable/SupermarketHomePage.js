@@ -26,13 +26,18 @@ const SupermarketHomePage =()=>{
     //get the store id from local storage
     const _str_id = JSON.parse(localStorage.getItem("_str"))
 
-  
+   
    
     //load the appropriate store
     useEffect(() => {
         dispatch(loadAstore(_str_id))
-        dispatch(fetchCategories())
+        
     }, [_str_id])
+
+    //load sub cate
+    useEffect(()=>{
+        dispatch(fetchCategories())
+    },[])
     
 
     //load products that are specific to respective store
