@@ -16,20 +16,24 @@ const SupermarketHomePage =()=>{
     const {store,categories,particularStoreProducts} = useSelector(state => state.StoreReducer)
 
     //component state
-    const [_str_id, set_str_id] = useState("")
+    // const [_str_id, set_str_id] = useState("")
     const [redirect,setRedirect] = useState(false)
     const [loading,setLoading] = useState(true)
     const [subCategories,setSubCategories] = useState([])
     const [populatedSubCategoryList,setPopulatedSubCategoryList] = useState([])
     const [loadedStore, setLoadedStore] = useState({})
 
+
+    const _str_id = JSON.parse(localStorage.getItem("_str"))
+
     //get the store id from local storage an set it  to state
     //action done only when user reloads
-    useEffect(()=>{
-        console.log('id identified...')
-        const str_id = JSON.parse(localStorage.getItem("_str"))
-        set_str_id(str_id)
-    },[])
+    // useEffect(()=>{
+    //         console.log(JSON.parse(localStorage.getItem("_str")))
+    //          const str_id = JSON.parse(localStorage.getItem("_str"))
+    //          console.log(str_id)
+    //         set_str_id(str_id)
+    // },[])
     
     //load the appropriate store
     useEffect(() => {
@@ -42,8 +46,11 @@ const SupermarketHomePage =()=>{
     useEffect(()=>{
         console.log('load particular products called...')
         console.log(_str_id)
-        dispatch(loadParticularStoreProducts(_str_id))
-    },[_str_id,loadedStore])
+       if(_str_id){
+        console.log(_str_id)
+            dispatch(loadParticularStoreProducts(_str_id))
+       }
+    },[])
 
 
     //watches store and sets it to component store
