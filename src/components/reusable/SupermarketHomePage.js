@@ -23,18 +23,11 @@ const SupermarketHomePage =()=>{
     const [populatedSubCategoryList,setPopulatedSubCategoryList] = useState([])
     const [loadedStore, setLoadedStore] = useState({})
 
-
+    //get the store id from local storage
     const _str_id = JSON.parse(localStorage.getItem("_str"))
 
-    //get the store id from local storage an set it  to state
-    //action done only when user reloads
-    // useEffect(()=>{
-    //         console.log(JSON.parse(localStorage.getItem("_str")))
-    //          const str_id = JSON.parse(localStorage.getItem("_str"))
-    //          console.log(str_id)
-    //         set_str_id(str_id)
-    // },[])
-    
+  
+   
     //load the appropriate store
     useEffect(() => {
         dispatch(loadAstore(_str_id))

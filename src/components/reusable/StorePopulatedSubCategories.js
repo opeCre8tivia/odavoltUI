@@ -23,6 +23,7 @@ const  StorePopulatedSubCategories =() =>{
 
     useEffect(()=>{
         dispatch(fetchStores()) //this is a redux action
+        dispatch({type:"CLEAR_PARTICULAR_STORE_ITEMS"})
     },[])
 
     //etract main store's id

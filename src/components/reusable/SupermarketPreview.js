@@ -14,6 +14,7 @@ const SupermarketPreview =({item})=> {
          {redirect === true ? <Redirect to="/view/supermarket"  /> : null}
         <div className="supermarket" key={item._id} onClick={()=>{
             localStorage.setItem("_str", JSON.stringify(item._id))
+            dispatch({type:"CLEAR_PARTICULAR_STORE_ITEMS"})
             setRedirect(true)
         }} >
                 <div className="name" >{item.name}</div>

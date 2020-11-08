@@ -22,6 +22,11 @@ const StoreReducer = (state=initialState, action)=>{
                 ...state,
                 particularStoreProducts:action.payload
             }
+        case "CLEAR_PARTICULAR_STORE_ITEMS":
+            return{
+                ...state,
+                particularStoreProducts:[]
+            }    
         case 'FETCH_CATEGORIES':
             return{
                 ...state,
