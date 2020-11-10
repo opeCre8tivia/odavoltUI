@@ -22,7 +22,19 @@ const ViewMore =(props)=> {
     return (
         <>
         <Nav/>
-        <OvSlider/>
+        {/* <OvSlider/> */}
+        <div className="view-more-slider-cont" >
+            <img src={require("../../assets/img/viewmorecover.jpg")} alt="cover pix"  />
+
+            <div className="row">
+            <div className=" col-lg-6 col-md-6 col-sm-11 search-input-cont" >
+                <input type="text" placeholder="Search Exactly What you need e.g Eggs" />
+                <div className="search-icon-cont">
+
+                </div>
+            </div>
+            </div>
+        </div>
 
         <div style={styles.mainContainer}>
             {productsBySubCategory && <p>  </p>}
