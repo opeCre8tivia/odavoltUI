@@ -25,15 +25,17 @@ const ViewMore =(props)=> {
         {/* <OvSlider/> */}
         <div className="view-more-slider-cont" >
             <img src={require("../../assets/img/viewmorecover.jpg")} alt="cover pix"  />
-
-            <div className="row">
-            <div className=" col-lg-6 col-md-6 col-sm-11 search-input-cont" >
-                <input type="text" placeholder="Search Exactly What you need e.g Eggs" />
-                <div className="search-icon-cont">
-
+            <div className="container">
+                <div className="row">
+                    <div className=" col-lg-6 col-md-6 col-sm-10 col-xs-11 search-input-cont" >
+                        <input type="text" placeholder="Search Exactly What you need e.g Eggs" />
+                        <div className="search-icon-cont">
+                            <i className="fa fa-search" ></i>
+                        </div>
+                    </div>
+                    </div>
                 </div>
-            </div>
-            </div>
+
         </div>
 
         <div style={styles.mainContainer}>
