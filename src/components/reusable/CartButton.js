@@ -42,8 +42,7 @@ function getTotalCartItemCount(){
         console.log(typeof(total))
         setTotalCartItemCount(total)
 }
-console.log(totalCartItemCount)
-console.log(typeof(totalCartItemCount))
+
 
     const showCartAction = ()=>{
         const cartObject = new CartMethods(dispatch)
