@@ -24,10 +24,10 @@ const OvSlider =(props)=> {
                         <div className="slider-image-cont">   
                             <img src={require("../../assets/img/slide1.jpg")} alt="slider" className="slider-image" />
                         </div>
-
-                        <div>
-                            <h3>2</h3>
+                        <div className="slider-image-cont">   
+                            <img src={require("../../assets/img/slide2.jpg")} alt="slider" className="slider-image" />
                         </div>
+                        
                         <div>
                             <h3>3</h3>
                         </div>

@@ -13,21 +13,37 @@ const CartButton= (props) =>{
     
 
     useEffect(()=>{
+        console.log('count')
         getTotalCartItemCount()
    },[cartChange])
 
 function getTotalCartItemCount(){
         //get all local storage items
         let lsItems = JSON.parse(localStorage.getItem("ov-client-orders"))
+        console.log(lsItems)
         if(lsItems === null){
             return null
         }
-        lsItems.reduce((acc,item)=>{
-            let total = acc + item.count
-            setTotalCartItemCount(total)
-        },0)
-}
+        
+        // let total =   lsItems.reduce((acc,item)=>{
+        //     console.log('acc')
+        //     return acc + parseInt(item.count)
+           
+        // },0)
 
+        let total = 0;
+      lsItems.forEach(item => {
+        total = total + item.count
+            
+        });
+
+
+        console.log(total)
+        console.log(typeof(total))
+        setTotalCartItemCount(total)
+}
+console.log(totalCartItemCount)
+console.log(typeof(totalCartItemCount))
 
     const showCartAction = ()=>{
         const cartObject = new CartMethods(dispatch)

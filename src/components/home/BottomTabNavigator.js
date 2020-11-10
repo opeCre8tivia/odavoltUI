@@ -31,10 +31,12 @@ const BottomTabNavigator = ()=> {
             if(lsItems === null){
                 return null
             }
-            lsItems.reduce((acc,item)=>{
-                let total = acc + item.count
-                setTotalCartItemCount(total)
-            },0)
+            let total = 0;
+            lsItems.forEach(item => {
+                    total = total + item.count
+                });
+            setTotalCartItemCount(total)
+           
     }
 
     function isActive(e){
@@ -86,7 +88,7 @@ const BottomTabNavigator = ()=> {
                    cartObject.showCart()
 
                }} >
-                   <div className="tab-icon-cont" > <i className="fas fa-book tab-icon"></i> </div>
+                   <div className="tab-icon-cont" > <i className="fas fa-list-alt tab-icon"></i> </div>
                </div>
 
                 {/* user account */}
