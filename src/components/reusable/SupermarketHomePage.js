@@ -8,7 +8,7 @@ import {loadAstore,fetchCategories,loadParticularStoreProducts} from '../../redu
 import SubCategoryItemSlide from '../reusable/SubCategoryItemSlide'
 
 
-const SupermarketHomePage =()=>{
+const SupermarketHomePage =(props)=>{
   
     
     //redux state
@@ -16,15 +16,15 @@ const SupermarketHomePage =()=>{
     const {store,categories,particularStoreProducts} = useSelector(state => state.StoreReducer)
 
     //component state
-    // const [_str_id, set_str_id] = useState("")
-    const [redirect,setRedirect] = useState(false)
+    
     const [loading,setLoading] = useState(true)
     const [subCategories,setSubCategories] = useState([])
     const [populatedSubCategoryList,setPopulatedSubCategoryList] = useState([])
     const [loadedStore, setLoadedStore] = useState({})
 
-    //get the store id from local storage
-    const _str_id = JSON.parse(localStorage.getItem("_str"))
+    //get the store id from history
+    const _str_id = props.location.state
+    console.log(_str_id)
 
    
    
@@ -65,8 +65,9 @@ const SupermarketHomePage =()=>{
 
 
     useEffect(() => {
+        console.log("xxxx")
         filterPopulatedSubCategories() 
-    }, [particularStoreProducts,loadedStore,loading])
+    }, [particularStoreProducts])
 
 
 
