@@ -40,8 +40,8 @@ const App =(props)=> {
                     <Route path="/signup" exact component={SignUpComponent}/>
                     <Route path="/user-dash" exact component={UserDash} />
                     <Route path="/admin-dash" exact component={DashBoard} />
-                    <Route path="/view/category" exact component={ViewMore} />
-                    <Route path="/view/supermarket" exact component={SupermarketHomePage} />
+                    <Route path="/view/category/:id" exact component={ViewMore} />
+                    <Route path="/view/supermarket/:id" exact component={SupermarketHomePage} />
                 </Switch>
           
             <Cart/>

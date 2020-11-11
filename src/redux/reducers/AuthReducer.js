@@ -47,11 +47,11 @@ const AuthReducer = (state=initialState, action) =>{
             let anonAuth = localStorage.getItem('OV_Anon_2aUTh');
             const randomId = Math.random()
             anonAuth ? console.log('Not authed') : localStorage.setItem('OV_Anon_2aUTh', randomId);
-            console.log(action.payload)
             
             return{
                 ...state,
-                error:action.payload
+                error:action.payload,
+                isAuthenticated:false
             }
         case 'LOGIN_FAIL':
             return{

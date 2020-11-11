@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import {getProductsBySubCategory} from '../../redux/actions'
 import SearchSuggestions from './SearchSuggestions'
@@ -16,7 +16,7 @@ const ViewMore =(props)=> {
     const [searchedItemsArray,setSearchedItemsArray] = useState([])
     const [isSearch,setIsSearch] = useState(false)
 
-    
+    let _subCategory;
 
     
 
@@ -24,31 +24,44 @@ const ViewMore =(props)=> {
     const dispatch = useDispatch()
     const {productsBySubCategory} = useSelector((state)=>state.ProductReducer)
     
-   
+   //
+   useEffect(() => {
+      dispatch(getProductsBySubCategory(_subCategory,props.location.state))
+   }, [])
 
     //function to filter search products
     const filterPoducts=(suggestionText)=>{
-        console.log('i am called...')
+        console.log(suggestionText)
         if(productsBySubCategory === null){
             return null
+        }
+        if(suggestionText.length === 0){
+            console.log("len 0")
+            setSuggestionArray([])
+            return null //stop further execution
         } 
        const filtered = productsBySubCategory.filter(item=>{
             if(item.product.name.toLowerCase().includes(suggestionText.toLowerCase())){
                 
                 return item
             }
+         
         })
-        console.log(filtered)
-        setSuggestionArray(filtered)
+            console.log(filtered)
+            setSuggestionArray(filtered)
+  
     }
+
     
    const handleOnchange=(e)=>{
         setSuggestionText(e.target.value)
         filterPoducts(e.target.value)
 
     }
+
+
+    //handle search
    const handleSearch=(e)=>{
-    console.log('i am called ccc...')
     let _text = e.target.innerText
     console.log(_text)
 
@@ -60,10 +73,14 @@ const ViewMore =(props)=> {
             
             return item
         }
+      
     })
-    console.log(filtered)
-    setSearchedItemsArray(filtered)
-    setIsSearch(true)
+    
+   
+        setSearchedItemsArray(filtered)
+        setIsSearch(true)
+        setSuggestionArray([])
+   
    }
 
 
@@ -71,12 +88,15 @@ const ViewMore =(props)=> {
     return (
         <div style={{position:"relative"}}>
         <Nav/>
-        {/* <OvSlider/> */}
+        <div style={{position:"relative"}}>
         <div className="view-more-slider-cont" >
             <img src={require("../../assets/img/viewmorecover.jpg")} alt="cover pix"  />
-            <div className="container">
-                <div className="row">
-                    <div className=" col-lg-6 col-md-6 col-sm-10 col-xs-11 search-input-cont" >
+        </div>
+
+        <div className="search_suggestions_cont">
+
+        
+                    <div className=" col-lg-4 col-md-4 col-sm-10 col-xs-11 search-input-cont" >
                         {/* search */}
                         <input type="text" placeholder="Search Exactly What you need e.g Eggs" onChange={handleOnchange} />
                         
@@ -85,18 +105,12 @@ const ViewMore =(props)=> {
                         </div>
                         
                     </div>
-                    </div>
-                </div>
+                  
 
-
-                
-
-        </div>
-
-        <div className="col-lg-6 col-md-6 col-sm-10 col-xs-11 suggestion-wrapper" >
+        <div className="col-lg-4 col-md-4 col-sm-10 col-xs-11 suggestion-wrapper" >
         <SearchSuggestions suggestionArray={suggestionArray} handleSearch={handleSearch}  /> 
         </div>
-
+        </div>
 
 
         {
@@ -117,7 +131,7 @@ const ViewMore =(props)=> {
         }
 
        
-
+        </div>
             
         </div>
     )
@@ -133,7 +147,7 @@ const styles ={
     productWrapper:{
         maxHeight:"250px",
         margin:"5px",
-        boxShadow:"1px 1px 2px rgba(0,0,0,0.2)"
+        boxShadow:"1px 1px 2px rgba(0,0,0,0.2)",
     }
 }
 
