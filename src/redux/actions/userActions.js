@@ -65,31 +65,33 @@ export const RegisterUserAction = (formData)=>{
 *  gets back user data and sends it in the pay load
 */
 export  const LoadUser = (token) =>{
-    return function(dispatch){
+    return async function(dispatch){
 
+       try { 
         if(token !== null){
-
+            console.log("token passed")
+            console.log(token)
             axios.defaults.headers.common['x-auth-token'] = token; //set headers
-
-            // axios.get(`${rootapi}/api/auth`)
-            axios.get(`http://localhost:5000/api/auth`)
-            .then(res => {
-                dispatch({
-                            type:'USER_LOADED',
-                            payload:res.data    
-                        })
-
-            } )
-            .catch(err => {
-                if(err){
-                    dispatch({
-                        type:'AUTH_ERROR'
-                    })
-                }
+            const res = await axios.get(`${rootapi}/api/auth`)
+            if(res.data.payload){
+                
+            dispatch({
+                type:'USER_LOADED',
+                payload:res.data    
             })
 
+            }
+
+        }
+        else{
+            dispatch({
+                type:'LOG-OUT',   
+            }) 
         }
         
+       } catch (error) {
+           console.log(error.message)
+       }
         
 
        

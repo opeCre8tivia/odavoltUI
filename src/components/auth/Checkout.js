@@ -1,8 +1,7 @@
 import React, { Fragment, useEffect,useState } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {useSelector,useDispatch} from 'react-redux';
 import axios from 'axios';
-import {LoadUser} from '../../redux/actions';
 import OrderSuccess from './OrderSuccess';
 
 const ClientDash = (props) =>{
@@ -12,8 +11,8 @@ const ClientDash = (props) =>{
     const {orderSubmitted} = clientDashState;
 
     const dispatch =useDispatch()
-    const authState = useSelector(state => state.AuthReducer);
-    const {isAuthenticated,user} = authState;
+    const{isAuthenticated,user} = useSelector(state => state.AuthReducer);
+    
    
    
 
@@ -34,17 +33,6 @@ const ClientDash = (props) =>{
     })
 
     const {district, surbab,popularPoint,gateDescription,paymentMethod} = formState;
-
-    // const [redirect,setRedirect] = useState(false);
-    
-
-
-    //use effect to load user
-    // useEffect(()=>{
-    //     dispatch(LoadUser());
-    //         //eslint-disable-next-line
-    // },[]);
-
    
 
 
@@ -196,7 +184,7 @@ const nameSplitter =(noun)=>{
 
     return(
         <div className="main-cont">
-           
+          
             <div className="order-success" style={{display:'none'}}>  <OrderSuccess closeOrderSuccess={closeOrderSuccess} />  </div>
              {
                  isAuthenticated === true ?<Fragment>
@@ -325,6 +313,8 @@ const nameSplitter =(noun)=>{
                     </div> 
                     </Fragment>
                     : null
+
+                    // <Redirect to="/login" > </Redirect>
             
             }
 

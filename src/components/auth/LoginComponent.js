@@ -39,9 +39,7 @@ const LoginComponent = () =>{
         if(_token !== null){
             validateToken(_token)
         }
-        else{
-            setTrueToken(false)
-        }
+      
     },[isAuthenticated])
 
     function validateToken(tkn){
@@ -49,7 +47,7 @@ const LoginComponent = () =>{
         if(decoded.user && user === null){
             setTrueToken(true)
             redirectUser()
-            console.log(window.location.pathname)
+           
         }
     }
 
@@ -57,6 +55,7 @@ const LoginComponent = () =>{
        dispatch(LoginUserAction(formInfo))
        
     }
+
     function redirectUser(){
         //redirect user to dash or home page
         if(window.location.pathname === '/login'){
