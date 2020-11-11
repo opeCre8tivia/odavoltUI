@@ -11,6 +11,7 @@ const UserDash =(props)=> {
     console.log(props)
      //token
      const _token = JSON.parse(localStorage.getItem('ov_TKN_aUTh'))
+     
     //component level state
      const [isTrueToken , setIsTrueToken] = useState(null)
 
@@ -23,10 +24,10 @@ const UserDash =(props)=> {
     },[])
 
     useEffect(()=>{
-        if(isAuthenticated === false){
-            
+        if(_token === null){
+            setIsTrueToken(false)
         }
-    })
+    },[])
 
     useEffect(()=>{
         if(_token !== null){
@@ -43,8 +44,9 @@ const UserDash =(props)=> {
             setIsTrueToken(true)
         }
         else{
-            setIsTrueToken(false)
+            setIsTrueToken(false) 
         }
+       
     }
 
     console.log(isTrueToken)
@@ -52,7 +54,7 @@ const UserDash =(props)=> {
     return (
 
         <div>
-            {isTrueToken === false? <Redirect to="/login"></Redirect> : null}
+            {isTrueToken === false  ? <Redirect to="/login"></Redirect> : null}
 
                 <Checkout/>
         </div>
