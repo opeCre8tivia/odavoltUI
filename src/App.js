@@ -21,6 +21,7 @@ import SupermarketHomePage from './components/reusable/SupermarketHomePage';
 import AuthComponent from "./components/auth/AuthComponent"
 import Cart from "./components/cart/Cart"
 import BottomTabNavigator from './components/home/BottomTabNavigator';
+import Internet from './components/reusable/Internet'
 
 //redux store
 
@@ -53,6 +54,8 @@ const App =(props)=> {
             <div style={{display:"block",position:"fixed",bottom:0}} >
             <BottomTabNavigator/>
             </div>
+
+            <Internet />
            
           </Router>
         </div>

@@ -11,15 +11,31 @@ export const fetchStores =()=>{
     return async function(dispatch){
         try {
            const res = await axios.get(`${rootapi}/api/store-crud`)
+            dispatch({
+              type: 'LOADING'
+            })
             if(res.data.payload){
                 dispatch({
                     type:'FETCH_STORES',
                     payload:res.data.payload
                 })
-            }   
+                dispatch({
+                  type: 'NOT_LOADING'
+                })
+                dispatch({
+                  type: 'NETWORK_ON'
+                })
+            }
             
         } catch (error) {
-            console.log(error)
+            if(error.message === 'Network Error'){
+              dispatch({
+                type: 'LOADING'
+              })
+              dispatch({
+                type: 'NETWORK_OFF'
+              })
+            }
         }
         
        

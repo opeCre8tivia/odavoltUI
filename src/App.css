@@ -16,6 +16,7 @@
     @import './assets/css/checkout.css';
     @import './assets/css/productStorePageStyle.css';
     @import './assets/css/viewMorePageStyles.css';
+    @import './assets/css/internet.css';
     
   
     /* responsive import must always be the last */
