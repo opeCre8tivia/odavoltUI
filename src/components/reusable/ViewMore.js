@@ -146,9 +146,8 @@ const styles ={
         height:"auto"
     },
     productWrapper:{
-        maxHeight:"250px",
-        margin:"5px",
-        boxShadow:"1px 1px 2px rgba(0,0,0,0.2)",
+        maxHeight:"auto",
+        margin:"5px"
     }
 }
 

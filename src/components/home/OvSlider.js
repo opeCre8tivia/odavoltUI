@@ -17,10 +17,10 @@ const OvSlider =(props)=> {
       };
 
       const pix = [
-          {url:"/slide1.jpg"},
-          {url:"/slide2.jpg"},
-          {url:"/slide3.png"},
-          {url:"/slide4.png"}
+          {url:"/slide1.jpg",id:1},
+          {url:"/slide2.jpg",id:2},
+          {url:"/slide3.png",id:3},
+          {url:"/slide4.png",id:4}
       ]
 
     return (
@@ -29,7 +29,7 @@ const OvSlider =(props)=> {
                 <div className="col-lg-8 col-md-8 col-sm-11 col-xs-11 ov-slider" style={{width:'100%'}}>
                      <Slider {...settings}>
                        { pix.map(slide=>(
-                           <div className="slider-image-cont">   
+                           <div className="slider-image-cont" key={slide.id}>   
                                 <img src={require(`../../assets/img${slide.url}`)} alt="slider" className="slider-image" />
                            </div>
                        )) }
