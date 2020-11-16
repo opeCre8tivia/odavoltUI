@@ -32,6 +32,7 @@ const AuthReducer = (state=initialState, action) =>{
         case 'LOGIN_SUCCESS':
             //set token to local storage
             localStorage.setItem('ov_TKN_aUTh', JSON.stringify(action.payload))
+            localStorage.removeItem('OV_Anon_2aUTh');
             return{
                 ...state,
                 isAuthenticated:true,
@@ -39,7 +40,7 @@ const AuthReducer = (state=initialState, action) =>{
                 showAuthComponentPopUp:false 
             }
         case 'REGISTER_FAIL':
-        case 'AUTH_ERROR':
+        case 'LOAD_USER_FAIL':
         case 'LOG-OUT':
         case 'ANONYMOUS':
             //remove token from local storage
@@ -51,9 +52,14 @@ const AuthReducer = (state=initialState, action) =>{
             return{
                 ...state,
                 error:action.payload,
-                isAuthenticated:false
+                isAuthenticated:false,
+                loading:false
             }
         case 'LOGIN_FAIL':
+            let _token = localStorage.getItem('ov_TKN_aUTh') 
+            if(_token){
+                localStorage.removeItem('ov_TKN_aUTh');
+            }
             return{
                 ...state,
                 error:action.payload

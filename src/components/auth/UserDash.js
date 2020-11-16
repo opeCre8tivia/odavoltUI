@@ -17,7 +17,7 @@ const UserDash =(props)=> {
 
     //redux state
     const dispatch = useDispatch()
-    const {user,isAuthenticated} = useSelector((state)=>state.AuthReducer)
+    // const {user,isAuthenticated} = useSelector((state)=>state.AuthReducer)
 
     useEffect(()=>{
         dispatch(LoadUser(_token))
@@ -54,7 +54,8 @@ const UserDash =(props)=> {
     return (
 
         <div>
-            {isTrueToken === false  ? <Redirect to="/login"></Redirect> : null}
+            {isTrueToken === false  ? <Redirect to="/login"></Redirect>  : null}
+            {/* {isAuthenticated === false  ? <Redirect to="/login"></Redirect>  : null} */}
 
                 <Checkout/>
         </div>
