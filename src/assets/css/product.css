@@ -4,7 +4,7 @@
 	position:relative;
 	min-width: 180px;
 	max-width: 180px;
-	height: 250px;
+	height: 285px;
 	margin:auto;
 	border:1px solid var(--ov-gray-light);
 	padding-left:5px ;
@@ -12,16 +12,17 @@
 }
 
 .ov-product-image-cont{
-	min-height: 120px;
-	max-height:120px;
+	min-height: 150px;
+	max-height:150px;
 	width:100%;
 	margin-bottom:5px;
+
 }
 
 .ov-product-image{
 	width:95%;
-	height:120px;
-	max-height: 120px;
+	height:150px;
+	max-height: 150px;
 	display:block;
 	margin:auto;
 	
@@ -109,10 +110,11 @@
 	width:20px;
 }
 
-@media only screen and (max-width:350px){
+@media only screen and (max-width:390px){
 	.ov-product-cont{
 		min-width: 150px;
 		max-width: 150px;
+		margin: 3px;
 		
 		}
 	.ov-product-image-cont{
@@ -127,66 +129,13 @@
 	}
 	
 }
-
-/*-- add - minus component style --*/
-
-/* .ov-plus-minus-cont{
-	position:absolute;
-	top:10px;
-	right:9px;
-	background:var(--ov-green);
-
-	width:30px;
-	height:50%;
-	border-top-left-radius: 25px;
-	border-top-right-radius: 25px;
-	border-bottom-left-radius: 25px;
-	border-bottom-right-radius: 25px;
+@media only screen and (max-width:345px){
+	.ov-product-cont{
+		min-width: 200px;
+		max-width: 200px;
+		display: block;
+		margin: auto;
+	}
 }
 
-.ov-round-btn{
-	width:24px;
-	height:24px;
-	border:1px solid #fff;
-	border-radius: 12px;
-	background:transparent;
-	cursor: pointer;
-}
-
-.ov-round-btn p {
-	color:#fff;
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	font-size: 80%;
-	position: absolute;
-	top:50%;
-	left:50%;
-	transform: translate(-50%,-50%);
-}
-
-.plus-btn{
-	position: absolute;
-	top:4px;
-	left: 50%;
-	transform:translateX(-50%);
-}
-
-.unit-display{
-	position: absolute;
-	top:50%;
-	left: 50%;
-	transform:translate(-50%, -50%);
-	color:#fff;
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	font-size: 80%;
-
-}
-
-.minus-btn{
-	position: absolute;
-	bottom:4px;
-	left: 50%;
-	transform:translateX(-50%);
-} */
 
