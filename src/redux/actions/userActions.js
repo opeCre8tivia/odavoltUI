@@ -74,7 +74,7 @@ export  const LoadUser = (token) =>{
                 const res = await axios.get(`${rootapi}/api/auth`)
 
                 if(!res){
-                    console.log('loading...')
+                 
                     dispatch({
                         type:'LOADING'
                     })
@@ -137,9 +137,8 @@ export const LoginUserAction = (formData) =>{
     return async function (dispatch){
       try {
 
-        // let res = await axios.post(`${rootapi}/api/login-user`, formData); //res contains user data
-        let res = await axios.post(`http://localhost:5000/api/login-user`, formData); //res contains user data
-            console.log(res)
+         let res = await axios.post(`${rootapi}/api/login-user`, formData); //res contains user data
+           
             dispatch({
                 type:'LOADING'
             })
