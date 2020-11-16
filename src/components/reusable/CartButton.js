@@ -21,7 +21,7 @@ function getTotalCartItemCount(){
         //get all local storage items
         let lsItems = JSON.parse(localStorage.getItem("ov-client-orders"))
         console.log(lsItems)
-        if(lsItems === null){
+        if(lsItems === undefined){
             return null
         }
         

@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react'
 
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 import {useDispatch,useSelector} from 'react-redux'
 import CartMethods from '../reusable/classes/cartMethods'
@@ -12,14 +12,14 @@ const BottomTabNavigator = ()=> {
     const dispatch = useDispatch()
     const {cartChange} = useSelector(state=>state.cartReducer)
 
-    useEffect(()=>{
-        let _homeTab = document.querySelector(".fa-home")
-        if(window.location.pathname === '/'){
-            _homeTab.style.color = "#F06723"
-        }
+    // useEffect(()=>{
+    //     let _homeTab = document.querySelector(".fa-home")
+    //     if(window.location.pathname === '/'){
+    //         _homeTab.style.color = "#F06723"
+    //     }
 
-        intersect()
-    },[])
+    //     intersect()
+    // },[])
 
     useEffect(()=>{
             getTotalCartItemCount()
@@ -39,30 +39,30 @@ const BottomTabNavigator = ()=> {
            
     }
 
-    function isActive(e){
+    // function isActive(e){
         
-        let _homeTab = document.querySelector(".fa-home")
-        let _categorytab = document.querySelector(".fa-xx")
-        let _userTab = document.querySelector(".fa-user")
-        let _cartTab = document.querySelector(".fa-cart-arrow-down")
+    //     let _homeTab = document.querySelector(".fa-home")
+    //     let _categorytab = document.querySelector(".fa-xx")
+    //     let _userTab = document.querySelector(".fa-user")
+    //     let _cartTab = document.querySelector(".fa-cart-arrow-down")
 
     
-         if(e.target.className === "fas fa-home tab-icon"){
-            _homeTab.style.color = "#F06723"
-            _userTab.style.color = "#717171"
-            _cartTab.style.color = "#717171"
-        }
-        else if(e.target.className === "fas fa-user tab-icon"){
-            _homeTab.style.color = "#717171"
-            _cartTab.style.color = "#717171"
-            _userTab.style.color = "#F06723"
-        }
-        else if(e.target.className === "fas fa-cart-arrow-down tab-icon"){
-            _homeTab.style.color = "#717171"
-            _userTab.style.color = "#717171"
-            _cartTab.style.color = "#F06723"
-        }
-    }
+    //      if(e.target.className === "fas fa-home tab-icon"){
+    //         _homeTab.style.color = "#F06723"
+    //         _userTab.style.color = "#717171"
+    //         _cartTab.style.color = "#717171"
+    //     }
+    //     else if(e.target.className === "fas fa-user tab-icon"){
+    //         _homeTab.style.color = "#717171"
+    //         _cartTab.style.color = "#717171"
+    //         _userTab.style.color = "#F06723"
+    //     }
+    //     else if(e.target.className === "fas fa-cart-arrow-down tab-icon"){
+    //         _homeTab.style.color = "#717171"
+    //         _userTab.style.color = "#717171"
+    //         _cartTab.style.color = "#F06723"
+    //     }
+    // }
 
     function intersect (){
         let _entry = document.querySelector(".bottom-tab-navigation")
@@ -76,11 +76,11 @@ const BottomTabNavigator = ()=> {
     return (
         <div className="bottom-tab-navigation" style={{position:'fixed'}} >
                 {/* home */}
-             <Link to="/" >
-                   <div onClick={isActive} >
+             <NavLink to="/" activeStyle={{color:"orange"}} >
+                   <div >
                         <div className="tab-icon-cont" > <i className="fas fa-home tab-icon"></i> </div>
                    </div>
-             </Link> 
+             </NavLink> 
 
                {/* categories */}
                <div onClick={()=>{
@@ -92,17 +92,15 @@ const BottomTabNavigator = ()=> {
                </div>
 
                 {/* user account */}
-               <Link to="/user-dash" ><div onClick={(e)=>{
-                  isActive(e)
-               }} >
-                   <div className="tab-icon-cont" > <i className="fas fa-user tab-icon"></i> </div>
-               </div></Link>
+               <NavLink to="/user-dash" className="tab-icon-cont" ><div >
+                   <div  > <i className="fas fa-user tab-icon"></i> </div>
+               </div></NavLink>
 
                {/* cart */}
                <div onClick={(e)=>{
                    const cartObject = new CartMethods(dispatch)
                    cartObject.showCart()
-                   isActive(e)
+                   
 
                   
                }}  >

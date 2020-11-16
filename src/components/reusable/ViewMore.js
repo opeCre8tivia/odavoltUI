@@ -68,6 +68,7 @@ const ViewMore =(props)=> {
     if(productsBySubCategory === null){
         return null
     } 
+    
    const filtered = productsBySubCategory.filter(item=>{
         if(item.product.name.toLowerCase().includes(_text.toLowerCase())){
             

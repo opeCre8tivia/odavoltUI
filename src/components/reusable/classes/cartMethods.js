@@ -102,7 +102,7 @@ class CartMethods{
         const cartItems = JSON.parse(localStorage.getItem('ov-client-orders'));
        
         // check if there are any cart items
-        if(cartItems === null){
+        if(cartItems === undefined){
             return{
                 cartItems:null,
                 totalUnitPrice:null

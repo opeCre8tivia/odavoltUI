@@ -33,6 +33,7 @@ export const loadAstore =(id)=>{
         try {
            
            const res = await axios.get(`${rootapi}/api/store-crud/${id}`)
+           console.log(res)
             if(res.data.payload){
                 dispatch({
                     type:'LOAD_ASTORE',
@@ -41,7 +42,9 @@ export const loadAstore =(id)=>{
             }   
             
         } catch (error) {
-            console.log(error)
+            
+            console.log(error.message)
+            
         }
         
        
