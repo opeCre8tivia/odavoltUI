@@ -103,7 +103,6 @@ class CartMethods{
         if(cartItems === null){
             return null
         }
-       console.log("line below run...")
 
         // check if there are any cart items
         if(cartItems === undefined){

@@ -26,8 +26,9 @@ const Cart = (props) =>{
 
     //instatiating the cart object
     const cartObject = new CartMethods(dispatch);
-    const cartItems = cartObject.getCartItems()
-    const totalUnitPrice = cartObject.getCartItems()
+
+    const cartItems = cartObject.getCartItems().cartItems;
+    const totalUnitPrice = cartObject.getCartItems().totalUnitPrice
    
 
     //get all cart items from order tables accordingly
@@ -101,7 +102,6 @@ const Cart = (props) =>{
             }
         },[cartStatus])
 
-        
      return(
        <div className="ov-cart-opaque-wrapper">
          <div className="ov-cart">
@@ -114,6 +114,7 @@ const Cart = (props) =>{
                 </div>
              </div>
 
+            
 
 
              {
