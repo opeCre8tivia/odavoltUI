@@ -26,24 +26,28 @@ const Cart = (props) =>{
 
     //instatiating the cart object
     const cartObject = new CartMethods(dispatch);
+    const cartItems = cartObject.getCartItems()
+    const totalUnitPrice = cartObject.getCartItems()
    
 
     //get all cart items from order tables accordingly
      //useEffect hook
      useEffect(()=>{
-            getCartItems();
-        },[])
+            if(cartItems !== null){
+                getCartItems();
+            }
+        },[cartChange])
 
-     useEffect(()=>{
-            getCartItems();
-           //eslint-disable-next-line
-   },[cartChange]);
+//      useEffect(()=>{
+//             getCartItems();
+//            //eslint-disable-next-line
+//    },[cartChange]);
 
 
 
    //FUNCTION THAT GETS CART ITEMS  
      function getCartItems(){
-        const {cartItems,totalUnitPrice} = cartObject.getCartItems()
+       
         if(cartItems === null){
             return null
         }
