@@ -13,14 +13,12 @@ const CartButton= (props) =>{
     
 
     useEffect(()=>{
-        console.log('count')
         getTotalCartItemCount()
    },[cartChange])
 
 function getTotalCartItemCount(){
         //get all local storage items
         let lsItems = JSON.parse(localStorage.getItem("ov-client-orders"))
-        console.log(lsItems)
         if(lsItems === undefined){
             return null
         }
