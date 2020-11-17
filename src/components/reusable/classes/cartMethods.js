@@ -100,7 +100,11 @@ class CartMethods{
        
         //overall -  get items from the local storage
         const cartItems = JSON.parse(localStorage.getItem('ov-client-orders'));
-       
+        if(cartItems === null){
+            return null
+        }
+       console.log("line below run...")
+
         // check if there are any cart items
         if(cartItems === undefined){
             return{
@@ -109,18 +113,24 @@ class CartMethods{
             }
         }
 
-         //set local storage
-         localStorage.setItem("ov_crt_len", cartItems.length);
-        //get their total for every fetch
-        let  totalUnitPrice = cartItems.reduce((total,item)=>{
-                                return  total+ parseInt(item.unitPrice);
-                                 },0)
-       
-        return{
+         
+        if(cartItems !== null){
+
+            //set local storage
+            localStorage.setItem("ov_crt_len", cartItems.length)
+             //get their total for every fetch
+            let  totalUnitPrice = cartItems.reduce((total,item)=>{
+            return  total+ parseInt(item.unitPrice);
+             },0)
+
+            return{
             cartItems:cartItems,
             totalUnitPrice:totalUnitPrice
+            }
         }
+       
 
+       
    }
    
   /*----------------- Increament method ----------------*/

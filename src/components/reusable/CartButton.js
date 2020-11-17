@@ -24,23 +24,20 @@ function getTotalCartItemCount(){
         if(lsItems === undefined){
             return null
         }
-        
-        // let total =   lsItems.reduce((acc,item)=>{
-        //     console.log('acc')
-        //     return acc + parseInt(item.count)
-           
-        // },0)
-
-        let total = 0;
-      lsItems.forEach(item => {
-        total = total + item.count
+        else if (lsItems === null){
+            return null
+        }
+        else{
+            let total = 0;
+            lsItems.forEach(item => {
+                total = total + item.count
             
         });
 
-
-        console.log(total)
-        console.log(typeof(total))
         setTotalCartItemCount(total)
+        }
+
+        
 }
 
 
