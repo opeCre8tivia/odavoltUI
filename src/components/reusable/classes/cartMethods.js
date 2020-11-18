@@ -200,7 +200,8 @@ class CartMethods{
         count -= 1;
 
         //remove the item if count value is less than 1
-        if(count < 1){
+         if(count < 1){
+          
             this.removeItem(item._id);
             return null;
         }
@@ -208,7 +209,9 @@ class CartMethods{
         //finding original price
         let origList = this.productList
         let copy = origList.find(i => i._id === _id);
-         
+         if(copy === undefined){
+             return null
+         }
         let originalPrice = copy.unitPrice; 
 
         //increament units
@@ -260,7 +263,9 @@ class CartMethods{
 
         //remove item from ov-client-orders
         let found = orderz.find(item => item._id === id);
-    
+        if(found === undefined){
+            return null
+        }
         orderz.forEach(e => {
             if(e._id !== found._id){
                 localArray.push(e);
