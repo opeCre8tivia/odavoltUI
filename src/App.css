@@ -17,6 +17,7 @@
     @import './assets/css/productStorePageStyle.css';
     @import './assets/css/viewMorePageStyles.css';
     @import './assets/css/internet.css';
+    @import './assets/css/loader.css';
     
   
     /* responsive import must always be the last */

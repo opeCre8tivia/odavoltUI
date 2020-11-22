@@ -4,7 +4,7 @@ import SupermarketDisplayCarousel from '../reusable/SupermarketDisplayCarousel'
 
 const SupermarketList =()=> {
 
-    
+    console.log('list loadede...')
     return (
         <div className="supermarketlist-cont">
             

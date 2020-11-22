@@ -11,6 +11,7 @@ export const fetchStores =()=>{
     return async function(dispatch){
         try {
            const res = await axios.get(`${rootapi}/api/store-crud`)
+           console.log(res.data.payload)
             dispatch({
               type: 'LOADING'
             })
@@ -28,6 +29,7 @@ export const fetchStores =()=>{
             }
             
         } catch (error) {
+            console.log(error.message)
             if(error.message === 'Network Error'){
               dispatch({
                 type: 'LOADING'

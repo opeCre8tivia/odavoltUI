@@ -6,7 +6,7 @@ import {rootapi} from '../../rootapi'
  export const fetchProducts =()=>{
      return async function(dispatch){
             try {
-                const res = await axios.get(`http://localhost:5000/api/storeitem-crud`)
+                const res = await axios.get(`${rootapi}/api/storeitem-crud`)
                 if(res.data.payload){
                     console.log("products fetched")
                     dispatch({
@@ -27,15 +27,20 @@ import {rootapi} from '../../rootapi'
 
     return async function(dispatch){
         try {
-                console.log(storeId)
                 //fetch products by category
                 const res = await axios.get(`${rootapi}/api/storeitem-crud/particular/${storeId}`)
+                console.log(res.data.payload)
+                if(res.data.payload){
+                    dispatch({
+                        type:"PRODUCTS_BY_CATEGORY",
+                        payload:res.data.payload
+                    })
+
+                }
                
 
-        dispatch({
-            type:"PRODUCTS_BY_CATEGORY",
-            payload:res.data.payload
-        }) 
+     
+
         } catch (err) {
             console.log(err.message)
         }

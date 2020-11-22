@@ -8,6 +8,8 @@ import Nav  from "./Nav"
 import OvSlider from './OvSlider'
 import SupermarketList from './SupermarketList'
 import StorePopulatedSubCategories from '../reusable/StorePopulatedSubCategories'
+import FullScreenLoader from '../reusable/FullScreenLoader'
+import ProductPlaceholderLoader from '../reusable/ProductPlaceholderLoader'
 
 
 
@@ -19,6 +21,8 @@ const Home = ()=> {
     
     const dispatch= useDispatch()
     const {user} = useSelector((state)=>state.AuthReducer)
+    const {loading} = useSelector((state)=>state.LoadingReducer)
+    const {storeLoading} = useSelector((state)=>state.StoreReducer)
 
     //validate user token
     useEffect(()=>{
@@ -37,13 +41,20 @@ const Home = ()=> {
     }
 
     return (
-        <div className="home-main-cont" >
-            <Nav/>
-            <OvSlider/>
-            <SupermarketList/>
-            <StorePopulatedSubCategories/>
-        </div>
-    )
+      
+     
+             <div className="home-main-cont" >
+                                    <Nav/>
+                                    <OvSlider/>
+                                    {
+                                        storeLoading === false ? <>
+                                         <SupermarketList/>
+                                        <StorePopulatedSubCategories/>
+                                        </> :
+                                        <ProductPlaceholderLoader />
+                                    }
+              </div>
+            ) 
 }
 
 export default Home

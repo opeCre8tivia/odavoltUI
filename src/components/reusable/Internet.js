@@ -21,18 +21,17 @@ const Internet = (props) => {
       }
     }else{
       setdisplayInternet("none")
-      interNetChecker()
-      clearInt()
+       clearInt()
     }
   },[networkOff])
 
   const interNetChecker = () => {
     let _int =   setInterval(() => {
-        dispatch(fetchStores())
-
-        if(networkOff === false){
-          __setInt(_int)
-        }
+          if(networkOff === true){
+            console.log('checker...')
+            dispatch(fetchStores())
+            __setInt(_int)
+          }
 
     }, 5000);
     
