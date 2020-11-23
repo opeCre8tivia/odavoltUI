@@ -33,54 +33,54 @@ const ProductPlaceholderLoader = ()=>{
             id:8,
             imgUrl:require('../../assets/img/ov-pix-placeholder.png')
         },
-        {
-            id:9,
-            imgUrl:require('../../assets/img/ov-pix-placeholder.png')
-        },
-        {
-            id:10,
-            imgUrl:require('../../assets/img/ov-pix-placeholder.png')
-        },
-        {
-            id:11,
-            imgUrl:require('../../assets/img/ov-pix-placeholder.png')
-        },
-        {
-            id:12,
-            imgUrl:require('../../assets/img/ov-pix-placeholder.png')
-        },
-        {
-            id:13,
-            imgUrl:require('../../assets/img/ov-pix-placeholder.png')
-        },
-        {
-            id:14,
-            imgUrl:require('../../assets/img/ov-pix-placeholder.png')
-        },
-        {
-            id:15,
-            imgUrl:require('../../assets/img/ov-pix-placeholder.png')
-        },
-        {
-            id:16,
-            imgUrl:require('../../assets/img/ov-pix-placeholder.png')
-        },
-        {
-            id:17,
-            imgUrl:require('../../assets/img/ov-pix-placeholder.png')
-        },
-        {
-            id:18,
-            imgUrl:require('../../assets/img/ov-pix-placeholder.png')
-        },
-        {
-            id:19,
-            imgUrl:require('../../assets/img/ov-pix-placeholder.png')
-        },
-        {
-            id:20,
-            imgUrl:require('../../assets/img/ov-pix-placeholder.png')
-        }
+        // {
+        //     id:9,
+        //     imgUrl:require('../../assets/img/ov-pix-placeholder.png')
+        // },
+        // {
+        //     id:10,
+        //     imgUrl:require('../../assets/img/ov-pix-placeholder.png')
+        // },
+        // {
+        //     id:11,
+        //     imgUrl:require('../../assets/img/ov-pix-placeholder.png')
+        // },
+        // {
+        //     id:12,
+        //     imgUrl:require('../../assets/img/ov-pix-placeholder.png')
+        // },
+        // {
+        //     id:13,
+        //     imgUrl:require('../../assets/img/ov-pix-placeholder.png')
+        // },
+        // {
+        //     id:14,
+        //     imgUrl:require('../../assets/img/ov-pix-placeholder.png')
+        // },
+        // {
+        //     id:15,
+        //     imgUrl:require('../../assets/img/ov-pix-placeholder.png')
+        // },
+        // {
+        //     id:16,
+        //     imgUrl:require('../../assets/img/ov-pix-placeholder.png')
+        // },
+        // {
+        //     id:17,
+        //     imgUrl:require('../../assets/img/ov-pix-placeholder.png')
+        // },
+        // {
+        //     id:18,
+        //     imgUrl:require('../../assets/img/ov-pix-placeholder.png')
+        // },
+        // {
+        //     id:19,
+        //     imgUrl:require('../../assets/img/ov-pix-placeholder.png')
+        // },
+        // {
+        //     id:20,
+        //     imgUrl:require('../../assets/img/ov-pix-placeholder.png')
+        // }
     ]
 return (
             <div className="row product-placeolder-loader-cont" >

@@ -8,7 +8,6 @@ import {rootapi} from '../../rootapi'
             try {
                 const res = await axios.get(`${rootapi}/api/storeitem-crud`)
                 if(res.data.payload){
-                    console.log("products fetched")
                     dispatch({
                         type:'FETCH_PRODUCTS',
                         payload:res.data.payload
@@ -29,7 +28,6 @@ import {rootapi} from '../../rootapi'
         try {
                 //fetch products by category
                 const res = await axios.get(`${rootapi}/api/storeitem-crud/particular/${storeId}`)
-                console.log(res.data.payload)
                 if(res.data.payload){
                     dispatch({
                         type:"PRODUCTS_BY_CATEGORY",

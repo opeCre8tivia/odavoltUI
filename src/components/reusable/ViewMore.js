@@ -7,6 +7,7 @@ import SearchSuggestions from './SearchSuggestions'
 import Nav from '../home/Nav'
 import OvSlider from '../home/OvSlider'
 import Product from '../home/Product'
+import ProductPlaceholderLoader from './ProductPlaceholderLoader'
 
 const ViewMore =(props)=> {
 
@@ -15,6 +16,7 @@ const ViewMore =(props)=> {
     const [suggestionArray, setSuggestionArray] = useState([])
     const [searchedItemsArray,setSearchedItemsArray] = useState([])
     const [isSearch,setIsSearch] = useState(false)
+    const [__loading,set__loading] = useState(false)
 
     let _subCategory;
 
@@ -84,6 +86,16 @@ const ViewMore =(props)=> {
    }
 
 
+   useEffect(()=>{
+    if(productsBySubCategory.length > 0){
+        set__loading(false)
+    }
+    else{
+        set__loading(true)
+    }
+ },[productsBySubCategory])
+
+
     
     return (
         <div style={{position:"relative"}}>
@@ -113,7 +125,7 @@ const ViewMore =(props)=> {
         </div>
 
 
-        {
+       {__loading === false ? <> {
             isSearch === false ? <div style={styles.mainContainer}>
             {productsBySubCategory && <p>  </p>}
             <div className="row " style={{minHeight:'50vh',minWidth:"100vw", paddingLeft:"20px",paddingRight:"20px"}}>
@@ -128,6 +140,8 @@ const ViewMore =(props)=> {
                 </div>
             </div>
             
+        }</>:
+        <ProductPlaceholderLoader/>
         }
 
        

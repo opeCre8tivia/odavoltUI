@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom'
 import {loadAstore,fetchCategories,loadParticularStoreProducts} from '../../redux/actions'
 
 import SubCategoryItemSlide from '../reusable/SubCategoryItemSlide'
+import FullScreenLoader from './FullScreenLoader'
 
 
 const SupermarketHomePage =(props)=>{
@@ -108,7 +109,7 @@ const SupermarketHomePage =(props)=>{
 
     return (
         <div >
-            {loading === true ? <div> Loading.... </div> : 
+            {loading === true ? <FullScreenLoader/> : 
             
             <>
             <Nav/>

@@ -17,7 +17,7 @@ const UserDash =(props)=> {
 
     //redux state
     const dispatch = useDispatch()
-    const {user,isAuthenticated} = useSelector((state)=>state.AuthReducer)
+    // const {user,isAuthenticated} = useSelector((state)=>state.AuthReducer)
 
     useEffect(()=>{
         dispatch(LoadUser(_token))
