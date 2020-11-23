@@ -1,7 +1,7 @@
 import React from 'react'
 
 const SearchSuggestions =({suggestionArray,handleSearch})=> {
-    console.log(suggestionArray)
+    
     return (
         <>
         {suggestionArray && suggestionArray.map(item=> <div key={item._id} className="suggestions" onClick={handleSearch} >  

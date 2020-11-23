@@ -37,13 +37,19 @@ const Home = ()=> {
     }
 
     return (
-        <div className="home-main-cont" >
-            <Nav/>
-            <OvSlider/>
-            <SupermarketList/>
-            <StorePopulatedSubCategories/>
-        </div>
-    )
+      
+     
+             <div className="home-main-cont" >
+                                    <Nav/>
+                                    <OvSlider/>
+                                    <div style={{minHeight:'300px',overflow:'hidden'}}>
+                                    <SupermarketList/>
+                                    </div>
+                                    <StorePopulatedSubCategories/>
+                                       
+                                    
+              </div>
+            ) 
 }
 
 export default Home
