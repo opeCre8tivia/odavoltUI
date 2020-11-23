@@ -5,7 +5,6 @@ import {getProductsBySubCategory} from '../../redux/actions'
 import Ovcarousel from './Ovcarousel'
 
 const SubCategoryItemSlide=({subCategory , storeProducts})=> {
-    //redux state
     const dispatch = useDispatch()
     const [productList, setProductList] = useState([])
 

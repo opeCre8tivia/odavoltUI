@@ -16,31 +16,24 @@ const OvSlider =(props)=> {
         swipeToSlide:true,
       };
 
+      const pix = [
+          {url:"/slide1.jpg",id:1},
+          {url:"/slide2.jpg",id:2},
+          {url:"/slide3.png",id:3},
+          {url:"/slide4.png",id:4}
+      ]
+
     return (
         <div className="ov-slider-container">
             <div  className="row" style={{justifyContent:"between",width:'95vw',margin:'auto',padding:'1px'}}>
                 <div className="col-lg-8 col-md-8 col-sm-11 col-xs-11 ov-slider" style={{width:'100%'}}>
                      <Slider {...settings}>
-                        <div className="slider-image-cont">   
-                            <img src={require("../../assets/img/slide1.jpg")} alt="slider" className="slider-image" />
-                        </div>
-                        <div className="slider-image-cont">   
-                            <img src={require("../../assets/img/slide2.jpg")} alt="slider" className="slider-image" />
-                        </div>
-                        
-                        <div>
-                            <h3>3</h3>
-                        </div>
-                        <div>
-                            <h3>4</h3>
-                        </div>
-                        <div>
-                            <h3>5</h3>
-                        </div>
-                        <div>
-                            <h3>6</h3>
-                        </div>
-                   </Slider> 
+                       { pix.map(slide=>(
+                           <div className="slider-image-cont" key={slide.id}>   
+                                <img src={require(`../../assets/img${slide.url}`)} alt="slider" className="slider-image" />
+                           </div>
+                       )) }
+                        </Slider> 
                 </div>
                 <div className="col-lg-3 col-md-3 col-sm-11 col-xs-11 ov-top-ad-cont">
                    <div className="ov-top-ad-one" >

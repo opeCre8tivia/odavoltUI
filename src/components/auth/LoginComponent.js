@@ -23,7 +23,7 @@ const validationSchema = Yup.object().shape({
     password:Yup.string().required()
 })
 
-const LoginComponent = () =>{
+const LoginComponent = (props) =>{
     //token
     const _token = JSON.parse(localStorage.getItem('ov_TKN_aUTh'))
     //component level state
@@ -33,18 +33,21 @@ const LoginComponent = () =>{
     const dispatch = useDispatch()
     const {error,isAuthenticated,user} = useSelector((state)=>state.AuthReducer)
     const{showAuthComponentPopUp}= useSelector((state)=>state.AuthReducer)
-    console.log(isAuthenticated)
 
     useEffect(()=>{
-        if(_token !== null){
+        if(_token !== null && isAuthenticated === true){
+            console.log("run....")
             validateToken(_token)
         }
       
     },[isAuthenticated])
 
     function validateToken(tkn){
+        console.log("validate...")
         const decoded = jwt_decode(tkn)
-        if(decoded.user && user === null){
+        console.log(decoded.user)
+        console.log(user)
+        if(decoded.user && isAuthenticated === true){
             setTrueToken(true)
             redirectUser()
            
@@ -57,10 +60,12 @@ const LoginComponent = () =>{
     }
 
     function redirectUser(){
+        console.log("redirect...")
+        console.log(props)
         //redirect user to dash or home page
         if(window.location.pathname === '/login'){
             console.log(window.location.pathname)
-            window.location.href='/user-dash'
+           window.location.href='/user-dash'
            console.log (window.location.origin)
         }
         else if(window.location.pathname === '/'){
@@ -70,6 +75,9 @@ const LoginComponent = () =>{
         }
 
     }
+
+
+
 
     return(
         <div className="col-lg-6 col-md-6 col-sm-11 col-xs-11 login-container">

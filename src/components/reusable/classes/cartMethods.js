@@ -100,27 +100,36 @@ class CartMethods{
        
         //overall -  get items from the local storage
         const cartItems = JSON.parse(localStorage.getItem('ov-client-orders'));
-       
-        // check if there are any cart items
         if(cartItems === null){
+            return null
+        }
+
+        // check if there are any cart items
+        if(cartItems === undefined){
             return{
                 cartItems:null,
                 totalUnitPrice:null
             }
         }
 
-         //set local storage
-         localStorage.setItem("ov_crt_len", cartItems.length);
-        //get their total for every fetch
-        let  totalUnitPrice = cartItems.reduce((total,item)=>{
-                                return  total+ parseInt(item.unitPrice);
-                                 },0)
-       
-        return{
+         
+        if(cartItems !== null){
+
+            //set local storage
+            localStorage.setItem("ov_crt_len", cartItems.length)
+             //get their total for every fetch
+            let  totalUnitPrice = cartItems.reduce((total,item)=>{
+            return  total+ parseInt(item.unitPrice);
+             },0)
+
+            return{
             cartItems:cartItems,
             totalUnitPrice:totalUnitPrice
+            }
         }
+       
 
+       
    }
    
   /*----------------- Increament method ----------------*/
@@ -191,7 +200,8 @@ class CartMethods{
         count -= 1;
 
         //remove the item if count value is less than 1
-        if(count < 1){
+         if(count < 1){
+          
             this.removeItem(item._id);
             return null;
         }
@@ -199,7 +209,9 @@ class CartMethods{
         //finding original price
         let origList = this.productList
         let copy = origList.find(i => i._id === _id);
-         
+         if(copy === undefined){
+             return null
+         }
         let originalPrice = copy.unitPrice; 
 
         //increament units
@@ -251,7 +263,10 @@ class CartMethods{
 
         //remove item from ov-client-orders
         let found = orderz.find(item => item._id === id);
-        if(found === undefined) return null
+
+        if(found === undefined){
+            return null
+        }
         orderz.forEach(e => {
             if(e._id !== found._id){
                 localArray.push(e);

@@ -54,7 +54,8 @@ const UserDash =(props)=> {
     return (
 
         <div>
-            {isTrueToken === false  ? <Redirect to="/login"></Redirect> : null}
+            {isTrueToken === false  ? <Redirect to="/login"></Redirect>  : null}
+            {/* {isAuthenticated === false  ? <Redirect to="/login"></Redirect>  : null} */}
 
                 <Checkout/>
         </div>

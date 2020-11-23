@@ -19,16 +19,25 @@ const CartButton= (props) =>{
 function getTotalCartItemCount(){
         //get all local storage items
         let lsItems = JSON.parse(localStorage.getItem("ov-client-orders"))
-        if(lsItems === null){
+        
+        if(lsItems === undefined){
             return null
         }
-
-        let total = 0;
-      lsItems.forEach(item => {
-        total = total + item.count
+        else if (lsItems === null){
+            return null
+        }
+        else{
+            let total = 0;
+            lsItems.forEach(item => {
+                total = total + item.count
             
         });
+
+
         setTotalCartItemCount(total)
+        }
+
+        
 }
 
 
