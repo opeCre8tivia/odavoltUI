@@ -11,7 +11,6 @@ const Cart = (props) =>{
     // let authToken = localStorage.getItem('ov_TKN_1aUTh');
     //redux state
     const {cartChange,cartStatus} = useSelector(state=>state.cartReducer);
-    const originalProductList = useSelector(state=>state.StoreReducer.particularStoreProducts); //d cart is diffrent 
     const {isAuthenticated} = useSelector(state=>state.AuthReducer);
     const dispatch = useDispatch();
 

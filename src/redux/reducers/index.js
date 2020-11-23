@@ -7,6 +7,7 @@ import ClientDashReducer from './ClientDashReducer';
 import LoadingReducer from './LoadingReducer';
 import ProductReducer from './ProductReducer';
 import StoreReducer from './StoreReducer';
+import NetworkReducer from './NetworkReducer'
 
 
 
@@ -17,7 +18,8 @@ const allReducers = combineReducers({
   ClientDashReducer:ClientDashReducer,
   LoadingReducer:LoadingReducer,
   ProductReducer:ProductReducer,
-  StoreReducer:StoreReducer
+  StoreReducer:StoreReducer,
+  NetworkReducer,
 });
 
 export default allReducers;

@@ -2,15 +2,20 @@ const initialState = {
     storeList:[],
     store:null,
     categories:[],
-    particularStoreProducts:[]
+    particularStoreProducts:[],
+    storeLoading:true
 }
 
 const StoreReducer = (state=initialState, action)=>{
     switch(action.type){
         case "FETCH_STORES":
+           
             return {
                 ...state,
-                storeList:action.payload
+                storeList:action.payload,
+                storeLoading:false
+
+               
             }
         case "LOAD_ASTORE":
             return {
@@ -20,7 +25,8 @@ const StoreReducer = (state=initialState, action)=>{
         case 'LOAD_PARTICULAR_STORE_PRODUCTS':
             return {
                 ...state,
-                particularStoreProducts:action.payload
+                particularStoreProducts:action.payload,
+                
             }
         case "CLEAR_PARTICULAR_STORE_ITEMS":
             return{

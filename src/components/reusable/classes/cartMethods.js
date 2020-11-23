@@ -263,6 +263,7 @@ class CartMethods{
 
         //remove item from ov-client-orders
         let found = orderz.find(item => item._id === id);
+
         if(found === undefined){
             return null
         }

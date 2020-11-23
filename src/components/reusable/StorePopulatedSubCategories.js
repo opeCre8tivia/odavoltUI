@@ -1,22 +1,24 @@
 import React,{useState,useEffect} from 'react'
 
 import {useSelector,useDispatch} from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import {loadAstore,fetchCategories,loadParticularStoreProducts,fetchStores} from '../../redux/actions'
+// import { Redirect } from 'react-router-dom'
+import {fetchCategories,loadParticularStoreProducts,fetchStores} from '../../redux/actions'
 
 import SubCategoryItemSlide from '../reusable/SubCategoryItemSlide'
+import ProductPlaceholderLoader from './ProductPlaceholderLoader'
 
 const  StorePopulatedSubCategories =() =>{
 
          
     //redux state
     const dispatch = useDispatch()
-    const {store,categories,particularStoreProducts,storeList} = useSelector(state => state.StoreReducer)
+    const {categories,particularStoreProducts,storeList} = useSelector(state => state.StoreReducer)
 
     //component state
     const [_str_id, set_str_id] = useState("")
-    const [redirect,setRedirect] = useState(false)
-    const [loading,setLoading] = useState(true)
+    const [__loading ,set__loading] = useState(false)
+    // const [redirect,setRedirect] = useState(false)
+    // const [loading,setLoading] = useState(true)
     const [subCategories,setSubCategories] = useState([])
     const [populatedSubCategoryList,setPopulatedSubCategoryList] = useState([])
 
@@ -95,6 +97,16 @@ const  StorePopulatedSubCategories =() =>{
 
         setPopulatedSubCategoryList(populatedSubCats)
     } 
+
+//use effect to set loading state
+    useEffect(()=>{
+        if(populatedSubCategoryList.length > 0){
+            set__loading(false)
+        }
+        else{
+            set__loading(true)
+        }
+    },[populatedSubCategoryList])
     
 
     return (
@@ -102,7 +114,8 @@ const  StorePopulatedSubCategories =() =>{
             {/* products by sub category */}
             {/* display only populated sub categories */}
             {
-             populatedSubCategoryList.map((subCategory)=> <SubCategoryItemSlide subCategory={subCategory} storeProducts={particularStoreProducts} key={subCategory} /> )
+             __loading === false ? populatedSubCategoryList.map((subCategory)=> <SubCategoryItemSlide subCategory={subCategory} storeProducts={particularStoreProducts} key={subCategory} /> ) :
+             <ProductPlaceholderLoader/>
             } 
             
         </div>
