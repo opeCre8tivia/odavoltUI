@@ -1,14 +1,16 @@
 import React, { Fragment, useEffect,useState } from 'react';
-import {Link, Redirect} from 'react-router-dom';
-import {useSelector,useDispatch} from 'react-redux';
-import axios from 'axios';
+import {Link} from 'react-router-dom';
+import {useSelector,useDispatch} from 'react-redux'
 import OrderSuccess from './OrderSuccess';
+import {placeOrder}  from '../../redux/actions'
+
+
 
 const ClientDash = (props) =>{
 
     //redux state 
-    const clientDashState = useSelector(state => state.ClientDashReducer)
-    const {orderSubmitted} = clientDashState;
+    const {orderSubmitted} = useSelector(state => state.ClientDashReducer)
+    
 
     const dispatch =useDispatch()
     const{isAuthenticated,user} = useSelector(state => state.AuthReducer);
@@ -70,7 +72,6 @@ const nameSplitter =(noun)=>{
        function getProducts(){
       
         let authToken = JSON.parse(localStorage.getItem('ov_TKN_aUTh'));
-        console.log(authToken)
         
         if(authToken ){
             const products =JSON.parse(localStorage.getItem('ov-client-orders'));
@@ -109,40 +110,24 @@ const nameSplitter =(noun)=>{
         //FUNCTION TO PLACE THE ORDER
 
         async function  PlaceNewOrder(e){
-            e.preventDefault();
-            
-           const {name, mobile} = user;
+            e.preventDefault(); 
+           const {name, mobile} = user.payload;
            const  orderDetails = productList;
-
-
-           try {
-
-            const response = await axios.post(`/api/new-orders`, {
-                name,
-                mobile,
-                orderDetails,
-                district,
-                surbab,
-                popularPoint,
-                gateDescription,
-                paymentMethod
-            });
-
-            if(response){
-           
-                if(response.data.msg === 'ORDER PLACED'){
-                    clearItems()
-                    dispatch({type:'ORDER_SUCCESS'})
-                    
-                }
-            }
-               
-           } catch (err) {
-            
-           }
-
+            //creating an order object
+           const orderData = {
+            name,
+            mobile,
+            orderDetails,
+            district,
+            surbab,
+            popularPoint,
+            gateDescription,
+            paymentMethod
+        }
+           //dispatching it in an action
+            dispatch(placeOrder(orderData))
         
-    }
+        }
 
 
 
@@ -313,8 +298,6 @@ const nameSplitter =(noun)=>{
                     </div> 
                     </Fragment>
                     : null
-
-                    // <Redirect to="/login" > </Redirect>
             
             }
 

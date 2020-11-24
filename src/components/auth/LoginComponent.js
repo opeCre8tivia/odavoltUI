@@ -7,6 +7,7 @@ import {LoginUserAction} from '../../redux/actions'
 
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import {Helmet} from "react-helmet";
 
 
 
@@ -80,6 +81,19 @@ const LoginComponent = (props) =>{
 
 
     return(
+        <>
+        {/* SEO */}
+        <Helmet>
+            <title>LOGIN | odavolt</title>
+            <meta
+                name="description"
+                content="Login an experience a convinent way of  online shopping in Soroti,Kumi,Serere,Amuria,Mbale,Moroto,Lira,Gulu Uganda
+                        odavolt, Uganda e-commerce platform serving Soroti city and beyond
+                "
+            />
+            <meta/>
+        </Helmet>
+
         <div className="col-lg-6 col-md-6 col-sm-11 col-xs-11 login-container">
             {/* {isTrueToken === true ? redirectUser() : null} */}
              {/* logo space */}
@@ -149,6 +163,7 @@ const LoginComponent = (props) =>{
           
 
         </div>
+        </>
     )
 }
 
