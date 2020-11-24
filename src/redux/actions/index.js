@@ -3,6 +3,7 @@ import {rootapi} from '../../rootapi'
 
 import {getProductsBySubCategory, fetchProducts} from './productsActions'
 import {RegisterUserAction,LoadUser,LoginUserAction} from './userActions'
+import {placeOrder} from './OrderActions'
 
 
 
@@ -149,6 +150,9 @@ export {LoginUserAction}
 export {fetchProducts}
 
 export {getProductsBySubCategory}
+
+//place orders
+export {placeOrder}
 
 
 

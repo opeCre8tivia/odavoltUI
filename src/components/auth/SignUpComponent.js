@@ -7,6 +7,7 @@ import {RegisterUserAction,LoadUser} from '../../redux/actions'
 
 import {Formik }from 'formik'
 import * as Yup from 'yup'
+import {Helmet} from "react-helmet";
 
 // import SocialAuth from "../reusable/SocialAuth"
 // import googlelogo from "../../assets/img/googlelogo.png"
@@ -59,7 +60,20 @@ const {registered,error,token} = useSelector((state)=>state.AuthReducer)
     }
    
     return(
-       
+            <>
+                {/* SEO */}
+                <Helmet>
+                    <title>SIGN UP | odavolt</title>
+                    <meta
+                        name="description"
+                        content="Register now and shop online in Soroti and beyond | odavolt number one online grocery store in  Soroti,Kumi,Serere,Amuria,Mbale,Moroto,Lira,Gulu Uganda
+                                 |e-commerce platform in Eastern Uganda |rising tech giant in Uganda Africa
+                        "
+                    />
+                    <meta/>
+                </Helmet>
+
+
                <div className="col-lg-6 col-md-6 col-sm-11 col-xs-11 signup-container">
 
                    {registered === true ? <Redirect to="/"></Redirect> : null}
@@ -152,7 +166,7 @@ const {registered,error,token} = useSelector((state)=>state.AuthReducer)
                
                 
            </div>
-          
+         </> 
     )
 }
 
