@@ -9,7 +9,7 @@ const AuthComponent = () =>{
 
     useEffect(() => {
         showOrHideAuthComponent()
-        
+       //eslint-disable-next-line 
     }, [showAuthComponentPopUp])
 
    const showOrHideAuthComponent=()=>{

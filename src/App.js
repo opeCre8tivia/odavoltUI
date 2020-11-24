@@ -1,12 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-
-
-
-import {useDispatch,useSelector} from 'react-redux'
-import {LoadUser,ShowCart} from './redux/actions'
-
-
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./assets/fa/css/all.css"
@@ -15,19 +8,18 @@ import LoginComponent from './components/auth/LoginComponent';
 import SignUpComponent from "./components/auth/SignUpComponent"
 import UserDash from "./components/auth/UserDash"
 import Home from './components/home/Home';
-import DashBoard from './components/auth/dash/DashBoard';
 import ViewMore from './components/reusable/ViewMore';
 import SupermarketHomePage from './components/reusable/SupermarketHomePage';
 import AuthComponent from "./components/auth/AuthComponent"
 import Cart from "./components/cart/Cart"
 import BottomTabNavigator from './components/home/BottomTabNavigator';
+import Internet from './components/reusable/Internet'
 
 //redux store
 
 const App =(props)=> {
 
-  //redux state
-  const dispatch = useDispatch()
+ 
 
   return (
     
@@ -39,7 +31,6 @@ const App =(props)=> {
                     <Route path="/login" exact component={LoginComponent}/>
                     <Route path="/signup" exact component={SignUpComponent}/>
                     <Route path="/user-dash" exact component={UserDash} />
-                    <Route path="/admin-dash" exact component={DashBoard} />
                     <Route path="/view/category/:id" exact component={ViewMore} />
                     <Route path="/view/supermarket/:id" exact component={SupermarketHomePage} />
                 </Switch>
@@ -53,6 +44,8 @@ const App =(props)=> {
             <div style={{display:"block",position:"fixed",bottom:0}} >
             <BottomTabNavigator/>
             </div>
+
+            <Internet />
            
           </Router>
         </div>
