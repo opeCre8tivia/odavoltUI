@@ -36,7 +36,7 @@ const App =(props)=> {
                 </Switch>
           
             <Cart/>
-            <AuthComponent/>
+            {/* <AuthComponent/> */}
             {/* separator */}
             <div style={{width:"100%",height:"60px"}} ></div>  
             
