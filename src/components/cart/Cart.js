@@ -21,7 +21,7 @@ const Cart = (props) =>{
         deliveryFee:2000
     })
     const {productList,total, deliveryFee} = cartState;
-    const [itemLoading ,setItemLoading] = useState(false);
+    const [itemLoading ] = useState(false);
 
     //instatiating the cart object
     const cartObject = new CartMethods(dispatch);

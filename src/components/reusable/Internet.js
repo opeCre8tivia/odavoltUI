@@ -41,6 +41,10 @@ const Internet = (props) => {
         clearInterval(__int)
       }
 
+      function hideMe(){
+        setdisplayInternet("none")
+      }
+
   return (
     <div className="container" style={{display: `${displayInternet}`}}>
       <div className="row">
@@ -48,7 +52,7 @@ const Internet = (props) => {
           <div className="internet-text">
             <p>You are Offline</p>
           </div>
-          <div className="internet-icon">
+          <div className="internet-icon" onClick={hideMe}  >
             <i className="fa fa-times-circle"></i>
           </div>
         </div>

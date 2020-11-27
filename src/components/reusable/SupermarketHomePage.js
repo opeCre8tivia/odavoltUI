@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react'
 import Nav from '../home/Nav'
 
 import {useSelector,useDispatch} from 'react-redux'
-import { Redirect } from 'react-router-dom'
+
 import {loadAstore,fetchCategories,loadParticularStoreProducts} from '../../redux/actions'
 
 import SubCategoryItemSlide from '../reusable/SubCategoryItemSlide'
@@ -25,7 +25,7 @@ const SupermarketHomePage =(props)=>{
 
     //get the store id from history
     const _str_id = props.location.state
-    console.log(_str_id)
+ 
 
    
    
@@ -43,10 +43,9 @@ const SupermarketHomePage =(props)=>{
 
     //load products that are specific to respective store
     useEffect(()=>{
-        console.log('load particular products called...')
-        console.log(_str_id)
+        
        if(_str_id){
-        console.log(_str_id)
+       
             dispatch(loadParticularStoreProducts(_str_id))
        }
     },[])
@@ -66,7 +65,7 @@ const SupermarketHomePage =(props)=>{
 
 
     useEffect(() => {
-        console.log("xxxx")
+       
         filterPopulatedSubCategories() 
     }, [particularStoreProducts])
 

@@ -5,7 +5,7 @@ import SearchSuggestions from './SearchSuggestions'
 
 
 import Nav from '../home/Nav'
-import OvSlider from '../home/OvSlider'
+
 import Product from '../home/Product'
 import ProductPlaceholderLoader from './ProductPlaceholderLoader'
 
@@ -29,11 +29,12 @@ const ViewMore =(props)=> {
    //
    useEffect(() => {
       dispatch(getProductsBySubCategory(_subCategory,props.location.state))
+      //eslint-disable-next-line
    }, [])
 
     //function to filter search products
     const filterPoducts=(suggestionText)=>{
-        console.log(suggestionText)
+        
         if(productsBySubCategory === null){
             return null
         }
@@ -49,8 +50,7 @@ const ViewMore =(props)=> {
             }
          
         })
-            console.log(filtered)
-            setSuggestionArray(filtered)
+         setSuggestionArray(filtered)
   
     }
 
