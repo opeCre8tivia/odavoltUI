@@ -30,6 +30,7 @@ export const fetchStores =()=>{
             
         } catch (error) {
             console.log(error.message)
+            console.log(error.response)
             if(error.message === 'Network Error'){
               dispatch({
                 type: 'LOADING'

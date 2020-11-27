@@ -1,11 +1,12 @@
 import React,{useEffect, useState} from 'react'
 
-import {NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import {useDispatch,useSelector} from 'react-redux'
 import CartMethods from '../reusable/classes/cartMethods'
 
-const BottomTabNavigator = ()=> {
+const BottomTabNavigator = (props)=> {
+        console.log(window.location.pathname)
         //component state
         const [totalCartItemCount, setTotalCartItemCount] = useState(0)
     //redux state
@@ -39,67 +40,88 @@ const BottomTabNavigator = ()=> {
            
     }
 
-    // function isActive(e){
-        
-    //     let _homeTab = document.querySelector(".fa-home")
-    //     let _categorytab = document.querySelector(".fa-xx")
-    //     let _userTab = document.querySelector(".fa-user")
-    //     let _cartTab = document.querySelector(".fa-cart-arrow-down")
+    //call and validate path on rerender
+    useEffect(()=>{
+        let _noevent = {
+            target:{
+                className:"fa null"
+            }
+        }
+        isActive(_noevent)
+    },[])
 
+    function isActive(e){
+        console.log('called...')
+        let _homeTab = document.querySelector(".fa-home")
+        let _notificationTab = document.querySelector(".fa-bell")
+        let _userTab = document.querySelector(".fa-user")
+        let _cartTab = document.querySelector(".fa-cart-arrow-down")
+
+            console.log(e.target.className)
     
-    //      if(e.target.className === "fas fa-home tab-icon"){
-    //         _homeTab.style.color = "#F06723"
-    //         _userTab.style.color = "#717171"
-    //         _cartTab.style.color = "#717171"
-    //     }
-    //     else if(e.target.className === "fas fa-user tab-icon"){
-    //         _homeTab.style.color = "#717171"
-    //         _cartTab.style.color = "#717171"
-    //         _userTab.style.color = "#F06723"
-    //     }
-    //     else if(e.target.className === "fas fa-cart-arrow-down tab-icon"){
-    //         _homeTab.style.color = "#717171"
-    //         _userTab.style.color = "#717171"
-    //         _cartTab.style.color = "#F06723"
-    //     }
-    // }
-
-    function intersect (){
-        let _entry = document.querySelector(".bottom-tab-navigation")
-        let observer = new IntersectionObserver((entries)=>{
-
-        },{threshold:[0.2]})
-
-        observer.observe(_entry)
+         if(e.target.className === "fas fa-home tab-icon" || window.location.pathname === '/'){
+            _homeTab.style.color = "#F06723"
+            _userTab.style.color = "#717171"
+            _cartTab.style.color = "#717171"
+            _notificationTab.style.color = "#717171"
+        }
+        else if(e.target.className === "fas fa-user tab-icon" || window.location.pathname === '/login' || window.location.pathname === '/signup' || window.location.pathname === '/client-dash'){
+            console.log('user tab')
+            _homeTab.style.color = "#717171"
+            _cartTab.style.color = "#717171"
+            _notificationTab.style.color = "#717171"
+            _userTab.style.color = "#F06723"
+        }
+        else if(e.target.className === "fas fa-cart-arrow-down tab-icon"){
+            _homeTab.style.color = "#717171"
+            _notificationTab.style.color = "#717171"
+            _userTab.style.color = "#717171"
+            _cartTab.style.color = "#F06723"
+        }
+        else if(e.target.className === "fas fa-bell tab-icon"){
+            _notificationTab.style.color = "#F06723"
+            _homeTab.style.color = "#717171"
+            _userTab.style.color = "#717171"
+            _cartTab.style.color = "#717171"
+        }
     }
+
 
     return (
         <div className="bottom-tab-navigation" style={{position:'fixed'}} >
                 {/* home */}
-             <NavLink to="/" activeStyle={{color:"orange"}} >
-                   <div >
+             <Link to="/" >
+                   <div onClick={(e)=>{
+                         isActive(e)
+                    }}>
                         <div className="tab-icon-cont" > <i className="fas fa-home tab-icon"></i> </div>
                    </div>
-             </NavLink> 
+             </Link> 
 
-               {/* categories */}
-               <div onClick={()=>{
+               {/* notification */}
+               <div onClick={(e)=>{
                    const cartObject = new CartMethods(dispatch)
                    cartObject.showCart()
+                   isActive(e)
 
                }} >
-                   <div className="tab-icon-cont" > <i className="fas fa-list-alt tab-icon"></i> </div>
+                   <div className="tab-icon-cont" > <i className="fas fa-bell tab-icon"></i> </div>
                </div>
 
                 {/* user account */}
-               <NavLink to="/user-dash" className="tab-icon-cont" ><div >
-                   <div  > <i className="fas fa-user tab-icon"></i> </div>
-               </div></NavLink>
+               <Link to="/user-dash"  >
+                   <div onClick={(e)=>{
+                       isActive(e)
+                   }} >
+                        <div className="tab-icon-cont" > <i className="fas fa-user tab-icon"></i> </div>
+                   </div>
+               </Link>
 
                {/* cart */}
                <div onClick={(e)=>{
                    const cartObject = new CartMethods(dispatch)
                    cartObject.showCart()
+                   isActive(e)
                    
 
                   
