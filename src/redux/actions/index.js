@@ -2,7 +2,7 @@ import axios from 'axios';
 import {rootapi} from '../../rootapi'
 
 import {getProductsBySubCategory, fetchProducts} from './productsActions'
-import {RegisterUserAction,LoadUser,LoginUserAction} from './userActions'
+import {RegisterUserAction,LoadUser,LoginUserAction,ValidateEmail,ValidateLoginEmail,ValidateOTP,ValidateLoginOTP} from './userActions'
 import {placeOrder} from './OrderActions'
 
 
@@ -165,12 +165,21 @@ export {LoadUser}
 //login user
 export {LoginUserAction}
 
+export {ValidateEmail}
+
+export {ValidateLoginEmail}
+
 export {fetchProducts}
 
 export {getProductsBySubCategory}
 
 //place orders
 export {placeOrder}
+
+//validate otp
+export {ValidateOTP}
+
+export {ValidateLoginOTP}
 
 
 
