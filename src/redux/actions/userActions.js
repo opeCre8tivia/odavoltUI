@@ -8,17 +8,24 @@ import {rootapi} from '../../rootapi'
 export const RegisterUserAction = (formData)=>{
     return async function(dispatch){
             //destructure formData
-            const {name, email, mobile, password} = formData
+            const {firstName, lastName, mobile} = formData
+            let email = JSON.parse(localStorage.getItem('_persistB'))
             //make arequest to api/users  and return a token
             try{
+
+                 //set user action loading to true
+                 dispatch({
+                    type:"USER_DATA_LOADING"
+                })
 
                 const res = await axios.post(
                     `${rootapi}/api/register-user`,
                     {
-                        name,
+                        firstName,
+                        lastName,
                         email,
                         mobile,
-                        password
+                        device:navigator.userAgent
                     }
     
                 )
@@ -42,19 +49,293 @@ export const RegisterUserAction = (formData)=>{
                 dispatch({
                     type:'NOT_LOADING'
                 })
+               
+                 dispatch({
+                    type:"USER_DATA_NOT_LOADING"
+                })
+
+                //delete token from db after the use is successfully logged in
+                let id = JSON.parse(localStorage.getItem('_persistA'))
+                
+                await axios.delete(`${rootapi}/api/otp/${id}`)
 
                 
             }
-            catch(err){
-               console.log(err)
-
-                dispatch({
-                    type:'NOT_LOADING'
-                })
+            catch(error){
+                console.log(error.message)
+                if(error.message === 'Network Error'){
+                    dispatch({
+                      type: 'LOADING'
+                    })
+                    dispatch({
+                      type: 'NETWORK_OFF'
+                    })
+                  }
             }
 
         
     }
+}
+
+
+export function ValidateEmail(formData){
+        return async function (dispatch){
+            
+            try {
+
+                 //set user action loading to true
+                 dispatch({
+                    type:"USER_DATA_LOADING"
+                })
+
+                let res = await axios.post(`${rootapi}/api/signup-auth`, formData)
+                
+
+                if(res.data.error === false){
+                    
+                    dispatch({
+                        type:"VALID_EMAIL",
+                        payload:res.data.payload //otp id & email
+                    })
+
+                    dispatch({
+                        type:"USER_DATA_NOT_LOADING"
+                    })
+                    dispatch({
+                        type: 'NETWORK_ON'
+                      })
+                }
+                else{
+                    dispatch({
+                        type:"EMAIL_VALIDATION_FAIL",
+                        msg:res.data.msg
+                    })
+                    dispatch({
+                        type:"USER_DATA_NOT_LOADING"
+                    })
+                    dispatch({
+                        type: 'NETWORK_ON'
+                      })
+                }
+                
+            } catch (error) {
+                console.log(error.message)
+                if(error.message === 'Network Error'){
+                    dispatch({
+                      type: 'LOADING'
+                    })
+                    dispatch({
+                      type: 'NETWORK_OFF'
+                    })
+
+                    dispatch({
+                        type:"USER_DATA_NOT_LOADING"
+                    })
+                  }
+            }
+        }
+}
+
+
+
+
+export function ValidateLoginEmail(formData){
+        return async function (dispatch){
+
+          
+            
+            try {
+
+                 //set user action loading to true
+                 dispatch({
+                    type:"USER_DATA_LOADING"
+                })
+
+                let res = await axios.post(`${rootapi}/api/login-auth`, formData)
+                
+
+                if(res.data.error === false){
+                    
+                    dispatch({
+                        type:"VALID_EMAIL",
+                        payload:res.data.payload //otp id & email
+                    })
+
+                    dispatch({
+                        type:"USER_DATA_NOT_LOADING"
+                    })
+                    dispatch({
+                        type: 'NETWORK_ON'
+                      })
+                }
+                else{
+                    dispatch({
+                        type:"EMAIL_VALIDATION_FAIL",
+                        msg:res.data.msg
+                    })
+                    dispatch({
+                        type:"USER_DATA_NOT_LOADING"
+                    })
+                    dispatch({
+                        type: 'NETWORK_ON'
+                      })
+                }
+                
+            } catch (error) {
+                console.log(error.message)
+                if(error.message === 'Network Error'){
+                    dispatch({
+                      type: 'LOADING'
+                    })
+                    dispatch({
+                      type: 'NETWORK_OFF'
+                    })
+
+                    dispatch({
+                        type:"USER_DATA_NOT_LOADING"
+                    })
+                  }
+            }
+        }
+}
+
+
+
+export function ValidateOTP(otp){
+        return async function (dispatch){
+                try {
+
+                    if(otp === null){
+                        dispatch({
+                            type:"INVALID_OTP_ENTRY",
+                            msg:"Re-enter Code"
+                        })
+                        return null
+                    }
+                     //set user action loading to true
+                     dispatch({
+                        type:"USER_DATA_LOADING"
+                    })
+                    let id = JSON.parse(localStorage.getItem('_persistA'))
+                    if(id === null || id === undefined){
+                        dispatch({
+                            type:"INVALID_OTP_ENTRY",
+                            msg:"Re-enter Code"
+                        })
+                        return null
+                    }
+                    let res = await axios.post(`${rootapi}/api/otp/${id} `, {otp:otp})
+                    if(res.data.error === false){
+                        dispatch({
+                            type:'VALID_OTP'
+                        })
+                        dispatch({
+                            type:"USER_DATA_NOT_LOADING"
+                        })
+                    }
+                    else{
+
+
+                        dispatch({
+                            type:'OTP_VALIDATION_FAIL',
+                            msg: res.data.msg
+                        })
+
+                        dispatch({
+                            type:"USER_DATA_NOT_LOADING"
+                        })
+                    }
+
+                    
+                } catch (error) {
+                    console.log(error.message)
+                    if(error.message === 'Network Error'){
+                        dispatch({
+                          type: 'LOADING'
+                        })
+                        dispatch({
+                          type: 'NETWORK_OFF'
+                        })
+                        dispatch({
+                            type:"USER_DATA_NOT_LOADING"
+                        })
+                      }
+
+                      
+                }
+        }
+}
+export function ValidateLoginOTP(otp){
+        return async function (dispatch){
+                try {
+
+                    if(otp === null){
+                        dispatch({
+                            type:"INVALID_OTP_ENTRY",
+                            msg:"Re-enter Code"
+                        })
+                        return null
+                    }
+                     //set user action loading to true
+                     dispatch({
+                        type:"USER_DATA_LOADING"
+                    })
+                    let id = JSON.parse(localStorage.getItem('_persistA'))
+                    if(id === null || id === undefined){
+                        dispatch({
+                            type:"INVALID_OTP_ENTRY",
+                            msg:"Re-enter Code"
+                        })
+                        return null
+                    }
+                    let res = await axios.post(`${rootapi}/api/otp/login/${id} `, {otp:otp})
+                  
+                    if(res.data.error === false){
+                        dispatch({
+                            type:'LOGIN_SUCCESS',
+                            payload:res.data.payload
+                        })
+
+                        dispatch({
+                            type:'VALID_OTP'
+                        })
+
+                       
+                        dispatch({
+                            type:"USER_DATA_NOT_LOADING"
+                        })
+                    }
+                    else{
+
+
+                        dispatch({
+                            type:'OTP_VALIDATION_FAIL',
+                            msg: res.data.msg
+                        })
+
+                        dispatch({
+                            type:"USER_DATA_NOT_LOADING"
+                        })
+                    }
+
+                    
+                } catch (error) {
+                    
+                    if(error.message === 'Network Error'){
+                        dispatch({
+                          type: 'LOADING'
+                        })
+                        dispatch({
+                          type: 'NETWORK_OFF'
+                        })
+                        dispatch({
+                            type:"USER_DATA_NOT_LOADING"
+                        })
+                      }
+
+                      
+                }
+        }
 }
 
 
@@ -66,13 +347,14 @@ export const RegisterUserAction = (formData)=>{
 */
 export  const LoadUser = (token) =>{
     return async function(dispatch){
-
+            
         try { 
+        
             if(token !== null){
                 axios.defaults.headers.common['x-auth-token'] = token; //set headers
-    
+                
                 const res = await axios.get(`${rootapi}/api/auth`)
-
+              
                 if(!res){
                  
                     dispatch({
