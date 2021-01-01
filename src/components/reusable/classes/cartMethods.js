@@ -208,6 +208,9 @@ class CartMethods{
 
         //finding original price
         let origList = this.productList
+        if(origList === null){
+            return null
+        }
         let copy = origList.find(i => i._id === _id);
          if(copy === undefined){
              return null
