@@ -5,7 +5,30 @@ import {getProductsBySubCategory, fetchProducts} from './productsActions'
 import {RegisterUserAction,LoadUser,LoginUserAction,ValidateEmail,ValidateLoginEmail,ValidateOTP,ValidateLoginOTP} from './userActions'
 import {placeOrder} from './OrderActions'
 
+//test action
+export const addList = ()=>{
+    return function(dispatch){
+        let __list = [
+            {id:1,
+            name:"coder",
+            code:'ucfvvbb500'
+           },
+            {id:2,
+            name:"coder2",
+            code:'ucfvvbb500'
+           },
+            {id:3,
+            name:"coder3",
+            code:'ucfvvbb500'
+           }
+    ]
 
+    dispatch({
+        type:"TEST_LIST",
+        payload:__list
+    })
+    }
+}
 
 //store actions
 export const fetchStores =()=>{

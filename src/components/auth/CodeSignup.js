@@ -29,6 +29,7 @@ const CodeSignup = () =>{
 //component level state
 const [code,setCode]= useState(null)
 const [disableButton ,setDisableButton] = useState(true)
+const [showError,setShowError] = useState(false)
 
 
 //redux state
@@ -44,6 +45,21 @@ const {registered,error,token,loading,isValidated} = useSelector((state)=>state.
             handleAuthorisation(token)
         }
     },[token])
+
+       //use effect to show and dismiss error message
+       useEffect(()=>{
+        if(error){
+            setShowError(true)
+           
+            setTimeout(()=>{
+            //set it back to false after 3 s
+            setShowError(false)
+            dispatch({type:'CLEAR_ERROR'})
+
+            },3000)
+        }
+
+    },[error])
 
     function handleAuthorisation(token){
     
@@ -125,6 +141,11 @@ const {registered,error,token,loading,isValidated} = useSelector((state)=>state.
                <div className="ov-auth-logo-cont">
                    <OvLogo/>
                </div>
+
+               
+               <div className="ov-auth-page-title-text" >
+                SIGN UP
+               </div>
                
                {/* google sign up */}
                {/* <SocialAuth providerLogo={googlelogo} title="Sign Up with Google" />
@@ -134,11 +155,13 @@ const {registered,error,token,loading,isValidated} = useSelector((state)=>state.
 
                {/* main error component */}
                 
+               <div style={{width:'100%',minHeight:'28px'}}>
                 {
-                error &&  <div className="ov-error-cont"> 
+                showError === true ?  <div className="ov-error-cont"> 
                              <Errors error={error} />
-                         </div>
+                         </div>: null
                 }
+                </div>
 
 
                { isValidated===false ? <Formik
@@ -159,7 +182,7 @@ const {registered,error,token,loading,isValidated} = useSelector((state)=>state.
                                     className= "form-control"
                                     />
                             </div>
-                            <div style={{color:"red",fontSize:"80%"}}> {errors.email}  </div>
+                            <div style={{color:"red",fontSize:"80%",minHeight:'16px'}}> {errors.email}  </div>
 
                            
                             {loading === false ?<div className="form-group">

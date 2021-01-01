@@ -29,6 +29,8 @@ const LoginComponent = (props) =>{
     const _token = JSON.parse(localStorage.getItem('ov_TKN_aUTh'))
     //component level state
     const [isTrueToken , setTrueToken] = useState(null)
+    const [showError,setShowError] = useState(false)
+    const [render,setRender] = useState('false')
 
     //redux state
     const dispatch = useDispatch()
@@ -42,6 +44,8 @@ const LoginComponent = (props) =>{
         }
       
     },[isAuthenticated])
+
+ 
 
     function validateToken(tkn){
         console.log("validate...")
@@ -99,7 +103,10 @@ const LoginComponent = (props) =>{
              {/* logo space */}
              <div className="ov-auth-logo-cont">
                 <OvLogo/>
+               
             </div>
+
+            
             {/* google sign up */}
             {/* <SocialAuth providerLogo={googlelogo} title="Login with Google" />
             <SocialAuth providerLogo={fblogo} title="Login with Facebook" /> */}
@@ -107,9 +114,9 @@ const LoginComponent = (props) =>{
             {/* main error component */}
             
             {
-            error && <div className="ov-error-cont">
+            showError === true ? <div className="ov-error-cont">
                          <Errors error={error}/>
-                    </div>
+                    </div> : null
             }
 
             {/* form */}

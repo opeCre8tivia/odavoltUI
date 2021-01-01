@@ -29,6 +29,7 @@ const CodeLogin = () =>{
 //component level state
 const [code,setCode]= useState(null)
 const [disableButton ,setDisableButton] = useState(true)
+const [showError,setShowError] = useState(false)
 
 
 //redux state
@@ -44,6 +45,55 @@ let token = JSON.parse(localStorage.getItem('ov_TKN_aUTh'))
             handleAuthorisation(token)
         }
     },[token])
+
+
+       //use effect to show and dismiss error message
+       useEffect(()=>{
+        if(error){
+            setShowError(true)
+           
+            setTimeout(()=>{
+            //set it back to false after 3 s
+            setShowError(false)
+            dispatch({type:'CLEAR_ERROR'})
+
+            },3000)
+        }
+
+    },[error])
+
+    useEffect(()=>{
+        getPermission()
+    },[])
+
+    function showNotification(){
+        console.log('show called')
+        const notification = new Notification('New Order | Odavolt',{
+                    body:"You have recieved a new notification"
+        })
+
+       
+    }
+
+    //notifications API test
+    const getPermission=()=>{
+        //default, granted,denied
+       if(Notification.permission !== 'denied'){
+        Notification.requestPermission().then((permission)=>{
+            console.log(permission)
+            if(permission === 'granted'){
+                //display notification
+                showNotification()
+               
+               // notification.icon(`require('../../assets/img/ov-logo-small.png')`)
+            }
+            
+        })
+       }
+       else if (Notification.permission === 'granted'){
+                showNotification()
+       }
+    }
 
     function handleAuthorisation(token){
         localStorage.setItem("ov_TKN_aUTh", JSON.stringify(token))
@@ -123,6 +173,10 @@ let token = JSON.parse(localStorage.getItem('ov_TKN_aUTh'))
                <div className="ov-auth-logo-cont">
                    <OvLogo/>
                </div>
+
+               <div className="ov-auth-page-title-text" >
+                LOGIN
+               </div>
                
                {/* google sign up */}
                {/* <SocialAuth providerLogo={googlelogo} title="Sign Up with Google" />
@@ -131,12 +185,13 @@ let token = JSON.parse(localStorage.getItem('ov_TKN_aUTh'))
 
 
                {/* main error component */}
-                
+                <div style={{width:'100%',minHeight:'28px'}}>
                 {
-                error &&  <div className="ov-error-cont"> 
+                showError === true ?  <div className="ov-error-cont"> 
                              <Errors error={error} />
-                         </div>
+                         </div>: null
                 }
+                </div>
 
 
                { isValidated===false ? <Formik
@@ -157,7 +212,7 @@ let token = JSON.parse(localStorage.getItem('ov_TKN_aUTh'))
                                     className= "form-control"
                                     />
                             </div>
-                            <div style={{color:"red",fontSize:"80%"}}> {errors.email}  </div>
+                            <div style={{color:"red",fontSize:"80%",minHeight:'16px'}}> {errors.email}  </div>
 
                            
                             {loading === false ?<div className="form-group">
