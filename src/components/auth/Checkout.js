@@ -111,11 +111,12 @@ const nameSplitter =(noun)=>{
 
         async function  PlaceNewOrder(e){
             e.preventDefault(); 
-           const {name, mobile} = user.payload;
+           const {firstName,lastName, mobile} = user.payload;
            const  orderDetails = productList;
             //creating an order object
            const orderData = {
-            name,
+            firstName,
+            lastName,
             mobile,
             orderDetails,
             district,

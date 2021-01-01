@@ -6,7 +6,7 @@ import {useDispatch,useSelector} from 'react-redux'
 import CartMethods from '../reusable/classes/cartMethods'
 
 const BottomTabNavigator = (props)=> {
-        console.log(window.location.pathname)
+      
         //component state
         const [totalCartItemCount, setTotalCartItemCount] = useState(0)
     //redux state
@@ -51,13 +51,13 @@ const BottomTabNavigator = (props)=> {
     },[])
 
     function isActive(e){
-        console.log('called...')
+     
         let _homeTab = document.querySelector(".fa-home")
         let _notificationTab = document.querySelector(".fa-bell")
         let _userTab = document.querySelector(".fa-user")
         let _cartTab = document.querySelector(".fa-cart-arrow-down")
 
-            console.log(e.target.className)
+        
     
          if(e.target.className === "fas fa-home tab-icon" || window.location.pathname === '/'){
             _homeTab.style.color = "#F06723"
