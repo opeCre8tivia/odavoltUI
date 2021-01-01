@@ -66,34 +66,7 @@ let token = JSON.parse(localStorage.getItem('ov_TKN_aUTh'))
         getPermission()
     },[])
 
-    function showNotification(){
-        console.log('show called')
-        const notification = new Notification('New Order | Odavolt',{
-                    body:"You have recieved a new notification"
-        })
-
-       
-    }
-
-    //notifications API test
-    const getPermission=()=>{
-        //default, granted,denied
-       if(Notification.permission !== 'denied'){
-        Notification.requestPermission().then((permission)=>{
-            console.log(permission)
-            if(permission === 'granted'){
-                //display notification
-                showNotification()
-               
-               // notification.icon(`require('../../assets/img/ov-logo-small.png')`)
-            }
-            
-        })
-       }
-       else if (Notification.permission === 'granted'){
-                showNotification()
-       }
-    }
+   
 
     function handleAuthorisation(token){
         localStorage.setItem("ov_TKN_aUTh", JSON.stringify(token))
