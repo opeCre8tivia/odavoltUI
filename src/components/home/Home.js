@@ -8,7 +8,8 @@ import Nav  from "./Nav"
 import OvSlider from './OvSlider'
 import SupermarketList from './SupermarketList'
 import StorePopulatedSubCategories from '../reusable/StorePopulatedSubCategories'
-
+// import {socketurls} from '../../socketurls'
+// import io from 'socket.io-client'
 
 
 
