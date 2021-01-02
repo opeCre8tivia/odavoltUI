@@ -22,7 +22,7 @@ export function placeOrder(orderData){
                     //emit event
                     socket.emit('orderPlaced', {
                         firstName:orderData.firstName,
-                        flasttName:orderData.lastName,
+                        lastName:orderData.lastName,
                     })
 
                     
