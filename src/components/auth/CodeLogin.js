@@ -62,10 +62,6 @@ let token = JSON.parse(localStorage.getItem('ov_TKN_aUTh'))
 
     },[error])
 
-    useEffect(()=>{
-        getPermission()
-    },[])
-
    
 
     function handleAuthorisation(token){

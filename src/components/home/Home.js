@@ -11,7 +11,9 @@ import StorePopulatedSubCategories from '../reusable/StorePopulatedSubCategories
 
 
 
+
 const Home = ()=> {
+  
 
      //token
      const _token = JSON.parse(localStorage.getItem('ov_TKN_aUTh'))
@@ -19,6 +21,8 @@ const Home = ()=> {
     
     const dispatch= useDispatch()
     const {user} = useSelector((state)=>state.AuthReducer)
+
+   
 
     //validate user token
     useEffect(()=>{
