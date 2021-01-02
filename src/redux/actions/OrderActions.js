@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {rootapi} from '../../rootapi'
+import {socketurls} from '../../socketurls'
+import io from 'socket.io-client'
 
 export function placeOrder(orderData){
     return async function(dispatch){
@@ -15,6 +17,14 @@ export function placeOrder(orderData){
                 if(response.data.msg === 'ORDER PLACED'){
                     dispatch({type:'ORDER_SUCCESS'})
                     localStorage.removeItem('ov-client-orders');
+                    //make socket connection
+                    const socket = io(`${socketurls}`)
+                    //emit event
+                    socket.emit('orderPlaced', {
+                        firstName:orderData.firstName,
+                        flasttName:orderData.lastName,
+                    })
+
                     
                 }
                 else if(response.data.error === true){

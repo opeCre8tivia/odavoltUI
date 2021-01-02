@@ -4,9 +4,15 @@ import {useSelector,useDispatch} from 'react-redux'
 import OrderSuccess from './OrderSuccess';
 import {placeOrder}  from '../../redux/actions'
 
+//import io from 'socket.io-client';
+
+
 
 
 const ClientDash = (props) =>{
+
+    //socket.io
+    //const socket = io("http://localhost:5000");
 
     //redux state 
     const {orderSubmitted} = useSelector(state => state.ClientDashReducer)
@@ -57,12 +63,12 @@ const ClientDash = (props) =>{
 //Here is where the users name gets splited so that we only display one, hopefully the christian one
 
 
-const nameSplitter =(noun)=>{
+// const nameSplitter =(noun)=>{
  
-  let nounArray = noun.split(" ");
-  //check if the returned array has length greater than  one
-  return nounArray.length > 1 ? nounArray[1] : nounArray[0]
-}
+//   let nounArray = noun.split(" ");
+//   //check if the returned array has length greater than  one
+//   return nounArray.length > 1 ? nounArray[1] : nounArray[0]
+// }
 
 
 
@@ -129,14 +135,6 @@ const nameSplitter =(noun)=>{
             dispatch(placeOrder(orderData))
         
         }
-
-
-
-     function clearItems(){
-       localStorage.removeItem('ov-client-orders');
-       getProducts(); 
-  
-    }
 
     //show notification when checkout is successfull
     function showOrderSuccess(){

@@ -16,11 +16,12 @@ import BottomTabNavigator from './components/home/BottomTabNavigator';
 import Internet from './components/reusable/Internet'
 import codeSignup from './components/auth/CodeSignup'
 import CodeLogin from './components/auth/CodeLogin'
-import Test from './components/reusable/Test';
+
 
 //redux store
 
 const App =(props)=> {
+
 
  
 
