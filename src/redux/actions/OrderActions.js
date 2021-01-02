@@ -5,6 +5,9 @@ import io from 'socket.io-client'
 
 export function placeOrder(orderData){
     return async function(dispatch){
+         //make socket connection
+         const socket = io(`${socketurls}`)
+
         try {
             console.log(orderData)
             //set user to the headers
@@ -17,8 +20,6 @@ export function placeOrder(orderData){
                 if(response.data.msg === 'ORDER PLACED'){
                     dispatch({type:'ORDER_SUCCESS'})
                     localStorage.removeItem('ov-client-orders');
-                    //make socket connection
-                    const socket = io(`${socketurls}`)
                     //emit event
                     socket.emit('orderPlaced', {
                         firstName:orderData.firstName,
