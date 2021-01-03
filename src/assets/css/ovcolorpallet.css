@@ -3,6 +3,8 @@
 :root{
     --ov-primary:#ff4500;      /*=== orange red====*/
     --ov-secondary:#00ff45;    /*=== a lighter lime green #00ff54 ====*/
+    --ov-apple-green:#8db600;
+    --ov-darker-green:#457C06;
     --ov-gray-dark:#535353;   
     --ov-gray-medium:#717171;
     --ov-gray-light:#efefef;
