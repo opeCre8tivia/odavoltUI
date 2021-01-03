@@ -8,9 +8,10 @@ import Checkout from './Checkout'
 import jwt_decode from 'jwt-decode'
 
 const UserDash =(props)=> {
-    console.log(props)
+    
      //token
      const _token = JSON.parse(localStorage.getItem('ov_TKN_aUTh'))
+   
      
     //component level state
      const [isTrueToken , setIsTrueToken] = useState(null)
@@ -20,6 +21,7 @@ const UserDash =(props)=> {
     // const {user,isAuthenticated} = useSelector((state)=>state.AuthReducer)
 
     useEffect(()=>{
+     
         dispatch(LoadUser(_token))
     },[])
 
@@ -31,7 +33,6 @@ const UserDash =(props)=> {
 
     useEffect(()=>{
         if(_token !== null){
-            console.log('token.....')
             validateToken(_token)
         }
        
@@ -39,7 +40,7 @@ const UserDash =(props)=> {
 
     function validateToken(tkn){
         const decoded = jwt_decode(tkn)
-        console.log(decoded)
+        
         if(decoded.user){
             setIsTrueToken(true)
         }
@@ -49,7 +50,7 @@ const UserDash =(props)=> {
        
     }
 
-    console.log(isTrueToken)
+   
 
     return (
 

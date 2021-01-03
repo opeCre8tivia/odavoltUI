@@ -4,9 +4,15 @@ import {useSelector,useDispatch} from 'react-redux'
 import OrderSuccess from './OrderSuccess';
 import {placeOrder}  from '../../redux/actions'
 
+//import io from 'socket.io-client';
+
+
 
 
 const ClientDash = (props) =>{
+
+    //socket.io
+    //const socket = io("http://localhost:5000");
 
     //redux state 
     const {orderSubmitted} = useSelector(state => state.ClientDashReducer)
@@ -111,11 +117,12 @@ const ClientDash = (props) =>{
 
         async function  PlaceNewOrder(e){
             e.preventDefault(); 
-           const {name, mobile} = user.payload;
+           const {firstName,lastName, mobile} = user.payload;
            const  orderDetails = productList;
             //creating an order object
            const orderData = {
-            name,
+            firstName,
+            lastName,
             mobile,
             orderDetails,
             district,

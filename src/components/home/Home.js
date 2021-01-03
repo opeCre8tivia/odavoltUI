@@ -8,10 +8,13 @@ import Nav  from "./Nav"
 import OvSlider from './OvSlider'
 import SupermarketList from './SupermarketList'
 import StorePopulatedSubCategories from '../reusable/StorePopulatedSubCategories'
+// import {socketurls} from '../../socketurls'
+// import io from 'socket.io-client'
 
 
 
 const Home = ()=> {
+  
 
      //token
      const _token = JSON.parse(localStorage.getItem('ov_TKN_aUTh'))
@@ -19,6 +22,8 @@ const Home = ()=> {
     
     const dispatch= useDispatch()
     const {user} = useSelector((state)=>state.AuthReducer)
+
+   
 
     //validate user token
     useEffect(()=>{

@@ -2,10 +2,33 @@ import axios from 'axios';
 import {rootapi} from '../../rootapi'
 
 import {getProductsBySubCategory, fetchProducts} from './productsActions'
-import {RegisterUserAction,LoadUser,LoginUserAction} from './userActions'
+import {RegisterUserAction,LoadUser,LoginUserAction,ValidateEmail,ValidateLoginEmail,ValidateOTP,ValidateLoginOTP} from './userActions'
 import {placeOrder} from './OrderActions'
 
+//test action
+export const addList = ()=>{
+    return function(dispatch){
+        let __list = [
+            {id:1,
+            name:"coder",
+            code:'ucfvvbb500'
+           },
+            {id:2,
+            name:"coder2",
+            code:'ucfvvbb500'
+           },
+            {id:3,
+            name:"coder3",
+            code:'ucfvvbb500'
+           }
+    ]
 
+    dispatch({
+        type:"TEST_LIST",
+        payload:__list
+    })
+    }
+}
 
 //store actions
 export const fetchStores =()=>{
@@ -165,12 +188,21 @@ export {LoadUser}
 //login user
 export {LoginUserAction}
 
+export {ValidateEmail}
+
+export {ValidateLoginEmail}
+
 export {fetchProducts}
 
 export {getProductsBySubCategory}
 
 //place orders
 export {placeOrder}
+
+//validate otp
+export {ValidateOTP}
+
+export {ValidateLoginOTP}
 
 
 

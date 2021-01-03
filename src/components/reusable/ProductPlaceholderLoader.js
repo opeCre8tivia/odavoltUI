@@ -87,10 +87,11 @@ return (
                 {
                     _dammyData.map(placeholder =>(
                         <div className="product-placeholder" key={placeholder.id}>
-                            <div className="placeholder-img-cont" > <img src={placeholder.imgUrl} alt="placeholders"/> </div>
+                            <div className="placeholder-img-cont" > <img src={placeholder.imgUrl} width="50px" height="50px" alt="placeholders"/> </div>
                             <div className="placeholder-other-cont" > </div>
                             <div className="placeholder-other-cont" > </div>
                             <div className="placeholder-other-cont" > </div>
+                            
                         </div>
 
                     ) )

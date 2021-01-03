@@ -1,8 +1,8 @@
 /*this component is responsible for all the functionality related to
 * adding an item to the cart
 */
-import React,{useEffect,useState}  from 'react'
-import {useDispatch,useSelector} from "react-redux";
+import React from 'react'
+import {useDispatch} from "react-redux";
 
 import RoundBtn from "./RoundBtn"
 import CartMethods from '../classes/cartMethods'
@@ -12,7 +12,7 @@ import CartMethods from '../classes/cartMethods'
 const AddToCartComponent =({item})=> {
     
     //component state
-    const [isinLocalStorage,setIsinLocalStorage] = useState(false)
+    //const [isinLocalStorage,setIsinLocalStorage] = useState(false)
     //redux state
     const dispatch = useDispatch()
 

@@ -1,5 +1,6 @@
 const initialState = {
     storeList:[],
+    testList:[],
     store:null,
     categories:[],
     particularStoreProducts:[],
@@ -8,6 +9,11 @@ const initialState = {
 
 const StoreReducer = (state=initialState, action)=>{
     switch(action.type){
+        case "TEST_LIST":
+            return{
+                ...state,
+                testList:action.payload
+            }
         case "FETCH_STORES":
            
             return {

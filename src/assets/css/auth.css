@@ -67,6 +67,39 @@
     margin-top:25px;
 }
 
+.ov-auth-page-title-text{
+    width:40%;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    padding-bottom: 5px;
+    margin:auto;
+    color:rgb(11, 11, 105)
+
+}
+.ov-auth-page-title-text::before{
+    content:'';
+    display:block;
+    position: absolute;
+    bottom:0;
+    left:0;
+    width:50%;
+    height:2px;
+    background-color: var(--ov-secondary);
+
+
+}
+.ov-auth-page-title-text::after{
+    content:'';
+    display:block;
+    position: absolute;
+    bottom:0;
+    right: 0;
+    width:50%;
+    height:2px;
+    background-color: var(--ov-primary);
+}
+
 /* ========== signup styles ============== */
 
 .signup-container{
