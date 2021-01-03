@@ -66,7 +66,7 @@ const Product=({item,manageAutoPlay})=> {
             <div className="ov-product-description-cont-main">
                 <h6>{item.product.shortDescription} </h6>
 
-                <p>1{item.product.units} @{item.unitPrice} Ugx</p>
+                <p>{item.unitPrice} Ugx</p>
             </div>
 
              {/* add to cart section */}

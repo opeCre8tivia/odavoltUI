@@ -199,12 +199,7 @@ class CartMethods{
 
         count -= 1;
 
-        //remove the item if count value is less than 1
-         if(count < 1){
-          
-            this.removeItem(item._id);
-            return null;
-        }
+       
 
         //finding original price
         let origList = this.productList
@@ -229,6 +224,13 @@ class CartMethods{
 
        //find item in the array
        let found = localArray.find(element=> element._id === _id);
+
+        //remove the item if count value is less than 1
+        if(count < 1){
+          
+            this.removeItem(found._id);
+            return null;
+        }
    
        //update its units
        found.count= count;
