@@ -147,7 +147,8 @@ const styles = {
     },
     icons:{
         color:'#fff',
-        fontSize:"20px"
+        fontSize:"20px",
+        
 
     }
 

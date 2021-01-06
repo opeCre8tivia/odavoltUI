@@ -37,7 +37,7 @@ const SubCategoryItemSlide=({subCategory , storeProducts})=> {
             <div className="section-title">
                 <p> {`Buy ${subCategory}`}  </p>
                 
-               <Link to={{pathname:`/view/category/${storeProducts[0].storeId}`,state:`${storeProducts[0].storeId}` }} ><button className="btn btn-sm view-more" onClick={()=> handleDispatch(subCategory,storeProducts[0].storeId)}>View More</button></Link>
+               <Link to={{pathname:`/view/category/${storeProducts[0].storeId}`,state:`${storeProducts[0].storeId}`,subCat:`${subCategory}` }} ><button className="btn btn-sm view-more" onClick={()=> handleDispatch(subCategory,storeProducts[0].storeId)}>View More</button></Link>
               
             </div>
             {

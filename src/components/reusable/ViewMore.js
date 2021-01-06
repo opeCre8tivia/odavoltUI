@@ -13,24 +13,47 @@ const ViewMore =(props)=> {
 
     //component state
     const [suggestionText,setSuggestionText] = useState('')
+    const [subCategoryItems, setSubCategoryItems] = useState([])
     const [suggestionArray, setSuggestionArray] = useState([])
     const [searchedItemsArray,setSearchedItemsArray] = useState([])
     const [isSearch,setIsSearch] = useState(false)
     const [__loading,set__loading] = useState(false)
-
-    let _subCategory;
 
     
 
     //redux state
     const dispatch = useDispatch()
     const {productsBySubCategory} = useSelector((state)=>state.ProductReducer)
+
+    // console.log(props)
+    // console.log(props.location.state)
+
+    localStorage.setItem('_vm01px', JSON.stringify(props.location.state))
+
+    if(props.location.subCat !== undefined){
+        localStorage.setItem('_vm02px', JSON.stringify(props.location.subCat))
+    }
     
    //
    useEffect(() => {
-      dispatch(getProductsBySubCategory(_subCategory,props.location.state))
+      
+        let storeId = JSON.parse(localStorage.getItem('_vm01px'))
+            console.log(props.match.params.id)
+            dispatch(getProductsBySubCategory(props.match.params.id))
+      
+      
       //eslint-disable-next-line
    }, [])
+
+
+   useEffect(()=>{
+    let _subCategory = JSON.parse(localStorage.getItem('_vm02px'))
+    //filter items of this sub category
+    let _subCatItems = productsBySubCategory.filter((i)=>i.product.subCategory === _subCategory)
+    console.log('===== sub cat items ======')
+    console.log(_subCatItems)
+    setSubCategoryItems(_subCatItems)
+   },[productsBySubCategory])
 
     //function to filter search products
     const filterPoducts=(suggestionText)=>{
@@ -78,9 +101,22 @@ const ViewMore =(props)=> {
         }
       
     })
-    
-   
-        setSearchedItemsArray(filtered)
+
+        let displayArray = []
+
+        //push the filtered item 
+        filtered.forEach(element => {
+            displayArray.push(element)
+        });
+
+        //add more related items to the array (end of array)
+
+        suggestionArray.forEach(i =>{
+            displayArray.push(i)
+        })
+
+        
+        setSearchedItemsArray(displayArray)
         setIsSearch(true)
         setSuggestionArray([])
    
@@ -129,15 +165,15 @@ const ViewMore =(props)=> {
        {__loading === false ? <> {
             isSearch === false ? <div style={styles.mainContainer}>
             {productsBySubCategory && <p>  </p>}
-            <div className="row " style={{minHeight:'50vh',minWidth:"100vw", paddingLeft:"20px",paddingRight:"20px"}}>
-                {productsBySubCategory && productsBySubCategory.map((item)=> <div style={styles.productWrapper} key={item._id}><Product item={item}  /></div>)}
+            <div className="row row-reset-search" style={{minHeight:'50vh',minWidth:"340px",maxWidth:"99.5vw"}}>
+                {productsBySubCategory && subCategoryItems.map((item)=> <div style={styles.productWrapper} key={item._id}><Product item={item}  /></div>)}
             </div>
           
             </div> :
 
             <div style={styles.mainContainer}>
-            <div className="row " style={{minHeight:'50vh',minWidth:"100vw", paddingLeft:"20px",paddingRight:"20px"}}>
-                    {searchedItemsArray && searchedItemsArray.map((item)=> <div style={styles.productWrapper} key={item._id}><Product item={item}  /></div>)}
+            <div className="row row-reset-search" style={{minHeight:'50vh',minWidth:"340px",maxWidth:"99.5vw"}}>
+                    {searchedItemsArray && searchedItemsArray.map((item)=> <div style={styles.productWrapper} key={Math.random()}><Product item={item}  /></div>)}
                 </div>
             </div>
             
