@@ -85,6 +85,9 @@
 	transform: translateY(-50%);
 	height:20;
 	width:20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	
 
 }
@@ -110,6 +113,9 @@
 	transform: translateY(-50%);
 	height:20;
 	width:20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 @media only screen and (max-width:390px){

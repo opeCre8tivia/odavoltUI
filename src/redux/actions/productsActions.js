@@ -22,10 +22,11 @@ import {rootapi} from '../../rootapi'
  }
  
  
- export const getProductsBySubCategory = (subCategory,storeId)=>{
+ export const getProductsBySubCategory = (storeId)=>{
 
     return async function(dispatch){
         try {
+                console.log(storeId)
                 //fetch products by category
                 const res = await axios.get(`${rootapi}/api/storeitem-crud/particular/${storeId}`)
                 if(res.data.payload){
