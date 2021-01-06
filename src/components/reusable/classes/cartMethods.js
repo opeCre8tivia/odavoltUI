@@ -15,31 +15,38 @@ class CartMethods{
     /*----------------- Add item to method ----------------*/
    addToCart =  (item) =>{
 
+       //destructure item object
+       const {_id} = item;
+       // array to copy all the changes to
+       let cartItemsArray = []
 
         //add isinLocalStorage prop to the item
         item.isinLocalStorage = true;
-
        const orderz = JSON.parse(localStorage.getItem('ov-client-orders')); //all orders in LS
 
        /*
        * check if there are orders in local storage with keyword ("ov-client-orders")
        */
        if(orderz===null){
-           localStorage.setItem("ov-client-orders", JSON.stringify([item]))
-           localStorage.setItem("_originals", JSON.stringify([item]))
+           cartItemsArray.push(item)
+           localStorage.setItem("ov-client-orders", JSON.stringify(cartItemsArray))
+           //over write any originals available
+           localStorage.setItem("_originals", JSON.stringify(cartItemsArray))
            this.dispatch({type:"CART_CHANGE"})
            return null
        }
 
-      
+       if(orderz.length === 0){
+        cartItemsArray.push(item)
+        localStorage.setItem("ov-client-orders", JSON.stringify(cartItemsArray))
+        //over write any originals available
+        localStorage.setItem("_originals", JSON.stringify(cartItemsArray))
+        this.dispatch({type:"CART_CHANGE"})
+       }
 
-       //destructure item object
-       const {_id} = item;
-       // array to copy all the changes to
-       let cartItemsArray = []
+       // check whether orderz length > 0 we don't  just push
+           if(orderz.length > 0){
 
-       // check whether orderz is not null
-           if(orderz !== null){
            const found = orderz.find(order => order._id === _id);
            /* if not found
            *   get all the items in Local storage
@@ -48,15 +55,19 @@ class CartMethods{
            *   update ov-cart-orders in LS with cartItemsArray
            * ============== process for adding to cart ===========
            */ 
-                   if(found === undefined){     
+                   if(found === undefined){ 
+
                            orderz.forEach(element => {
                                cartItemsArray.push(element);
                            });
                            
+                           //check if itemdoes not already exist in cartItemsArray
+
                            cartItemsArray.push(item);
 
                            localStorage.setItem('ov-client-orders',JSON.stringify(cartItemsArray));
                            //keep the original un manuplated item for price reference
+
                             let originalItemArray = []
                             let originals = JSON.parse(localStorage.getItem('_originals'))
                             //pushing the first item
@@ -77,7 +88,6 @@ class CartMethods{
 
                            this.dispatch({type:"CART_CHANGE"})
 
-                               return null;
                    }
 
            }
@@ -86,12 +96,9 @@ class CartMethods{
                  * dispatch loadParticularStoreProducts to update productList array
                  *   call the increament function from the cartObject class
                  *  
-                 * =================== process for increamenting ===========
+                 * =================== cant appen for now ===========
                  */ 
               
-          
-          
-           this.increament(item) 
                
        } 
 
@@ -135,32 +142,8 @@ class CartMethods{
   /*----------------- Increament method ----------------*/
 
   increament =  (item) =>{
-                    /*
-                    *  to increament the price and the count of the product we need two versions of the product
-                    *   one- from local storage, that we are updating
-                    *   two- from the original product state so that we can change price using themethod below
-                    *  newprice = currentprice + original price
-                    */
-
-                    let {unitPrice,count,_id} = item;
-                   
-                   
-                    count += 1;
-
-                    //finding original price from redux product state
-                    let origList = this.productList;
-            
-                    let copy = origList.find(i => i._id === _id);
-                    if(copy === undefined){
-                        return null
-                    }
-                    
-                    let originalPrice = copy.unitPrice; 
-
-                    //increament units
-
+                  
                 let localArray = [];
-
                 let orderz = JSON.parse(localStorage.getItem('ov-client-orders'));
                 //append this item to a new array;
                 orderz.forEach(i => {
@@ -168,11 +151,17 @@ class CartMethods{
                 })
 
                 //find item in the array
-                let found = localArray.find(element=> element._id === _id);
+                let found = localArray.find(element=> element._id === item._id);
+
+                let originalPrice = item.unitPrice
+                let currentPrice  = found.unitPrice
+
+                let newPrice = currentPrice + originalPrice
+                let newCount = found.count + 1
                 
                 //update its units
-                found.count= count;
-                found.unitPrice = unitPrice + originalPrice ;
+                found.count= newCount;
+                found.unitPrice = newPrice ;
                 
                 
                 //get its index so that we can update
@@ -193,25 +182,6 @@ class CartMethods{
        /*----------------- decreament method ----------------*/
        
        decreament =  (item) =>{
-
-        let {unitPrice,count,_id} = item;
-  
-
-        count -= 1;
-
-       
-
-        //finding original price
-        let origList = this.productList
-        if(origList === null){
-            return null
-        }
-        let copy = origList.find(i => i._id === _id);
-         if(copy === undefined){
-             return null
-         }
-        let originalPrice = copy.unitPrice; 
-
         //increament units
 
        let localArray = [];
@@ -223,20 +193,28 @@ class CartMethods{
        })
 
        //find item in the array
-       let found = localArray.find(element=> element._id === _id);
+       let found = localArray.find(element=> element._id ===item._id);
 
+       let originalPrice = item.unitPrice
+       let currentPrice  = found.unitPrice
+
+       let newPrice = currentPrice + originalPrice
+       let newCount = found.count - 1
+
+           //update its units
+           found.count= newCount;
+           found.unitPrice = newPrice ;
+    
         //remove the item if count value is less than 1
-        if(count < 1){
-          
+        if(found.count < 1){
+
             this.removeItem(found._id);
             return null;
         }
    
-       //update its units
-       found.count= count;
-       found.unitPrice = unitPrice - originalPrice ;
-       
-       
+        
+            
+            
        //get its index so that we can update
        let idx = localArray.findIndex(i=>i._id === found._id);
       
@@ -255,7 +233,7 @@ class CartMethods{
   /*----------------- remove item method ----------------*/
 
     removeItem =  (id)=>{
-
+      
         let localArray = [];
         let originalsArray = []
         let orderz = JSON.parse(localStorage.getItem('ov-client-orders'))
@@ -277,6 +255,7 @@ class CartMethods{
                 localArray.push(e);
             }
         })
+
         //set new array
         localStorage.setItem('ov-client-orders', JSON.stringify(localArray));
         this.dispatch(cartChange());

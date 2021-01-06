@@ -17,7 +17,6 @@
 .ov-slider{
     position: relative;
     height:auto;
-    max-height:350px;
     display:flex;
     align-items: center;
     justify-content: center;
@@ -37,8 +36,7 @@
 
 .slider-image-cont{
     width:100%;
-    height:auto;
-    max-height:350px;
+    height:350px;
 }
 .slider-image{
     width:100%;
@@ -183,8 +181,15 @@
     border:1px solid var(--ov-primary)
 }
 
-@media only screen and (max-width:768px){
+@media only screen and (max-width:995px){
     .ov-top-ad-cont{
         display:none;
     }
 }
+
+@media only screen and (max-width:768px){
+    .slider-image-cont{
+        height:auto
+    }
+}
+

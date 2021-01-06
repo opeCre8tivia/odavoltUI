@@ -10,13 +10,13 @@ import Product from '../home/Product';
 
 const Ovcarousel =({productList})=>{
   
-    const [autoplay,setAutoPlay] = useState(true)
+    const [autoplay,setAutoPlay] = useState(false)
  
     const responsive = {
       0: { items: 2 },
       350:{items:2},
       568:{ items: 4},
-      1024:{ items: 5},
+      1024:{ items: 8},
   };
  //function to manage autoplay prop
  function manageAutoPlay(e){
@@ -49,6 +49,7 @@ else{
 
       <AliceCarousel
       mouseTracking
+      swipeExtraPadding={2}
       items={items}
       responsive={responsive}
       autoPlay={autoplay}
@@ -58,8 +59,8 @@ else{
       disableButtonsControls={boolArrow}
       disableDotsControl={true}
       autoPlayStrategy="action"
-      autoPlayInterval={3000}
-      animationDuration={4000}
+      autoPlayInterval={500}
+      animationDuration={1500}
       infinite={false}
       
       

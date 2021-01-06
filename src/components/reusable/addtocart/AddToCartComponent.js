@@ -1,10 +1,9 @@
 /*this component is responsible for all the functionality related to
 * adding an item to the cart
 */
-import React from 'react'
-import {useDispatch} from "react-redux";
+import React,{useEffect,useState} from 'react'
+import {useDispatch,useSelector} from "react-redux";
 
-import RoundBtn from "./RoundBtn"
 import CartMethods from '../classes/cartMethods'
 
 
@@ -12,9 +11,53 @@ import CartMethods from '../classes/cartMethods'
 const AddToCartComponent =({item})=> {
     
     //component state
-    //const [isinLocalStorage,setIsinLocalStorage] = useState(false)
+    const [itemInLocalStorage,SetItemInLocalStorage]= useState(item)
     //redux state
     const dispatch = useDispatch()
+    const {cartChange} = useSelector((state)=>state.cartReducer)
+
+    
+      useEffect(() => {
+        IsinLocalStorage(item)
+        // eslint-disable-next-line   
+      },[cartChange])
+
+
+ 
+    function IsinLocalStorage(item){
+        //find items from  local storage and set to currnet item
+        let lsItems = JSON.parse(localStorage.getItem("ov-client-orders"))
+        if(lsItems === null){
+            //remove the isinLocalStorage prop or set to undefined
+            let i = item
+           i.isinLocalStorage = false
+            SetItemInLocalStorage(i)
+            return null
+        }
+        else if ( lsItems.length === 0){
+            //remove the isinLocalStorage prop or set to undefined
+            let i = item
+            i.isinLocalStorage = false
+            SetItemInLocalStorage(i)
+            return null
+        }
+
+        //if items are in local storage .... we need to check if current item exists
+            let found = lsItems.find((i)=> i._id === item._id)
+
+            if(found !== undefined){
+                found.isinLocalStorage = true //OVERwrite
+                SetItemInLocalStorage(found)
+            }
+            else if(found === undefined){
+                let i = item
+                i.isinLocalStorage = false 
+                SetItemInLocalStorage(i)
+                
+            }
+        
+      }
+
 
   
 
@@ -26,22 +69,52 @@ const AddToCartComponent =({item})=> {
         
 
            function decreament(item){
+               
                 const cartObject = new CartMethods(dispatch)
                 cartObject.decreament(item)
                 
             }
+           function increament(item){
+               
+                const cartObject = new CartMethods(dispatch)
+                cartObject.increament(item)
+                
+            }  
+
 
     return (
+
       <div style={styles.mainContainer}>
-            { item.isinLocalStorage === undefined ?  <div style={styles.addTextContainer}>ADD</div> :
-                <>
-                <div className="minus-btn-cont"><RoundBtn  item={item}  value="-" decreament={decreament} /></div>
+            { itemInLocalStorage.isinLocalStorage === true ?  <div> 
+                <div className="minus-btn-cont"  onClick={()=>{
+                   decreament(item)
+                   }} >
+                       <i className="fa fa-minus-circle " style={styles.icons} ></i>
+               </div>
             
-                <div className="number-btn-cont"> {item.count} </div>
+            <div className="number-btn-cont"> {itemInLocalStorage.count} </div>
+
+
+            <div className="plus-btn-cont"  onClick={()=>{
+                   increament(item)
+                   }} >
+                       <i className="fa fa-plus-circle " style={styles.icons} ></i>
+            </div>
+                </div> :
+                
+                <>
+                <div style={styles.addTextContainer}>ADD</div> 
+               
+                <div className="plus-btn-cont"  onClick={()=>{
+                   addToCart(item)
+                   }} >
+                       <i className="fa fa-plus-circle " style={styles.icons} ></i>
+               </div>
+
                 </>
             }
             
-            <div className="plus-btn-cont"><RoundBtn  item={item}  value="+"  addToCart={addToCart} /></div>
+  
         </div>
     )
 }
@@ -71,6 +144,12 @@ const styles = {
         fontWeight: "bold",
         fontSize:"80%",
         color:"#ffffff",
+    },
+    icons:{
+        color:'#fff',
+        fontSize:"20px"
+
     }
+
 }
 export default AddToCartComponent
