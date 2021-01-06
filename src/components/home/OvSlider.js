@@ -26,7 +26,7 @@ const OvSlider =(props)=> {
     return (
         <div className="ov-slider-container">
             <div  className="row" style={{justifyContent:"between",width:'95vw',margin:'auto',padding:'1px'}}>
-                <div className="col-lg-8 col-md-8 col-sm-11 col-xs-11 ov-slider" style={{width:'100%'}}>
+                <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12 ov-slider" style={{width:'100%'}}>
                      <Slider {...settings}>
                        { pix.map(slide=>(
                            <div className="slider-image-cont" key={slide.id}>   
