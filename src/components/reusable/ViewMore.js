@@ -50,8 +50,6 @@ const ViewMore =(props)=> {
     let _subCategory = JSON.parse(localStorage.getItem('_vm02px'))
     //filter items of this sub category
     let _subCatItems = productsBySubCategory.filter((i)=>i.product.subCategory === _subCategory)
-    console.log('===== sub cat items ======')
-    console.log(_subCatItems)
     setSubCategoryItems(_subCatItems)
    },[productsBySubCategory])
 

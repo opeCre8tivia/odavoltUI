@@ -24,7 +24,7 @@ const SupermarketHomePage =(props)=>{
     const [loadedStore, setLoadedStore] = useState({})
 
     //get the store id from history
-    const _str_id = props.location.state
+    const _str_id = props.match.params.id
  
 
    
@@ -48,7 +48,7 @@ const SupermarketHomePage =(props)=>{
        
             dispatch(loadParticularStoreProducts(_str_id))
        }
-    },[])
+    },[store])
 
 
     //watches store and sets it to component store
@@ -65,7 +65,7 @@ const SupermarketHomePage =(props)=>{
 
 
     useEffect(() => {
-       
+       console.log(particularStoreProducts)
         filterPopulatedSubCategories() 
     }, [particularStoreProducts])
 
@@ -92,8 +92,16 @@ const SupermarketHomePage =(props)=>{
         //generate all the subcategories the store products belong to
         let storeProductSubCat = []
         let populatedSubCats = []
+       
+        console.log('======parti =======')
+            console.log(particularStoreProducts)
         particularStoreProducts.forEach((e)=>{
-            storeProductSubCat.push(e.product.subCategory)
+            console.log('====== sub cat =======')
+            console.log(e.product)
+            if(e.product !== undefined){
+                storeProductSubCat.push(e.product.subCategory) 
+            }
+            
         })
 
         //to display onlysubcategories that have products we compare
