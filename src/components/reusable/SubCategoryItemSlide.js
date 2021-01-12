@@ -16,8 +16,10 @@ const SubCategoryItemSlide=({subCategory , storeProducts})=> {
     const sortStoreProducts =()=>{
         let sorted = []
         storeProducts.forEach(storeProduct => {
-            if(storeProduct.product.subCategory === subCategory){
-                sorted.push(storeProduct)
+            if(storeProduct.product !== undefined){
+                if(storeProduct.product.subCategory === subCategory){
+                    sorted.push(storeProduct)
+                }
             }
         });
 
