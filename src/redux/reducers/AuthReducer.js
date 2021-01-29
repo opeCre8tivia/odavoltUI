@@ -93,7 +93,7 @@ const AuthReducer = (state=initialState, action) =>{
             localStorage.removeItem('ov_TKN_aUTh');
             let anonAuth = localStorage.getItem('OV_Anon_2aUTh');
             const randomId = Math.random()
-            anonAuth ? null : localStorage.setItem('OV_Anon_2aUTh', randomId);
+            anonAuth ? Math.random() : localStorage.setItem('OV_Anon_2aUTh', randomId);
             
             return{
                 ...state,
