@@ -65,7 +65,7 @@ const SupermarketHomePage =(props)=>{
 
 
     useEffect(() => {
-       console.log(particularStoreProducts)
+       
         filterPopulatedSubCategories() 
     }, [particularStoreProducts])
 
@@ -93,11 +93,8 @@ const SupermarketHomePage =(props)=>{
         let storeProductSubCat = []
         let populatedSubCats = []
        
-        console.log('======parti =======')
-            console.log(particularStoreProducts)
         particularStoreProducts.forEach((e)=>{
-            console.log('====== sub cat =======')
-            console.log(e.product)
+            
             if(e.product !== undefined){
                 storeProductSubCat.push(e.product.subCategory) 
             }

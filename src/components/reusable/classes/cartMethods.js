@@ -198,7 +198,7 @@ class CartMethods{
        let originalPrice = item.unitPrice
        let currentPrice  = found.unitPrice
 
-       let newPrice = currentPrice + originalPrice
+       let newPrice = currentPrice - originalPrice
        let newCount = found.count - 1
 
            //update its units

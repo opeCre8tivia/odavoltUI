@@ -38,7 +38,7 @@ const ViewMore =(props)=> {
    useEffect(() => {
       
         let storeId = JSON.parse(localStorage.getItem('_vm01px'))
-            console.log(props.match.params.id)
+            
             dispatch(getProductsBySubCategory(props.match.params.id))
       
       
