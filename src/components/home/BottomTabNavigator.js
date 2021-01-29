@@ -66,7 +66,7 @@ const BottomTabNavigator = (props)=> {
             _notificationTab.style.color = "#717171"
         }
         else if(e.target.className === "fas fa-user tab-icon" || window.location.pathname === '/login' || window.location.pathname === '/signup' || window.location.pathname === '/client-dash'){
-            console.log('user tab')
+          
             _homeTab.style.color = "#717171"
             _cartTab.style.color = "#717171"
             _notificationTab.style.color = "#717171"

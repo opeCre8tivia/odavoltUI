@@ -26,7 +26,7 @@ import {rootapi} from '../../rootapi'
 
     return async function(dispatch){
         try {
-                console.log(storeId)
+               
                 //fetch products by category
                 const res = await axios.get(`${rootapi}/api/storeitem-crud/particular/${storeId}`)
                 if(res.data.payload){
