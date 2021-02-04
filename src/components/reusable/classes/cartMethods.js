@@ -153,7 +153,7 @@ class CartMethods{
                 //find item in the array
                 let found = localArray.find(element=> element._id === item._id);
 
-                let originalPrice = item.unitPrice
+                let originalPrice = found.originalPrice
                 let currentPrice  = found.unitPrice
 
                 let newPrice = currentPrice + originalPrice
@@ -195,7 +195,7 @@ class CartMethods{
        //find item in the array
        let found = localArray.find(element=> element._id ===item._id);
 
-       let originalPrice = item.unitPrice
+       let originalPrice = found.originalPrice
        let currentPrice  = found.unitPrice
 
        let newPrice = currentPrice - originalPrice

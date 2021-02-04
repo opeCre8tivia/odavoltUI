@@ -63,13 +63,16 @@ const AddToCartComponent =({item})=> {
 
         /*------------ Add to cart function ----------*/
         const  addToCart =  (item) =>{
+            //store orignal price in a new prop "originalPrice" 
+            let origPrice = item.unitPrice
+            item.originalPrice = origPrice
+            //proceed to add
             const cartObject = new CartMethods(dispatch)
             cartObject.addToCart(item)
         }
         
 
            function decreament(item){
-               
                 const cartObject = new CartMethods(dispatch)
                 cartObject.decreament(item)
                 
