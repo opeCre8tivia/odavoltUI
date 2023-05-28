@@ -1,166 +1,150 @@
-.nav-container{
-    width:100%;
-    height:80px;
-	background-color:#fff;
-	border-bottom:1px solid var(--ov-gray-light);
-	margin-bottom: 5px;
-    position: relative;
-    display:flex;
-    justify-content: space-between;
+.nav-container {
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+  border-bottom: 1px solid var(--ov-gray-light);
+  margin-bottom: 5px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 
-.logo-container{
-    width: 150px;
-    height:40px;
-    position:relative;
-    top:50%;
-    left:20px;
-    transform: translateY(-50%);
+.logo-container {
+  width: 150px;
+  height: 40px;
+  position: relative;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
 }
-.logo-container img{
-    width:100%;
-    height:40px;
+.logo-container img {
+  width: 100%;
+  height: 40px;
 }
-.userprofile-icon-container{
-    width:40px;
-    height:40px;
-    background:gray;
-    border-radius:20px;
-    position:relative;
-    top:50%;
-    right:80px;
-    transform: translateY(-50%);
-}
-
-.userprofile-icon-container img{
-    width:40px;
-    height:40px;
-    border-radius: 20px;
-}
-.ov-auth-btn-cont{
-	max-width: 50%;
-	position: absolute;
-	right:80px;
-	top:50%;
-	transform:translateY(-50%);
-	display:flex,
-	
-	
+.userprofile-icon-container {
+  width: 40px;
+  height: 40px;
+  background: gray;
+  border-radius: 20px;
+  position: relative;
+  top: 50%;
+  right: 80px;
+  transform: translateY(-50%);
 }
 
-.ov-signup-btn{
-	background:var(--ov-primary);
-	color:#fff;
-	font-family: Arial, Helvetica, sans-serif;
-	border:1px solid var(--ov-primary);
-	margin-right: 8px;
-	
+.userprofile-icon-container img {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+.ov-auth-btn-cont {
+  max-width: 50%;
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
 }
 
-.ov-signup-btn:hover{
-	background: transparent;
-	color:var(--ov-primary);
+.ov-signup-btn {
+  background: var(--ov-primary);
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid var(--ov-primary);
+  margin-right: 8px;
 }
 
-.ov-login-btn{
-	background: transparent;
-	border:1px solid var(--ov-primary);
-	color:var(--ov-primary);
-	font-family: Arial, Helvetica, sans-serif;
-	
+.ov-signup-btn:hover {
+  background: transparent;
+  color: var(--ov-primary);
 }
 
-.ov-login-btn:hover{
-	background: var(--ov-primary);
-	color:#fff;
-	
-
-	
-}
-.nav-cart-icon-cont{
-	width: 60px;
-	height: 30px;
-	position: absolute;
-	right:25px;
-	top:50%;
-	transform:translateY(-50%);
-	
-}
-.nav-cart-button{
-	width: 60px;
-	height: 30px;
-	border-radius: 5px;
-	display:flex;
-	align-items: center;
-	justify-content: space-around;
-	background-color:var(--ov-primary);
-	position: relative;
-}
-.nav-cartitems-number{
-
-	width: 20px;
-	height: 20px;
-	margin-right: 4px;
-	border-radius: 10px;
-	border: 1px solid rgba(255,255,255,0.3);
-	color:#fff;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 15px;
-	font-weight: bold;
-}
-.nav-cart-img-cont{
-	width: 25px;
-	height: 25px;
-	
-}
-.nav-cart-img-cont span i{
-	font-size: 16px;
-	color:#fff
+.ov-login-btn {
+  background: transparent;
+  border: 1px solid var(--ov-primary);
+  color: var(--ov-primary);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.ov-banner{
-	width: 100%;
-	height:30px;
-	background-image: url("/ov-animation-lg.gif");
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: 100%;
-		
+.ov-login-btn:hover {
+  background: var(--ov-primary);
+  color: #fff;
+}
+.nav-cart-icon-cont {
+  width: 60px;
+  height: 30px;
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.nav-cart-button {
+  width: 60px;
+  height: 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--ov-primary);
+  position: relative;
+}
+.nav-cartitems-number {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+.nav-cart-img-cont {
+  width: 25px;
+  height: 25px;
+}
+.nav-cart-img-cont span i {
+  font-size: 16px;
+  color: #fff;
 }
 
-.ov-banner img{
-	width: 100%;
-	height:100%;
-	max-height: 100%;
-	min-width: 100%;
+.ov-banner {
+  width: 100%;
+  height: 30px;
+  /* background-image: url("/ov-animation-lg.gif"); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
-
-@media only screen and (max-width:600px){
-	.ov-banner{
-		width: 100%;
-		height:30px;
-		background-image: url("/ov-animation-md.gif");
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: 100%;
-			
-	}
+.ov-banner img {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  min-width: 100%;
 }
 
-@media only screen and (max-width:568px){
-	.ov-auth-btn-cont{
-		display: none;
-	}
-	.nav-cart-icon-cont{
-		display: none;
-	}
-	.userprofile-icon-container{
-		right: 15px;
-	}
-
+@media only screen and (max-width: 600px) {
+  .ov-banner {
+    width: 100%;
+    height: 30px;
+    /* background-image: url("/ov-animation-md.gif"); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
 }
 
-
+@media only screen and (max-width: 568px) {
+  .ov-auth-btn-cont {
+    display: none;
+  }
+  .nav-cart-icon-cont {
+    display: none;
+  }
+  .userprofile-icon-container {
+    right: 15px;
+  }
+}
